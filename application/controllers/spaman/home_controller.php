@@ -245,11 +245,11 @@ class Home_controller extends CI_Controller {
 		|----------------------------------------------------------------
 		*/
         
-		$this->load->view("spamanagement/common/head_view", $p_arr);
-		$this->load->view("spamanagement/common/header_view");
-		$this->load->view("spamanagement/common/left_view");
-		$this->load->view("spamanagement/spa_util_view",$arr_spautil);
-		$this->load->view("spamanagement/common/footer_view");
+		$this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+		$this->load->view($lang."/spamanagement/common/header_view");
+		$this->load->view($lang."/spamanagement/common/left_view");
+		$this->load->view($lang."/spamanagement/spa_util_view",$arr_spautil);
+		$this->load->view($lang."/spamanagement/common/footer_view");
 	}
     /**
 	* Function view spa user page
@@ -262,7 +262,31 @@ class Home_controller extends CI_Controller {
 
     public function spa_product()
     {   
+        $lang = "vi-VN";
+       if(isset($_SESSION['Lang']))
+       {
+          $lang = $_SESSION['Lang'];
+       }
+       
+       else
+       {
+           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
+           //$lang= 
+       }
+        $p_arr      =   array(
+                        'title'     =>  'Chính sách spa ',
+                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
+                        'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_product_view', '', TRUE)
+                    );
+        //print_r($_SESSION);
+        $spaid                  =   $_SESSION["AccSpa"]["spaid"];
+        // return;
         
+        $spa_product               =   $this->m_common->get_spa_product_by_spaid($spaid);
+        
+        $arr_spaproduct            =   array(  "spa_product"          =>  $spa_product,
+                                            );
+
         /*
         |----------------------------------------------------------------
         | Load Head View
@@ -273,10 +297,11 @@ class Home_controller extends CI_Controller {
         |----------------------------------------------------------------
         */
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("spamanagement/common/footer_view");
+        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+        $this->load->view($lang."/spamanagement/common/header_view");
+        $this->load->view($lang."/spamanagement/common/left_view");
+        //$this->load->view($lang."/spamanagement/spa_product_view",$arr_spaproduct);
+        $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
     public function spa_price()
