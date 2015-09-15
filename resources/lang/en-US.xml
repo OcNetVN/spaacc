@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Language>
+    <UserName>User Name</UserName>    
+    <Validation>Validation</Validation>
+    <LogIn>LogIn</LogIn>
+    <Today>Today</Today> 
+    <Normal>Normal</Normal>
+    <HotNumber>Hot Number</HotNumber> 
+    <TermsConditions>Terms  Conditions</TermsConditions>
+    <Accept>Accept</Accept> 
+    <Cancel>Cancel</Cancel> 
+    <Refesh>Refesh</Refesh> 
+    <Home>Home</Home>
+    <BetList>Bet List</BetList> 
+    <Statement>Statement</Statement> 
+    <Balance>Balance</Balance>  
+    <Result>Result</Result>
+    <Help>Help</Help>
+    <Outstanding>Outstanding</Outstanding>
+    <BetCredit>Bet Credit</BetCredit> 
+    <GivenCredit>Given Credit</GivenCredit> 
+    <PlaceBet>Place Bet</PlaceBet> 
+    <Early>Early</Early>
+    <Number>Number</Number> 
+    <BigSmall>Big / Small</BigSmall> 
+    <PendingBet>Pending Bets</PendingBet> 
+    <LastBet>Last Bet</LastBet> 
+    <Password>Password</Password>
+    <Logout>Logout</Logout>
+    <No>No</No> 
+    <Info>Info</Info> 
+    <Event>Event</Event>
+    <odds>odds</odds> 
+    <Stake>Stake</Stake> 
+    <Status>Status</Status>
+    <Date>Date</Date>
+    <Turnover>Turn Over</Turnover>
+    <Payout>Pay Out</Payout> 
+    <Winlose>Win Lose</Winlose>
+    <Commisson>Commission</Commisson>
+    <Setted>Setted</Setted> 
+    <Thisweek>This Week</Thisweek>
+    <Lastweek>Last Week</Lastweek>
+    <Drawdate>Draw Date</Drawdate>
+    <Search>Search</Search>
+    <Day>Day</Day> 
+    <Language>Language</Language> 
+    <AuthenticationCode>Authentication Code</AuthenticationCode>
+    <StringAuthenticationCode>Please enter the text that you see in the image into the box beside</StringAuthenticationCode>
+    <Transfer>Transfer</Transfer>
+    <Welcome>Welcome</Welcome>
+    <Account>Account</Account> 
+    <SubAccount>Sub Account</SubAccount>
+    <LimitSetting>Limit Setting</LimitSetting>  
+    <EatLimitNumber>Eat Limit - Number</EatLimitNumber>
+    <WinLose>Win / Lose</WinLose> 
+    <WinLoseDetail>Win / Lose Detail</WinLoseDetail>
+    <PaymentHistory>Payment History</PaymentHistory>
+    <RejectBet>Reject Bet</RejectBet>
+    <DrawResult>Draw Result</DrawResult> 
+    <Admin>Admin</Admin>
+    <AddNewDraw>Add/ Edit new draw </AddNewDraw>
+    <CalculaterWinLose>Calculater Win/ Lose </CalculaterWinLose>
+    <User>User</User>
+    <Name>Name</Name>
+    <Currency>Currency</Currency> 
+    <Credit>Credit</Credit> 
+    <Amout>Amout</Amout> 
+    <Transfertick>Transfer Tick</Transfertick>
+    <Report>Report</Report>
+    <Stock>Stock</Stock>
+    <LoginId>Login Id</LoginId> 
+    <Nickname>Nickname</Nickname> 
+    <CreditLimit>Credit Limit</CreditLimit> 
+    <CompanyCreditLimit>Company Credit Limit</CompanyCreditLimit> 
+    <ShareHolderCreditLimit>Share Holder Credit Limit</ShareHolderCreditLimit>
+    <SuperSeniorCreditLimit>SuperSenior Credit Limit</SuperSeniorCreditLimit>
+    <SeniorCreditLimit>Senior Credit Limit</SeniorCreditLimit>
+    <MasterCreditLimit>Master Credit Limit</MasterCreditLimit>
+    <AgentCreditLimit>Agent Credit Limit</AgentCreditLimit> 
+    <MemberCreditLimit>Member Credit Limit</MemberCreditLimit>
+    <TotalCompanyActiveInActiveSuspended>Total Company Active/InActive/Suspended</TotalCompanyActiveInActiveSuspended>
+    <TotalShareHolderActiveInActiveSuspended>Total Share Holder Active/InActive/Suspended</TotalShareHolderActiveInActiveSuspended>
+    <TotalSuperSeniorActiveInActiveSuspended>Total Super Senior Active/InActive/Suspended</TotalSuperSeniorActiveInActiveSuspended> 
+    <TotalSeniorActiveInActiveSuspended>Total Senior Active/InActive/Suspended</TotalSeniorActiveInActiveSuspended> 
+    <TotalMasterActiveInActiveSuspended>Total Master Active/InActive/Suspended</TotalMasterActiveInActiveSuspended> 
+    <TotalAgentActiveInActiveSuspended>Total Agent Active/InActive/Suspended</TotalAgentActiveInActiveSuspended>
+    <TotalMemberActiveInActiveSuspended>Total Member Active/InActive/Suspended</TotalMemberActiveInActiveSuspended> 
+    <Curr>Curr </Curr>
+    <Credit>Credit  </Credit>
+    <Downline>Downline </Downline>
+    <LastLoginIP>Last Login IP</LastLoginIP>
+    <LastLoginTime>Last Login Time</LastLoginTime>
+    <AddMember>AddMember </AddMember>
+    <Games>Games</Games>
+    <Phone>Phone </Phone>
+    <Email>Email </Email>
+    <PositionSetting>Position Setting </PositionSetting>
+    <NumberBetLimit>Number Bet Limit  </NumberBetLimit>
+    <BigSmallBetLimit>Big/Small Bet Limit </BigSmallBetLimit>
+    <MinPerBet>Min Per Bet  </MinPerBet>
+    <MaxPerBet>Max Per Bet  </MaxPerBet>
+    <MaxPerMatch>Max Per Match </MaxPerMatch>
+    <Commission> Commission </Commission>
+    <LastUpdateInfo>Last Update Info  </LastUpdateInfo>
+    <CreatedDate>Created Date </CreatedDate>
+    <LastUpdate>Last Update</LastUpdate>
+    <Submit>Submit   </Submit>
+    <stPrize>1st Prize </stPrize>
+    <Package>Package </Package>
+    <Lock>Lock</Lock>
+
+</Language>

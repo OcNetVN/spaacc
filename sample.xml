@@ -1,0 +1,40 @@
+ <?xml version="1.0" encoding="iso-8859-1"?>    
+ <messages>
+	<message>
+		<msg1>
+			Sample Msg 1
+		</msg1>
+		<msg2>
+			Sample Msg 2
+		</msg2>
+		<msg3>
+			Sample Msg 3
+		</msg3>
+
+	</message>
+
+	<message>
+		<msg1>
+			Hello World 1
+		</msg1>
+		<msg2>
+			Hello World 2
+		</msg2>
+		<msg3>
+			Hello World 3
+		</msg3>
+
+	</message>
+
+	<message>
+		<msg1>
+			Hello Phil 1
+		</msg1>
+		<msg2>
+			Hello Phil 2
+		</msg2>
+		<msg3>
+			Hello Phil 3
+		</msg3>
+	</message>
+ </messages>

@@ -1,0 +1,1 @@
+<script src="<?php echo base_url('resources/spamanagement/js/spa_hour.js'); ?>"></script>
