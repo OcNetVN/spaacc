@@ -24,9 +24,23 @@
             $query  =   $this->db->query($sql)->result();
             return $query;
         }
+        public function get_spa_policy_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+
+        public function get_spa_report_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
         /*
         | function get list util of spa
         */
+
         public function get_list_util()
         {
             $sql    =   "SELECT * FROM `commoncode` WHERE `CommonTypeId` = 'SpaFacility' ORDER BY `CommonId`";

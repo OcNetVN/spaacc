@@ -53,7 +53,9 @@ function btnsave_spainfo()
             {
                 if(txtLoctionGPS    !=  "")
                 {
-                    var findchar    = txtLoctionGPS.indexOf(",");
+                    var findchar    = txtLoctionGPS.indexOf(","); 
+                    // console.log(findchar);
+                    // return;
                     if(findchar     === false)
                         $("#notifylocation").show();
                     else
@@ -83,7 +85,7 @@ function btnsave_spainfo_step2()
     var txtIntro            =   CKEDITOR.instances['txtIntro'].getData();
     var txtMoreInfo         =   CKEDITOR.instances['txtMoreInfo'].getData();
     var txtNote             =   CKEDITOR.instances['txtNote'].getData();
-    
+
     $.ajax({
         type:"POST",
         url: "home_controller/btnsave_spainfo",
@@ -120,13 +122,18 @@ function btnsave_spainfo_Complete(data)
         
         setTimeout(function(){
             var url      =  window.location.href;
+
             window.location.replace(url);
+            console.log(url);
+            return;
         }, 1000);
+
     }
     else
     {
         $("#notifyerr").show();
         $("#notifysuccess").hide();
+
     }    
 }
 /*

@@ -10,43 +10,43 @@
 */
 class Home_controller extends CI_Controller {
 
-    /*
-    |----------------------------------------------------------------
-    | Construct function 
-    | Inherit construct parent (CI)
-    |----------------------------------------------------------------
-    */
-    public function __construct()
-    {
-        parent:: __construct();
+	/*
+	|----------------------------------------------------------------
+	| Construct function 
+	| Inherit construct parent (CI)
+	|----------------------------------------------------------------
+	*/
+	public function __construct()
+	{
+		parent:: __construct();
         $this->load->model('spamanagement/m_common'); 
         $this->load->model('spamanagement/m_spa_info'); 
         $this->load->model('spamanagement/m_spa_hour'); 
         $this->load->model('spamanagement/m_spa_util'); 
         $this->load->model('spamanagement/m_spa_user'); 
-        /*
-        |----------------------------------------------------------------
-        |Load common library
+		/*
+		|----------------------------------------------------------------
+		|Load common library
         |Call function check isset session superadmin
-        |Call function set lang
-        |----------------------------------------------------------------
-        */
-        //$this->load->library("common");
+		|Call function set lang
+		|----------------------------------------------------------------
+		*/
+		//$this->load->library("common");
         //$this->common->check_accusersuper();
-        //$this->common->set_lang();
-        
-    }
+		//$this->common->set_lang();
+		
+	}
 
-    /**
-    * Function view spa info page
-    * Date: 14/04/2015
-    * URL Page: spaman/spa_info
-    * Rewrite routing: file config/routes.php
-    * @param 
-    * @return Show spa Page
-    */
-    public function spa_info()
-    {   
+	/**
+	* Function view spa info page
+	* Date: 14/04/2015
+	* URL Page: spaman/spa_info
+	* Rewrite routing: file config/routes.php
+	* @param 
+	* @return Show spa Page
+	*/
+	public function spa_info()
+	{	
         
        $lang = "vi-VN";
        if(isset($_SESSION['Lang']))
@@ -64,15 +64,15 @@ class Home_controller extends CI_Controller {
             redirect('login');
             //$this->load->controllers('spaman/spa_info');
         }
-        $p_arr      =   array(
-                        'title'     =>  'Thông tin spa',
-                        'active'    =>  0,
-                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
-                        'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_info_view', '', TRUE)
-                    );
-        // print_r($_SESSION["AccSpa"]["Spa"]->spaID);
+        $p_arr 	    =	array(
+						'title'		=>	'Thông tin spa',
+						'active'	=>	0,
+                        //'p_custom_css'		=>	$this->load->view('spamanagement/css/css_index_view', '', TRUE),
+						'p_custom_js' 		=>	$this->load->view($lang.'/spamanagement/js/js_spa_info_view', '', TRUE)
+					);
+        // print_r($_SESSION["AccSpa"]);
      
-        $spaid                  =   $_SESSION["AccSpa"]["Spa"]->spaID;
+        $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         // return;
         $spa                    =   $this->m_common->get_spa_by_spaid($spaid);
          // return;
@@ -83,33 +83,31 @@ class Home_controller extends CI_Controller {
         $arr_spainfo            =   array(  "spa_info"          =>  $spa,
                                             "spa_location"      => $spa_location
                                             );
-        /*
-        |----------------------------------------------------------------
-        | Load Head View
-        | Load Header View
-        | Load Left View
-        | Load spa info View
-        | Load Footer View
-        |----------------------------------------------------------------
-        */
+		/*
+		|----------------------------------------------------------------
+		| Load Head View
+		| Load Header View
+		| Load Left View
+		| Load spa info View
+		| Load Footer View
+		|----------------------------------------------------------------
+		*/
         
-        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
-        $this->load->view($lang."/spamanagement/common/header_view");
-        $this->load->view($lang."/spamanagement/common/left_view");
-        $this->load->view($lang."/spamanagement/spa_info_view",$arr_spainfo);
-        $this->load->view($lang."/spamanagement/common/footer_view");
-    }
+		$this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+		$this->load->view($lang."/spamanagement/common/header_view");
+		$this->load->view($lang."/spamanagement/common/left_view");
+		$this->load->view($lang."/spamanagement/spa_info_view",$arr_spainfo);
+		$this->load->view($lang."/spamanagement/common/footer_view");
+	}
     /**
-    * Function view spa hour page
-    * Date: 14/04/2015
-    * URL Page: spaman/spa_hour
-    * Rewrite routing: file config/routes.php
-    * @param 
-    * @return Show spa Page
-    */
+	* Function view spa hour page
+	* Date: 14/04/2015
+	* URL Page: spaman/spa_hour
+	* Rewrite routing: file config/routes.php
+	* @param 
+	* @return Show spa Page
+	*/
 
-    
-    
      public function thoat_info()
         {
             unset($_SESSION["AccSpa"]);
@@ -117,47 +115,81 @@ class Home_controller extends CI_Controller {
         }
     
 
-    public function spa_hour()
-    {   
-        $p_arr      =   array(
-                        'title'     =>  'Giờ hoạt động spa',
-                        'active'    =>  0,
-                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
-                        'p_custom_js'       =>  $this->load->view('spamanagement/js/js_spa_hour_view', '', TRUE)
-                    );
+	public function spa_hour()
+	{	
+       $lang = "vi-VN";
+       if(isset($_SESSION['Lang']))
+       {
+          $lang = $_SESSION['Lang'];
+       }
+       else
+       {
+           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
+           //$lang= 
+       }
+        $p_arr 	    =	array(
+						'title'		=>	'Giờ hoạt động spa',
+						'active'	=>	0,
+                        //'p_custom_css'		=>	$this->load->view('spamanagement/css/css_index_view', '', TRUE),
+						'p_custom_js' 		=>	$this->load->view($lang.'/spamanagement/js/js_spa_hour_view', '', TRUE)
+					);
      
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         $spa_hour               =   $this->m_common->get_spa_hour_by_spaid($spaid);
         
         $arr_spahour            =   array(  "spa_hour"          =>  $spa_hour,
                                             );
-        /*
-        |----------------------------------------------------------------
-        | Load Head View
-        | Load Header View
-        | Load Left View
-        | Load spa hour View
-        | Load Footer View
-        |----------------------------------------------------------------
-        */
+		/*
+		|----------------------------------------------------------------
+		| Load Head View
+		| Load Header View
+		| Load Left View
+		| Load spa hour View
+		| Load Footer View
+		|----------------------------------------------------------------
+		*/
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("spamanagement/spa_hour_view",$arr_spahour);
-        $this->load->view("spamanagement/common/footer_view");
-    }
+		$this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+		$this->load->view($lang."/spamanagement/common/header_view");
+		$this->load->view($lang."/spamanagement/common/left_view");
+		$this->load->view($lang."/spamanagement/spa_hour_view",$arr_spahour);
+		$this->load->view($lang."/spamanagement/common/footer_view");
+	}
     /**
-    * Function view spa util page
-    * Date: 14/04/2015
-    * URL Page: spaman/spa_util
-    * Rewrite routing: file config/routes.php
-    * @param 
-    * @return Show spa Page
-    */
+	* Function view spa util page
+	* Date: 14/04/2015
+	* URL Page: spaman/spa_util
+	* Rewrite routing: file config/routes.php
+	* @param 
+	* @return Show spa Page
+	*/
     public function spa_policy()
     {   
         
+       $lang = "vi-VN";
+       if(isset($_SESSION['Lang']))
+       {
+          $lang = $_SESSION['Lang'];
+       }
+       else
+       {
+           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
+           //$lang= 
+       }
+        $p_arr      =   array(
+                        'title'     =>  'Chính sách spa ',
+                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
+                        'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_policy_view', '', TRUE)
+                    );
+        //print_r($_SESSION);
+        $spaid                  =   $_SESSION["AccSpa"]["spaid"];
+        // return;
+        
+        $spa_policy               =   $this->m_common->get_spa_policy_by_spaid($spaid);
+        
+        $arr_spapolicy            =   array(  "spa_policy"          =>  $spa_policy,
+                                            );
+        
         /*
         |----------------------------------------------------------------
         | Load Head View
@@ -167,28 +199,22 @@ class Home_controller extends CI_Controller {
         | Load Footer View
         |----------------------------------------------------------------
         */
-        $p_arr      =   array(
-                        'title'     =>  'Chính Sách spa',
-                        'active'    =>  0,
-                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
-                        'p_custom_js'       =>  $this->load->view('spamanagement/js/js_spa_policy_view', '', TRUE)
-                    );
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("vi-VN/admin/policy/v_chinhsach",$arr_spainfo);
-        $this->load->view("spamanagement/common/footer_view");
+        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+        $this->load->view($lang."/spamanagement/common/header_view");
+        $this->load->view($lang."/spamanagement/common/left_view");
+        $this->load->view($lang."/spamanagement/spa_policy_view",$arr_spapolicy);
+        $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
-    public function spa_util()
-    {   
-        $p_arr      =   array(
-                        'title'     =>  'Tiện ích spa',
-                        'active'    =>  0,
-                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
-                        'p_custom_js'       =>  $this->load->view('spamanagement/js/js_spa_util_view', '', TRUE)
-                    );
+	public function spa_util()
+	{	
+        $p_arr 	    =	array(
+						'title'		=>	'Tiện ích spa',
+						'active'	=>	0,
+                        //'p_custom_css'		=>	$this->load->view('spamanagement/css/css_index_view', '', TRUE),
+						'p_custom_js' 		=>	$this->load->view('spamanagement/js/js_spa_util_view', '', TRUE)
+					);
      
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         $list_util              =   $this->m_common->get_list_util();
@@ -209,30 +235,30 @@ class Home_controller extends CI_Controller {
                                             "list_producttype"         =>  $list_producttype,
                                             "spa_producttype"          =>  $spa_producttype,
                                             );
-        /*
-        |----------------------------------------------------------------
-        | Load Head View
-        | Load Header View
-        | Load Left View
-        | Load spa util View
-        | Load Footer View
-        |----------------------------------------------------------------
-        */
+		/*
+		|----------------------------------------------------------------
+		| Load Head View
+		| Load Header View
+		| Load Left View
+		| Load spa util View
+		| Load Footer View
+		|----------------------------------------------------------------
+		*/
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("spamanagement/spa_util_view",$arr_spautil);
-        $this->load->view("spamanagement/common/footer_view");
-    }
+		$this->load->view("spamanagement/common/head_view", $p_arr);
+		$this->load->view("spamanagement/common/header_view");
+		$this->load->view("spamanagement/common/left_view");
+		$this->load->view("spamanagement/spa_util_view",$arr_spautil);
+		$this->load->view("spamanagement/common/footer_view");
+	}
     /**
-    * Function view spa user page
-    * Date: 14/04/2015
-    * URL Page: spaman/spa_user
-    * Rewrite routing: file config/routes.php
-    * @param 
-    * @return Show spa Page
-    */
+	* Function view spa user page
+	* Date: 14/04/2015
+	* URL Page: spaman/spa_user
+	* Rewrite routing: file config/routes.php
+	* @param 
+	* @return Show spa Page
+	*/
 
     public function spa_product()
     {   
@@ -250,9 +276,7 @@ class Home_controller extends CI_Controller {
         $this->load->view("spamanagement/common/head_view", $p_arr);
         $this->load->view("spamanagement/common/header_view");
         $this->load->view("spamanagement/common/left_view");
-        $this->load->view("vi-VN/admin/products/v_products");
         $this->load->view("spamanagement/common/footer_view");
-		
     }
 
     public function spa_price()
@@ -271,7 +295,6 @@ class Home_controller extends CI_Controller {
         $this->load->view("spamanagement/common/head_view", $p_arr);
         $this->load->view("spamanagement/common/header_view");
         $this->load->view("spamanagement/common/left_view");
-        $this->load->view("vi-VN/admin/price/v_price");
         $this->load->view("spamanagement/common/footer_view");
     }
 
@@ -291,13 +314,34 @@ class Home_controller extends CI_Controller {
         $this->load->view("spamanagement/common/head_view", $p_arr);
         $this->load->view("spamanagement/common/header_view");
         $this->load->view("spamanagement/common/left_view");
-        $this->load->view("vi-VN/admin/products/ViewGoldHour");
         $this->load->view("spamanagement/common/footer_view");
     }
 
     public function spa_dt()
     {   
+        $lang = "vi-VN";
+       if(isset($_SESSION['Lang']))
+       {
+          $lang = $_SESSION['Lang'];
+       }
+       else
+       {
+           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
+           //$lang= 
+       }
+        $p_arr      =   array(
+                        'title'     =>  'Doanh thu spa ',
+                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
+                        'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_revenue_view', '', TRUE)
+                    );
+        //print_r($_SESSION);
+        $spaid                  =   $_SESSION["AccSpa"]["spaid"];
+        // return;
         
+        $spa_revenue               =   $this->m_common->get_spa_policy_by_spaid($spaid);
+        
+        $arr_sparevenue            =   array(  "spa_revenue"          =>  $spa_revenue,
+                                            );
         /*
         |----------------------------------------------------------------
         | Load Head View
@@ -308,11 +352,11 @@ class Home_controller extends CI_Controller {
         |----------------------------------------------------------------
         */
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("vi-VN/admin/revenue/v_doanhthu");
-        $this->load->view("spamanagement/common/footer_view");
+        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+        $this->load->view($lang."/spamanagement/common/header_view");
+        $this->load->view($lang."/spamanagement/common/left_view");
+        $this->load->view($lang."/spamanagement/spa_revenue_view",$arr_sparevenue);
+        $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
     public function spa_cal()
@@ -328,10 +372,10 @@ class Home_controller extends CI_Controller {
         |----------------------------------------------------------------
         */
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("spamanagement/common/footer_view");
+        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+        $this->load->view($lang."/spamanagement/common/header_view");
+        $this->load->view($lang."/spamanagement/common/left_view");
+        $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
     public function spa_booking()
@@ -347,10 +391,10 @@ class Home_controller extends CI_Controller {
         |----------------------------------------------------------------
         */
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("spamanagement/common/footer_view");
+        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+        $this->load->view($lang."/spamanagement/common/header_view");
+        $this->load->view($lang."/spamanagement/common/left_view");
+        $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
     public function spa_notify()
@@ -366,21 +410,20 @@ class Home_controller extends CI_Controller {
         |----------------------------------------------------------------
         */
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("vi-VN/admin/advertising/v_advertising");
-        $this->load->view("spamanagement/common/footer_view");
+        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+        $this->load->view($lang."/spamanagement/common/header_view");
+        $this->load->view($lang."/spamanagement/common/left_view");
+        $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
-    public function spa_user()
-    {   
-        $p_arr      =   array(
-                        'title'     =>  'Đội nhóm spa',
-                        'active'    =>  3,
-                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
-                        'p_custom_js'       =>  $this->load->view('spamanagement/js/js_spa_user_view', '', TRUE)
-                    );
+	public function spa_user()
+	{	
+        $p_arr 	    =	array(
+						'title'		=>	'Đội nhóm spa',
+						'active'	=>	3,
+                        //'p_custom_css'		=>	$this->load->view('spamanagement/css/css_index_view', '', TRUE),
+						'p_custom_js' 		=>	$this->load->view('spamanagement/js/js_spa_user_view', '', TRUE)
+					);
      
         /*$spaid                  =   $_SESSION["AccSpa"]["spaid"];
         $list_user              =   $this->m_common->get_list_user();
@@ -401,31 +444,56 @@ class Home_controller extends CI_Controller {
                                             "list_producttype"         =>  $list_producttype,
                                             "spa_producttype"          =>  $spa_producttype,
                                             );*/
-        /*
-        |----------------------------------------------------------------
-        | Load Head View
-        | Load Header View
-        | Load Left View
-        | Load spa user View
-        | Load Footer View
-        |----------------------------------------------------------------
-        */
+		/*
+		|----------------------------------------------------------------
+		| Load Head View
+		| Load Header View
+		| Load Left View
+		| Load spa user View
+		| Load Footer View
+		|----------------------------------------------------------------
+		*/
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("spamanagement/spa_user_view");
-        $this->load->view("spamanagement/common/footer_view");
-    }
+		$this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+		$this->load->view($lang."/spamanagement/common/header_view");
+		$this->load->view($lang."/spamanagement/common/left_view");
+		$this->load->view($lang."/spamanagement/spa_user_view");
+		$this->load->view($lang."/spamanagement/common/footer_view");
+	}
     /*
-    |----------------------------------------------------------------
-    | get location by spa
-    |----------------------------------------------------------------
-    */
+	|----------------------------------------------------------------
+	| get location by spa
+	|----------------------------------------------------------------
+	*/
 
     public function spa_report()
     {   
-        
+
+        $lang = "vi-VN";
+       if(isset($_SESSION['Lang']))
+       {
+          $lang = $_SESSION['Lang'];
+       }
+
+       else
+       {
+           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
+           //$lang= 
+       }
+
+        $p_arr      =   array(
+                        'title'     =>  'Báo cáo spa ',
+                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
+                        'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_report_view', '', TRUE)
+                    );
+        //print_r($_SESSION);
+        $spaid                  =   $_SESSION["AccSpa"]["spaid"];
+        // return;
+
+        $spa_report               =   $this->m_common->get_spa_report_by_spaid($spaid);
+
+        $arr_spareport            =   array(  "spa_report"          =>  $spa_report,
+                                            );
         /*
         |----------------------------------------------------------------
         | Load Head View
@@ -435,17 +503,12 @@ class Home_controller extends CI_Controller {
         | Load Footer View
         |----------------------------------------------------------------
         */
-        $p_arr      =   array(
-                        'title'     =>  'Chính Sách spa',
-                        'active'    =>  0,
-                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
-                        'p_custom_js'       =>  $this->load->view('spamanagement/js/js_spa_report_view', '', TRUE)
-                    );
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("vi-VN/admin/report/v_report");
-        $this->load->view("spamanagement/common/footer_view");
+
+        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+        $this->load->view($lang."/spamanagement/common/header_view");
+        $this->load->view($lang."/spamanagement/common/left_view");
+        $this->load->view($lang."/spamanagement/spa_report_view",$arr_spareport);
+        $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
     public function getlocation_by_spa()

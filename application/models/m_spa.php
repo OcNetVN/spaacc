@@ -10,7 +10,6 @@ class M_spa extends CI_Model{
     public function lay_info_Spa($UserId)
     {
         $sql="SELECT spa.* FROM spa , spauser WHERE spauser.SpaID = spa.spaID and spauser.UserId='$UserId'";
-        //echo $sql;
         $results=$this->db->query($sql)->result();
         return $results;
     }

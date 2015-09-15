@@ -7,8 +7,5 @@
       <span class="icon-bar">?</span>
       <span class="icon-bar">?</span>
     </button> 
-  </div>
-  <!-- <ul class="nav navbar-nav navbar-right">
-            <li><a href="<?php echo site_url('/thoat') ?>"><span class="glyphicon glyphicon-user"></span><?php echo $this->session->userdata('nguoi_dung')?></a></li>
-          </ul>    -->
+  </div>   
 </div>

@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <?php
-if(!isset($_SESSION['AccSpa']))
+if(!isset($_SESSION['AccUser']))
 {
     redirect('login');
 }

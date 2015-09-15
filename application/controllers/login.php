@@ -97,7 +97,6 @@ class Login extends CI_Controller
                         $user=$this->m_user->lay_nguoi_dung($username,$password);
                         // print_r($user->UserId);
                         // return;
-
                         
                         if(!$user)
                             $this->session->set_flashdata('flashmss',
@@ -121,23 +120,14 @@ class Login extends CI_Controller
                              $arr_Spa = $this->m_spa->lay_info_Spa($arr_user[0]->UserId);
                              // print_r($arr_Spa);
                              // return;
-
                             // chuoi menu
                             $menuStr = $this->GetMenuStr($arr_user[0]->RoleId);
-
-
                             
                              // lấy các module có quyèn
                               $module = $this->m_index->GetModuleOfRole($arr_user[0]->RoleId);
                             // $id_spa = $arr_user[0]->UserId;
-
-
-
-
-                            $arr_session = array(
-                        //"spaid"=>$arr_Spa[0]->spaID,  
-              
-                        "Spa"=>$arr_Spa[0] ,
+                            $arr_session = array("spaid"=>$arr_Spa[0]->spaID,
+                                                "Spa"=>$arr_Spa[0] ,
                                                 "User"=>$arr_user[0],
                                                 "Object"=>$arr_Object[0],
                                                 "Role" => $arr_Role[0],
@@ -164,8 +154,6 @@ class Login extends CI_Controller
                 
                 $this->load->view($lang.'/login');
         }
-
-        
 }
   
 ?>
