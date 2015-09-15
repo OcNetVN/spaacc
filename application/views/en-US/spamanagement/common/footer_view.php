@@ -65,5 +65,30 @@
   <?php 
         echo isset($p_custom_js) ? $p_custom_js : "";
     ?>
+    <script type="text/javascript">
+    $(document).ready(function() { 
+        $("#change_language").click(function(){
+            // alert("The paragraph was clicked.");
+            var data_lang = document.getElementById('change_language').getAttribute("data");
+            // console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "Change_Language",
+                dataType: "text",
+                data: {
+                    language: data_lang
+                },
+                cache: false,
+                success: function (data) {
+                  var str= window.location.href.toString() ;
+                  parent.location=str;    
+                }
+            });
+            
+
+        });
+    });
+
+  </script>
 </body>
 </html>

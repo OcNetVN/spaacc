@@ -24,6 +24,7 @@ class Home_controller extends CI_Controller {
         $this->load->model('spamanagement/m_spa_hour'); 
         $this->load->model('spamanagement/m_spa_util'); 
         $this->load->model('spamanagement/m_spa_user'); 
+        $this->load->helper('language_helper');
 		/*
 		|----------------------------------------------------------------
 		|Load common library
@@ -48,16 +49,7 @@ class Home_controller extends CI_Controller {
 	public function spa_info()
 	{	
         
-       $lang = "vi-VN";
-       if(isset($_SESSION['Lang']))
-       {
-          $lang = $_SESSION['Lang'];
-       }
-       else
-       {
-           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
-           //$lang= 
-       }
+       $lang = change_language();
            // unset($_SESSION["AccSpa"]);
          //print_r($_SESSION["AccSpa"]);
         if(!isset($_SESSION["AccSpa"])){
@@ -113,20 +105,13 @@ class Home_controller extends CI_Controller {
             unset($_SESSION["AccSpa"]);
             redirect('login');
         }
-    
+    public function Change_Language(){
+         echo $lang = change_language();
+      }
 
 	public function spa_hour()
 	{	
-       $lang = "vi-VN";
-       if(isset($_SESSION['Lang']))
-       {
-          $lang = $_SESSION['Lang'];
-       }
-       else
-       {
-           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
-           //$lang= 
-       }
+       $lang = change_language();
         $p_arr 	    =	array(
 						'title'		=>	'Giờ hoạt động spa',
 						'active'	=>	0,
@@ -166,16 +151,7 @@ class Home_controller extends CI_Controller {
     public function spa_policy()
     {   
         
-       $lang = "vi-VN";
-       if(isset($_SESSION['Lang']))
-       {
-          $lang = $_SESSION['Lang'];
-       }
-       else
-       {
-           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
-           //$lang= 
-       }
+       $lang = change_language();
         $p_arr      =   array(
                         'title'     =>  'Chính sách spa ',
                         //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
@@ -263,17 +239,7 @@ class Home_controller extends CI_Controller {
     public function spa_product()
     {   
 
-        $lang = "vi-VN";
-       if(isset($_SESSION['Lang']))
-       {
-          $lang = $_SESSION['Lang'];
-       }
-       
-       else
-       {
-           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
-           //$lang= 
-       }
+      $lang = change_language();
 
         $p_arr      =   array(
                         'title'     =>  'Chính sách spa ',
@@ -347,16 +313,7 @@ class Home_controller extends CI_Controller {
 
     public function spa_dt()
     {   
-        $lang = "vi-VN";
-       if(isset($_SESSION['Lang']))
-       {
-          $lang = $_SESSION['Lang'];
-       }
-       else
-       {
-           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
-           //$lang= 
-       }
+       $lang = change_language();
         $p_arr      =   array(
                         'title'     =>  'Doanh thu spa ',
                         //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
@@ -497,17 +454,7 @@ class Home_controller extends CI_Controller {
     public function spa_report()
     {   
 
-        $lang = "vi-VN";
-       if(isset($_SESSION['Lang']))
-       {
-          $lang = $_SESSION['Lang'];
-       }
-
-       else
-       {
-           $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
-           //$lang= 
-       }
+       $lang = change_language();
 
         $p_arr      =   array(
                         'title'     =>  'Báo cáo spa ',

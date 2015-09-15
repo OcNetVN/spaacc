@@ -36,6 +36,9 @@ h1 { font-size: 24px; }
     font-size: 24px;
     margin: 10px 15px;
 }
+.dropdown-menu {
+min-width: 76px!important;
+}
 .templatemo-content-wrapper {
     float: left;
     width: 100%;
