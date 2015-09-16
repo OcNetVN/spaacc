@@ -7,6 +7,7 @@
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width">
         <link rel="icon" href="http://localhost:899/spaacc/resources/front/favicon.ico" />
+
         <title><?php echo (isset($title) ? $title : ""); ?></title>
         
         <link rel="shortcut icon" href="<?php //echo base_url("assets/img/favicon.png"); ?>" />
