@@ -50,7 +50,7 @@ class Home_controller extends CI_Controller {
 	{	
         
            // session_unset();
-        echo $lang = change_language();
+        $lang = change_language();
         if(!isset($_SESSION["AccSpa"])){
             redirect('spaman/login');
         }
