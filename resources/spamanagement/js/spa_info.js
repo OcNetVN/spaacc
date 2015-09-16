@@ -126,7 +126,7 @@ function btnsave_spainfo_Complete(data)
             window.location.replace(url);
             console.log(url);
             return;
-        }, 1000);
+        }, 3000);
 
     }
     else

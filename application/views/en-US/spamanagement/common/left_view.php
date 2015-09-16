@@ -10,26 +10,26 @@
           </li>
           <li class="<?php echo (isset($active) && $active == 0 || !isset($active)) ? 'active open' : ''; ?> sub">
               <a href="javascript:void(0)">
-                  <i class="fa fa-home"></i>Quản lý Spa
+                  <i class="fa fa-home"></i>Management Spa
                   <div class="pull-right"><span class="caret"></span></div>
               </a>
               <ul class="templatemo-submenu">
-                  <li><a href="<?php echo base_url("spaman/spa_info"); ?>">Thông tin chi tiết</a></li>
-                  <li><a href="<?php echo base_url("spaman/spa_hour"); ?>">Giờ mở cửa</a></li>
-                  <li><a href="<?php echo base_url("spaman/spa_policy"); ?>">Chính sách</a></li>  
-                  <li><a href="<?php echo base_url("spaman/spa_util"); ?>">Tiện ích spa</a></li>
-                  <li><a href="<?php echo base_url("spaman/spa_product"); ?>">Sản phẩm & Dịch vụ</a></li>
-                  <li><a href="<?php echo base_url("spaman/spa_price"); ?>">Quản lý Giá</a></li> 
-                  <li><a href="<?php echo base_url("spaman/spa_km"); ?>">Khuyến mãi</a></li> 
+                  <li><a href="<?php echo base_url("spaman/spa_info"); ?>">Information details</a></li>
+                  <li><a href="<?php echo base_url("spaman/spa_hour"); ?>">Hours of operation</a></li>
+                  <li><a href="<?php echo base_url("spaman/spa_policy"); ?>">Policy</a></li>  
+                  <li><a href="<?php echo base_url("spaman/spa_util"); ?>">Utilities spa</a></li>
+                  <li><a href="<?php echo base_url("spaman/spa_product"); ?>">Products & Services</a></li>
+                  <li><a href="<?php echo base_url("spaman/spa_price"); ?>">Management Price</a></li> 
+                  <li><a href="<?php echo base_url("spaman/spa_km"); ?>">Promotion</a></li> 
               </ul>
           </li>
           <li class="sub">
             <a href="javascript:;">
-              <i class="fa fa-database"></i> Tài chính 
+              <i class="fa fa-database"></i> Finance
               <div class="pull-right"><span class="caret"></span></div>
             </a>
             <ul class="templatemo-submenu">
-              <li><a href="<?php echo base_url("spaman/spa_dt"); ?>">Doanh thu</a></li>
+              <li><a href="<?php echo base_url("spaman/spa_dt"); ?>">Revenue</a></li>
               <li><a href="<?php echo base_url("spaman/spa_cal"); ?>">Calendar</a></li>
               <li><a href="<?php echo base_url("spaman/spa_booking"); ?>">Online Booking</a></li> 
             </ul>
@@ -37,23 +37,23 @@
           <li>
               <a href="<?php echo base_url("spaman/spa_notify"); ?>">
                   <i class="fa fa-cubes"></i>
-                  <span class="badge pull-right">0</span>Thông báo
+                  <span class="badge pull-right">0</span>Notify
               </a>
           </li>
           <li class="<?php echo (isset($active) && $active == 3) ? 'active' : ''; ?>">
               <a href="<?php echo base_url("spaman/spa_user"); ?>">
                   <i class="fa fa-users"></i>
-                  <span id="spandoinhomno" class="badge pull-right">0</span>Đội nhóm
+                  <span id="spandoinhomno" class="badge pull-right">0</span>Team
               </a>
           </li>
           <li>
               <a href="<?php echo base_url("spaman/spa_report"); ?>">
-                  <i class="fa fa-cog"></i>Báo cáo
+                  <i class="fa fa-cog"></i>Reports
               </a>
           </li>
           <li>             
               <a href="<?php echo base_url("spaman/thoat_info")?>" >
-                  <i class="fa fa-sign-out"></i>Thoát
+                  <i class="fa fa-sign-out"></i>Logout
               </a>
           </li>
         </ul>
