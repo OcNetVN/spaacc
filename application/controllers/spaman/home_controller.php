@@ -278,6 +278,7 @@ class Home_controller extends CI_Controller {
 
     public function spa_price()
     {    
+
       $lang = change_language();
 
         $p_arr      =   array(
@@ -288,10 +289,11 @@ class Home_controller extends CI_Controller {
         
         //print_r($_SESSION);
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
-        // return;
+        //return;
         
         $spa_price               =   $this->m_common->get_spa_price_by_spaid($spaid);
-      
+        
+
         $arr_spaprice            =   array(  "spa_price"          =>  $spa_price,
                                             );
         /*

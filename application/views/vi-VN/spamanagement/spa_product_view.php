@@ -6,9 +6,9 @@
                     
                     <h3>Quản lý dịch vụ SPA</h3>
                     
-                    <ul class="content-box-tabs">                        
-                        <li><a href="#tab2" id="prlist" class="default-tab">Cập nhật SP &  dịch vụ</a></li>
-                    </ul>
+                                            
+                        <a href="#tab2" id="prlist" class="default-tab">Cập nhật SP &  dịch vụ</a>
+                    
                     
                     <div class="clear"></div>
                     
@@ -33,9 +33,11 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">
+                                    <td>
                                          <label>Chọn SPA cung cấp<span style="color: red;">(*)</span></label>
                                          <a href="javascript:void(0);" class="button" onclick="ChonSpaThemMoi();" >Chọn spa</a>
+                                         </td>
+                                         <td>
                                          Mã spa: <span id="spanSpaChonTab2" class="spanSpaChonTab2"><?php echo $product[0]->SpaID ;?></span> 
                                          <span id="spanSpaNameChonTab2"></span> 
                                          <a href="javascript:void(0);" onclick="ShowSpaDetailTab2()">xem chi tiết</a><br/>
