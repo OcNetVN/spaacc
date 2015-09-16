@@ -26,7 +26,7 @@
 
 <h2>Danh Sách Doanh Thu</h2>
 <p><?php echo anchor('log-in/doanh-thu/sua-tin-tuc','Thêm Sửa Doanh Thu') ?></p>
-<label for="loai">Loại</label>
+<label for="loai">Loại dịch vụ</label>
 <select class="combobox">
   <option></option>
   <option value="PA">Theo ngày</option>
@@ -84,16 +84,17 @@
     <input type="date">
 </body>
 
-<button type="button" class="btn btn-info">Báo Cáo</button>
+<button type="button" class="btn btn-info">Search</button>
 
 <table class="table table-striped">
         <thead>
             <tr>
                 <th>STT</th>
                 <th>Thời gian</th>
+                <th>Tên dịch vụ</th>
                 <th>Tổng hóa đơn</th>
-                <th>Tổng tiền(VNÐ)</th>
-                <th>Trung bình(VNÐ)</th>
+                <th>Thành tiền(VNÐ)</th>
+                <th>Số điểm</th>
             </tr>
         </thead>
         <tbody>

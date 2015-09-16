@@ -24,7 +24,7 @@
 </nav>
 
 <h2>Báo Cáo</h2>
-<p><?php echo anchor('log-in/doanh-thu/sua-tin-tuc','Thêm Sửa Báo Cáo') ?></p>
+<p><?php echo anchor('log-in/doanh-thu/sua-tin-tuc','Xuất bản file báo cáo') ?></p>
 <label for="loai">Theo Loại</label>
 <select class="combobox">
   <option></option>

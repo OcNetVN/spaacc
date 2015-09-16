@@ -24,21 +24,23 @@
   </ul>
 </nav>
 
-<h2>Danh Sách Doanh Thu</h2>
+<h2>Quản Lý Giá Dịch Vụ</h2>
 
 
 <table class="table table-striped">
         <thead>
             <tr>
                 <th>STT</th>
-                <th>Mã dịch vụ</th>
+                <th>Tên dịch vụ</th>
                 <th>Thông tin dịch vụ</th>
                 <th>Thông tin số chỗ</th>
+                <th>Giá hiện tại</th>
+                <th>Giá chỉnh sửa</th>
                 <th>TTin khởi tạo</th>
                 <th>Thao tác</th>
             </tr>
         </thead>
-        <tbody>
+        
         
     </table>
 </html>
