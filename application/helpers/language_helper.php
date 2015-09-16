@@ -19,7 +19,7 @@ function change_language()
 		$CI = get_instance();
 
 		// You may need to load the model if it hasn't been pre-loaded
-		$CI->load->model('m_mail');
+		$CI->load->model('spamanagement/m_mail');
 
 		$_SESSION['Lang']=$CI->m_mail->getSetting("LangaugeDefault");
 

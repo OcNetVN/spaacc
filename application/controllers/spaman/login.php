@@ -5,10 +5,11 @@ class Login extends CI_Controller
        function __construct()
        {
             parent::__construct();
-            $this->load->model('m_index');
-            $this->load->model('admin/m_user');
-            $this->load->model('m_mail');
-            $this->load->model('m_spa');
+            $this->load->model('spamanagement/m_index');
+            $this->load->model('spamanagement/m_user');
+            $this->load->model('spamanagement/m_mail');
+            $this->load->model('spamanagement/m_spa');
+            $this->load->helper('language_helper');
         }
         
        function GetMenuCap1($roleID,$moduleID) 
@@ -71,23 +72,14 @@ class Login extends CI_Controller
         }
         
         public function index(){
-               $lang = "vi-VN";
-               if(isset($_SESSION['Lang']))
-               {
-                  $lang = $_SESSION['Lang'];
-               }
-               else
-               {
-                   $_SESSION['Lang']=$this->m_mail->getSetting("LangaugeDefault");
-                   //$lang= 
-               }
+               $lang = change_language();
                // echo $_SESSION['Lang'];
                // return;
                 $this->load->library('form_validation');
                 $this->form_validation->set_rules('username','User name','required');
                 $this->form_validation->set_rules('password','Password','required');
                 //$this->form_validation->set_rules('captcha','Code ID','required');
-                $lang = $_SESSION['Lang'];
+                // $lang = $_SESSION['Lang'];
                 
                 $this->form_validation->set_message('required','<center><span style="color:red; clear:both; text-align:right;">%s not null</span></center>');
                 if($this->form_validation->run()) //chay va kiem tra gia tri cua form
@@ -152,7 +144,7 @@ class Login extends CI_Controller
                     //}
                 }
                 
-                $this->load->view($lang.'/login');
+                $this->load->view($lang.'/spamanagement/login');
         }
 }
   

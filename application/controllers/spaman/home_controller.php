@@ -49,13 +49,12 @@ class Home_controller extends CI_Controller {
 	public function spa_info()
 	{	
         
-       $lang = change_language();
-           // unset($_SESSION["AccSpa"]);
-         //print_r($_SESSION["AccSpa"]);
+           // session_unset();
+        echo $lang = change_language();
         if(!isset($_SESSION["AccSpa"])){
-            redirect('login');
-            //$this->load->controllers('spaman/spa_info');
+            redirect('spaman/login');
         }
+        
         $p_arr 	    =	array(
 						'title'		=>	'Thông tin spa',
 						'active'	=>	0,
@@ -103,7 +102,7 @@ class Home_controller extends CI_Controller {
      public function thoat_info()
         {
             unset($_SESSION["AccSpa"]);
-            redirect('login');
+            redirect('spaman/login');
         }
     public function Change_Language(){
          echo $lang = change_language();
@@ -111,7 +110,11 @@ class Home_controller extends CI_Controller {
 
 	public function spa_hour()
 	{	
-       $lang = change_language();
+        $lang = change_language();
+        if(!isset($_SESSION["AccSpa"])){
+            redirect('spaman/login');
+        }
+
         $p_arr 	    =	array(
 						'title'		=>	'Giờ hoạt động spa',
 						'active'	=>	0,
