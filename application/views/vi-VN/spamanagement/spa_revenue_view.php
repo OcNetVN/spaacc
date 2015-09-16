@@ -31,8 +31,8 @@
   <option></option>
   <option value="PA">Theo ngày</option>
   <option value="CT">Theo tháng</option>
-  <option value="NY">Theo nam</option>
-  <option value="MD">Theo tu?n</option>
+  <option value="NY">Theo năm</option>
+  <option value="MD">Theo tuần</option>
   <option value="VA">Theo quý</option>
 </select>
 
@@ -84,7 +84,7 @@
     <input type="date">
 </body>
 
-<button type="baocao">Báo Cáo</button>
+<button type="button" class="btn btn-info">Báo Cáo</button>
 
 <table class="table table-striped">
         <thead>

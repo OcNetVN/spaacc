@@ -171,11 +171,18 @@
                     </div> 
                </div> 
             </div>
-        </div>  
-      <div class="col-md-8 col-md-offset-2">
-            <span style="color: red; display: none;" id="notifyerr">Sửa không thành công</span>
-            <span style="color: blue; display: none;" id="notifysuccess">Sửa thành công</span>
-      </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+                <div class="alert alert-danger"style="color: red; display: none;" id="notifyerr">
+                  <span >Cập nhật thất bại</span>
+                </div>
+                <div class="alert alert-success"style="color: blue; display: none;" id="notifysuccess">
+                  <span >Cập nhật thành công</span>
+                </div>
+          </div>
+        </div>
       <div class="row templatemo-form-buttons">
         <div class="col-md-12">
           <button type="button" id="btnsave" class="btn btn-primary">Cập nhật</button>
