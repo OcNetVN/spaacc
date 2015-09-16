@@ -245,7 +245,7 @@ class Home_controller extends CI_Controller {
       $lang = change_language();
 
         $p_arr      =   array(
-                        'title'     =>  'Chính sách spa ',
+                        'title'     =>  'Sản phẩm & dịch vụ spa ',
                         //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
                         'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_product_view', '', TRUE)
                     );
@@ -277,8 +277,23 @@ class Home_controller extends CI_Controller {
     }
 
     public function spa_price()
-    {   
+    {    
+      $lang = change_language();
+
+        $p_arr      =   array(
+                        'title'     =>  'Quản lý giá ',
+                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
+                        'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_price_view', '', TRUE)
+                    );
         
+        //print_r($_SESSION);
+        $spaid                  =   $_SESSION["AccSpa"]["spaid"];
+        // return;
+        
+        $spa_price               =   $this->m_common->get_spa_price_by_spaid($spaid);
+      
+        $arr_spaprice            =   array(  "spa_price"          =>  $spa_price,
+                                            );
         /*
         |----------------------------------------------------------------
         | Load Head View
@@ -289,10 +304,11 @@ class Home_controller extends CI_Controller {
         |----------------------------------------------------------------
         */
         
-        $this->load->view("spamanagement/common/head_view", $p_arr);
-        $this->load->view("spamanagement/common/header_view");
-        $this->load->view("spamanagement/common/left_view");
-        $this->load->view("spamanagement/common/footer_view");
+        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
+        $this->load->view($lang."/spamanagement/common/header_view");
+        $this->load->view($lang."/spamanagement/common/left_view");
+        $this->load->view($lang."/spamanagement/spa_price_view",$arr_spaprice);
+        $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
     public function spa_km()
