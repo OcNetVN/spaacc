@@ -2,7 +2,7 @@
     <li><a href="#">FCSE Spa</a></li>
     <li><a href="index.html">Tài chính</a></li>
     <li class="active">Quản lý doanh thu</li>            
-  </ol>
+</ol>
 <html>
 <nav>
   <ul class="pagination">
@@ -25,16 +25,43 @@
 </nav>
 
 <h2>Danh Sách Doanh Thu</h2>
-<p><?php echo anchor('log-in/doanh-thu/sua-tin-tuc','Thêm Sửa Doanh Thu') ?></p>
+<p><?php echo anchor('log-in/doanh-thu/xuat-ban-doanh-thu','Xuất Bản Báo Cáo Doanh Thu') ?></p>
+<br>
+
+<tr>
 <label for="loai">Loại dịch vụ</label>
 <select class="combobox">
   <option></option>
-  <option value="PA">Theo ngày</option>
-  <option value="CT">Theo tháng</option>
-  <option value="NY">Theo năm</option>
-  <option value="MD">Theo tuần</option>
-  <option value="VA">Theo quý</option>
+  <option value="PA">Dịch vụ A</option>
+  <option value="CT">Dịch vụ B</option>
+  <option value="NY">Dịch vụ C</option>
+  <option value="MD">Dịch vụ D</option>
+  <option value="VA">Dịch vụ E</option>
 </select>
+
+<select name="dichvu" size="5" >
+<option>Dịch vụ A</option>
+<option>Dịch vụ B</option>
+<option>Dịch vụ C</option>
+</select>
+
+
+</tr>
+<br>
+<tr>
+  <td>
+      <label for="ten">Tên dịch vụ</label>
+      <select class="combobox">
+        <option></option>
+        <option value="PA">Tên Dịch vụ A</option>
+        <option value="CT">Tên Dịch vụ B</option>
+        <option value="NY">Tên Dịch vụ C</option>
+        <option value="MD">Tên Dịch vụ D</option>
+        <option value="VA">Tên Dịch vụ E</option>
+      </select>
+  </td>
+</tr>
+<br>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -84,8 +111,8 @@
     <input type="date">
 </body>
 
-<button type="button" class="btn btn-info">Search</button>
 
+<button type="button" class="btn btn-info">Search</button>
 <table class="table table-striped">
         <thead>
             <tr>

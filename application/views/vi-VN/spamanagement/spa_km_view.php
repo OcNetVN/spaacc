@@ -25,7 +25,7 @@
 </nav>
 
 <h2>Quản lý khuyến mãi SPA</h2>
-<p><?php echo anchor('log-in/doanh-thu/sua-tin-tuc','Thêm Khuyến Mãi') ?></p>
+<p><?php echo anchor('log-in/doanh-thu/sua-khuyen-mai','Thêm Khuyến Mãi') ?></p>
 
 <table width="100%" >
     <tr>

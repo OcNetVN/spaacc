@@ -114,7 +114,7 @@
         </div>
       </div>
       <div class="form-group" id="divuploadimage">
-            <label class="col-lg-2 col-sm-2 control-label">Hình ?nh: </label>
+            <label class="col-lg-2 col-sm-2 control-label">Hình ảnh: </label>
             <div class="col-lg-9">
                 <div class="content-box-content">    
                     <div class="tab-content default-tab">

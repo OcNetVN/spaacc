@@ -60,11 +60,13 @@ $route['spaman/spa_report']					=		"spaman/home_controller/spa_report";
 
 $route['spaman/thoat_info']					=		"spaman/home_controller/thoat_info";
 
+$route['thao-tac/sua-dich-vu-spa'] 			= 		"spaman/home_controller/spa_product_edit";
+
 $route['spaman/spa_user']					=		"spaman/home_controller/spa_user";
-$route['home_controller/getlocation_by_spa']=        "spaman/home_controller/getlocation_by_spa";
+$route['home_controller/getlocation_by_spa']=       "spaman/home_controller/getlocation_by_spa";
 $route['home_controller/load_location_child_by_location_parent']      =        "spaman/home_controller/load_location_child_by_location_parent";
 
-$route['spaman/Change_Language']					=		"spaman/home_controller/Change_Language";
+$route['spaman/Change_Language']			=		"spaman/home_controller/Change_Language";
 
 //$route['quan-tri'] = 'nguoi_dung';
 
