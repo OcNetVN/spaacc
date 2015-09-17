@@ -46,11 +46,11 @@
                   <span id="spandoinhomno" class="badge pull-right">0</span>Đội nhóm
               </a>
           </li>
-          <li>
+          <!-- <li>
               <a href="<?php echo base_url("spaman/spa_report"); ?>">
                   <i class="fa fa-cog"></i>Báo cáo
               </a>
-          </li>
+          </li> -->
           <li>             
               <a href="<?php echo base_url("spaman/thoat_info")?>" >
                   <i class="fa fa-sign-out"></i>Thoát

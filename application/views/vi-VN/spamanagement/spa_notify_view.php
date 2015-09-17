@@ -18,7 +18,6 @@
                 </div> <!-- End .content-box-header -->
                 
                 <div class="content-box-content">                    
-                    <!-------------THEM SAN PHAM--------------->
                     <div class="tab-content default-tab" id="tab1">
                         <form id="form_insert"> 
                             <fieldset> 
@@ -47,7 +46,7 @@
                                         </select>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>
                                 
                                         <label>Up hình</label>
@@ -56,13 +55,13 @@
                         
                                     </td>
                                     
-                                </tr>
-                                <tr>
+                                </tr> -->
+                                <!-- <tr>
                                     <td>
                                        <input type="button" value="Upload" onclick="UploadFile();"/>                       
                                     </td>
                                     
-                                </tr>
+                                </tr> -->
                                 
                             </table>
                         <div class="notification success png_bg ThemThanhCong" style="display: none;">
@@ -80,7 +79,7 @@
                         </div>
                             
                         </fieldset>          
-                    <div class="clear"></div><!-- End .clear -->  
+                    <div class="clear"></div><!-- End .clear   
             </form>
  
 
@@ -95,3 +94,30 @@
 </div>
                
 </div> <!-- End #main-content -->
+
+<div class="row">
+    <div class="col-md-12">
+      <form role="form" id="templatemo-preferences-form" method="POST" action="">
+   
+        <div class="row">
+          <div class="col-md-12 margin-bottom-15">
+            <label for="txtIntro">Cập nhật quảng cáo</label>
+            <textarea class="form-control ckeditor" name="txtIntro" rows="7" id="txtIntro" >
+                <?php echo $spa_notify->MoreInfo; ?>
+            </textarea>
+          </div>
+        </div>
+         
+        <div class="col-md-8 col-md-offset-2">
+              <span style="color: red; display: none;" id="notifyerr">Sửa không thành công</span>
+              <span style="color: blue; display: none;" id="notifysuccess">Sửa thành công</span>
+        </div>
+        <div class="row templatemo-form-buttons">
+          <div class="col-md-12">
+            <button type="button" id="btnsave" class="btn btn-primary">Cập nhật</button>
+            <button type="button" id="btnreset" class="btn btn-default">Reset</button>    
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

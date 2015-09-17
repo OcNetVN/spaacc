@@ -10,14 +10,14 @@
                     
                     <h3>Quản lý dịch vụ SPA</h3>                     
                        <!--  <a href="#tab2" id="prlist" class="default-tab">Cập nhật SP &  dịch vụ</a> -->
-                       <li>
+                       
                             <a href="<?php echo site_url('thao-tac/sua-dich-vu-spa') ?>">
-                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                                <span class="glyphicon glyphicon-pencil"></span>
                                 <span id="spSLTT">&nbsp;
                                     Thao tác sửa dịch vụ Spa 
                                 </span>
                             </a>
-                        </li>
+            
                     <body>
                                    <div id="custom-search-input">
                                                     <div class="input-group col-md-3">
@@ -48,21 +48,22 @@
                             <table width="100%" >
                                 <tr> 
                                     <td>
-                                        <label>Tên dịch vụ</label>
+                                        <label>Tên dịch vụ :</label>
                                         <input class="text-input medium-input" type="text" value="<?php echo $product[0]->Name ;?>" id="txtNameTab2" name="txtNameTab2" />
                                     </td>
                                     <td>
                                         <label>Loại dịch vụ :</label>              
-                                        <input id="txtProductIDTab2" type="text" readonly="readonly" value="<?php echo $product[0]->ProductID ;?>" class="text-input medium-input" />
+                                        <input class="text-input medium-input" type="text" value="<?php echo $product[0]->Name ;?>" id="txtNameTab2" name="txtNameTab2" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                         <label>Chọn SPA cung cấp<span style="color: red;">(*)</span></label>
+                                         <label>Chọn SPA cung cấp :<span style="color: red;">(*)</span></label>
                                          <a href="javascript:void(0);" class="button" onclick="ChonSpaThemMoi();" >Chọn spa</a>
                                          </td>
                                          <td>
-                                            Mã spa: <input id="txtProductIDTab2" type="text" readonly="readonly" value="<?php echo $product[0]->ProductID ;?>" class="text-input medium-input" />
+                                            <label>Mã spa :</label>                                            
+                                            <input class="text-input medium-input" type="text" value="<?php echo $product[0]->Name ;?>" id="txtNameTab2" name="txtNameTab2" />
                                          <br />
                                         </td>
                                 </tr>
