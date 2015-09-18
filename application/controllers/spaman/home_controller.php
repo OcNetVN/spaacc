@@ -248,6 +248,7 @@ class Home_controller extends CI_Controller {
         // echo '</pre>';
         
 
+        $list_producttype      = $this->m_common->get_list_producttype();
         //Danh sách productype parent
         $list_parent_producttype       =   $this->m_common->get_parent_list_producttype();
         // echo '<pre>';
