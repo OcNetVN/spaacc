@@ -106,7 +106,6 @@
         public function get_spa_type_by_spaid($spaid)
         {
             $sql        =   "SELECT `commonId` FROM `spainfo` WHERE `CommonTypeId` = 'SpaType' AND `spaId` = '$spaid'";
-            //echo $sql;die;
             $query      =   $this->db->query($sql)->result();
             if(count($query) > 0)
             $arr        =   array();
