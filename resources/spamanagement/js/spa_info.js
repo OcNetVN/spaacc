@@ -5,7 +5,7 @@
 | function ForceNumericOnly
 |----------------------------------------------------------------
 */
-$(document).ready(function() { 
+$(document).ready(function() {
     getlocation_by_spa();
     show_map();
     $("#txtTel").ForceNumericOnly();
@@ -170,6 +170,7 @@ function getlocation_by_spa()
 function getlocation_by_spa_Complete(data)
 {
     var sRes = JSON.parse(data);
+    // console.log(sRes);
     $("#secity").html(sRes.str_location_level1);
     load_location_child_by_location_parent(sRes.location_level1,sRes.LocationID);
 }

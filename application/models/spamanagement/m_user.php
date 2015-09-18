@@ -58,7 +58,7 @@ class M_user extends CI_Model
     
     public function lay_User_theo_id1($id)
     {
-        $sql ="SELECT * FROM `users` WHERE `UserId`='$id'";
+        $sql ="SELECT`UserId`,`ObjectId`,`LastLogin`,`Status`,`CreatedBy`,`CreatedDate`,`ModifiedBy`,`ModifiedDate`,`RoleId`,`ScoreBalance`,`UserType`,`LoginName`,`OutStanding`,`Avatar` FROM `users` WHERE `UserId`='$id'";
         
         $res = $this->db2->query($sql)->result();
         $arr = (array) $res;

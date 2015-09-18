@@ -96,6 +96,7 @@
                     <option value="0" <?php if($spa_info->Status    ==  0) echo "selected=\"selected\""; ?>>Khóa </option>
                     <option value="1" <?php if($spa_info->Status    ==  1) echo "selected=\"selected\""; ?>>Đang hoạt động </option>
                 </select>
+
                 <label for="secity">Tỉnh, thành phố</label>
                 <select class="form-control" id="secity">
                     <!--load data-->
@@ -125,14 +126,14 @@
           </textarea>
         </div>
       </div>
-      <div class="row">
+     <!--  <div class="row">
         <div class="col-md-12 margin-bottom-15">
           <label for="txtNote">Thông tin thêm</label>
           <textarea class="form-control ckeditor" name="txtMoreInfo" rows="3" id="txtMoreInfo">
             <?php echo $spa_info->MoreInfo; ?>
           </textarea>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-md-12 margin-bottom-15">
           <label for="txtNote">Ghi chú</label>
@@ -190,6 +191,8 @@
         </div>
       </div>
     </form>
+
+    
     <!-- Modal view image -->
         <div class="modal fade" id="modalviewimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">

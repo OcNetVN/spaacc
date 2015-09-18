@@ -47,11 +47,9 @@ class Home_controller extends CI_Controller {
 	* @return Show spa Page
 	*/
 	public function spa_info()
-	{	
-        
-           // session_unset();
+	{	        
         $lang = change_language();
-        if(!isset($_SESSION["AccSpa"])){
+        if(!isset($_SESSION["AccSpa"]) || !isset($_SESSION["AccSpa"]["spaid"])){
             redirect('spaman/login');
         }
         
@@ -61,19 +59,16 @@ class Home_controller extends CI_Controller {
                         //'p_custom_css'		=>	$this->load->view('spamanagement/css/css_index_view', '', TRUE),
 						'p_custom_js' 		=>	$this->load->view($lang.'/spamanagement/js/js_spa_info_view', '', TRUE)
 					);
-        // print_r($_SESSION["AccSpa"]);
      
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
-        // return;
         $spa                    =   $this->m_common->get_spa_by_spaid($spaid);
-         // return;
         $spa_location           =   $this->m_common->get_spalocation_by_spaid($spaid);
-         // print_r($spa_location);
-         // return;
-
         $arr_spainfo            =   array(  "spa_info"          =>  $spa,
                                             "spa_location"      => $spa_location
                                             );
+        // echo '<pre>';
+        // print_r($arr_spainfo);
+        // echo '</pre>';
 		/*
 		|----------------------------------------------------------------
 		| Load Head View

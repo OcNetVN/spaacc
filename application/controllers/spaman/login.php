@@ -72,16 +72,15 @@ class Login extends CI_Controller
         }
         
         public function index(){
-               $lang = change_language();
-               // echo $_SESSION['Lang'];
-               // return;
+                $lang = change_language();
+
                 $this->load->library('form_validation');
                 $this->form_validation->set_rules('username','User name','required');
                 $this->form_validation->set_rules('password','Password','required');
                 //$this->form_validation->set_rules('captcha','Code ID','required');
                 // $lang = $_SESSION['Lang'];
                 
-                $this->form_validation->set_message('required','<center><span style="color:red; clear:both; text-align:right;">%s not null</span></center>');
+                $this->form_validation->set_message('required','<center><span style="color: red;clear: both;text-align: right;font-size: 12px;font-weight: bold;">%s is required</span></center>');
                 if($this->form_validation->run()) //chay va kiem tra gia tri cua form
                 {
                         $username=$this->input->post('username');
@@ -90,41 +89,50 @@ class Login extends CI_Controller
                         // print_r($user->UserId);
                         // return;
                         
-                        if(!$user)
-                            $this->session->set_flashdata('flashmss',
-                        '<center><span style="color:red;">Wrong username or password</span></center>');
+                        if(!$user){
+                            $_SESSION['error'] = "Sorry, we were unable to log you in. Please check your username and password are correct.";
+                            redirect('spaman/login');
+                        }
                         else
                         {
+
                             // 1 - load user
                             $arr_user = $this->m_user->lay_User_theo_id1($username);
+
                             // print_r($arr_user[0]->UserId);
-                            // 2 - load Object 
-                            $arr_Object = $this->m_user->lay_object_theo_ObjectID($arr_user[0]->ObjectId);
-                             // print_r($arr_Object);
-                            // 3 - Load Role
-                            $arr_Role = $this->m_user->lay_Role_theo_RoleID($arr_user[0]->RoleId);
-                             // print_r($arr_Role);
-                            // 4 - Load RoleMenuModule
-                            $arr_RoleMenuModule = $this->m_user->lay_RoleMenuModule_theo_RoleID($arr_user[0]->RoleId);
-                             // print_r($arr_RoleMenuModule);
+                            // // 2 - load Object 
+                            // $arr_Object = $this->m_user->lay_object_theo_ObjectID($arr_user[0]->ObjectId);
+                            //  // print_r($arr_Object);
+                            // // 3 - Load Role
+                            // $arr_Role = $this->m_user->lay_Role_theo_RoleID($arr_user[0]->RoleId);
+                            //  // print_r($arr_Role);
+                            // // 4 - Load RoleMenuModule
+                            // $arr_RoleMenuModule = $this->m_user->lay_RoleMenuModule_theo_RoleID($arr_user[0]->RoleId);
+                            //  // print_r($arr_RoleMenuModule);
                               
                              // 5 - Load Spa
                              $arr_Spa = $this->m_spa->lay_info_Spa($arr_user[0]->UserId);
+                             if(!$arr_Spa){
+                                 $_SESSION['error'] = "Sorry, we were unable to log you in. Please check your username and password are correct.";
+                                 redirect('spaman/login');
+                             }
                              // print_r($arr_Spa);
                              // return;
                             // chuoi menu
-                            $menuStr = $this->GetMenuStr($arr_user[0]->RoleId);
+                            //$menuStr = $this->GetMenuStr($arr_user[0]->RoleId);
                             
-                             // lấy các module có quyèn
-                              $module = $this->m_index->GetModuleOfRole($arr_user[0]->RoleId);
-                            // $id_spa = $arr_user[0]->UserId;
+
+
+                            //  // lấy các module có quyèn
+                            //   $module = $this->m_index->GetModuleOfRole($arr_user[0]->RoleId);
+                            // // $id_spa = $arr_user[0]->UserId;
                             $arr_session = array("spaid"=>$arr_Spa[0]->spaID,
-                                                "Spa"=>$arr_Spa[0] ,
-                                                "User"=>$arr_user[0],
-                                                "Object"=>$arr_Object[0],
-                                                "Role" => $arr_Role[0],
-                                                "ListMenu"=>$arr_RoleMenuModule,
-                                                "MenuSTR"=>$menuStr,"CacModule"=>$module
+                                                // "Spa"=>$arr_Spa[0] ,
+                                                 "User"=>$arr_user[0],
+                                                // "Object"=>$arr_Object[0],
+                                                // "Role" => $arr_Role[0],
+                                                // "ListMenu"=>$arr_RoleMenuModule,
+                                                // "MenuSTR"=>$menuStr,"CacModule"=>$module
                                                 );
                             $_SESSION['AccSpa']=$arr_session;
                             
@@ -136,14 +144,14 @@ class Login extends CI_Controller
                             //print($menuStr);
                            // die;
                             //$_SESSION['user_name']=$user->UserId;
-                            $LastLogin=date("Y-m-d h:m:s");
+                            $LastLogin=date("Y-m-d H:m:s");
                             $this->m_user->update_lastlogin_user($user->UserId,$LastLogin);
+
                             //$this->session->set_userdata($arr_session);
                             redirect('spaman/spa_info');
                         }
                     //}
                 }
-                
                 $this->load->view($lang.'/spamanagement/login');
         }
 }
