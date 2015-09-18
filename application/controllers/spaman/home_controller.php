@@ -27,9 +27,9 @@ class Home_controller extends CI_Controller {
         $this->load->helper('language_helper');
 
 
-         echo '<pre>';
-        print_r($_SESSION["AccSpa"]);
-        echo '</pre>';
+        //  echo '<pre>';
+        // print_r($_SESSION["AccSpa"]);
+        // echo '</pre>';
 
         if(!isset($_SESSION["AccSpa"])){
             redirect('spaman/login');
@@ -219,37 +219,50 @@ class Home_controller extends CI_Controller {
 
         //Danh sách tất cả tiện ích
         $list_util              =   $this->m_common->get_list_util();
-        echo '<pre>';
-        print_r($list_util);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($list_util);
+        // echo '</pre>';
 
 
 
         //Tiện ích của SPA theo spaid -> trả về commonId , SPA có nhiều tiện ích
         $spa_util               =   $this->m_common->get_spa_util_by_spaid($spaid);
-        echo '<pre>';
-        print_r($spa_util);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($spa_util);
+        // echo '</pre>';
 
 
 
         //Danh sách tất cả loại dịch vụ của spa
         $list_type              =   $this->m_common->get_list_type();
-        echo '<pre>';
-        print_r($list_type);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($list_type);
+        // echo '</pre>';
 
 
 
         //Loại của SPA theo spaid -> trả về commonId , SPA thuộc về 1 loại
         $spa_type               =   $this->m_common->get_spa_type_by_spaid($spaid);
-        echo '<pre>';
-        print_r($spa_type);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($spa_type);
+        // echo '</pre>';
         
 
-        //
-        $list_producttype       =   $this->m_common->get_list_producttype();
+        //Danh sách productype parent
+        $list_parent_producttype       =   $this->m_common->get_parent_list_producttype();
+        // echo '<pre>';
+        // print_r($list_parent_producttype);
+        // echo '</pre>';
+
+
+
+
+        //Danh sách productype parent
+        $list_child_of_parent_producttype       =   $this->m_common->get_child_of_parent_list_producttype('01');
+        echo '<pre>';
+        print_r($list_child_of_parent_producttype);
+        echo '</pre>';
+
 
         $spa_producttype        =   $this->m_common->get_producttype_by_spaid($spaid);
 

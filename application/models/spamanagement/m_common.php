@@ -126,6 +126,23 @@
             $query      =   $this->db->query($sql)->result();
             return $query;
         }
+
+        public function get_parent_list_producttype()
+        {
+            $sql        =   "SELECT * FROM `commoncode` WHERE `CommonTypeId` = 'ProductType' AND LENGTH(`CommonId`) = 2 ORDER BY `CommonId`";
+            $query      =   $this->db->query($sql)->result();
+            return $query;
+        }
+
+        public function get_child_of_parent_list_producttype($CommonId)
+        {
+            $sql        =   "SELECT * FROM `commoncode` WHERE `CommonTypeId` = 'ProductType' AND LENGTH(`CommonId`) = 4 AND CommonId like '$CommonId%' ORDER BY `CommonId`";
+            $query      =   $this->db->query($sql)->result();
+            return $query;
+        }
+
+
+
         public function get_producttype_by_spaid($spaid)
         {
             $sql        =   "SELECT `ProductType` FROM `spaproductype` WHERE `spaID` = '$spaid' ORDER BY `ProductType`";
