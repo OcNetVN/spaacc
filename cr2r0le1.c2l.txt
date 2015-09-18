@@ -1,0 +1,38 @@
+﻿Merge branch 'master' of https://github.com/OcNetVN/spaacc
+
+Conflicts:
+	application/views/vi-VN/spamanagement/spa_policy_view.php
+	resources/spamanagement/js/spa_statistics.js
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 3 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   application/config/routes.php
+#	modified:   application/controllers/spaman/home_controller.php
+#	modified:   application/controllers/spaman/login.php
+#	modified:   application/models/spamanagement/m_common.php
+#	modified:   application/models/spamanagement/m_spa_info.php
+#	modified:   application/models/spamanagement/m_user.php
+#	modified:   application/views/en-US/spamanagement/login.php
+#	modified:   application/views/en-US/spamanagement/spa_info_view.php
+#	modified:   application/views/vi-VN/spamanagement/js/js_spa_policy_view.php
+#	modified:   application/views/vi-VN/spamanagement/login.php
+#	modified:   application/views/vi-VN/spamanagement/spa_info_view.php
+#	deleted:    application/views/vi-VN/spamanagement/spa_policy_view.php
+#	deleted:    resources/img/spa/0120150717000001/1442311243_11752521_426320710884798_7713686966462091966_n.jpg
+#	deleted:    resources/spamanagement/js/spa_policy.js
+#
+
