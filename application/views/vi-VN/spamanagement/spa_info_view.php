@@ -1,6 +1,6 @@
 ﻿<ol class="breadcrumb">
     <li><a href="#">FCSE Spa</a></li>
-    <li><a href="index.html">Quản lý Spa</a></li>
+    <li><a href="<?php echo base_url();?>">Quản lý Spa</a></li>
     <li class="active">Thông tin chi tiết SPA</li>            
   </ol>
   <h1>Thông tin chi tiết SPA</h1>
@@ -12,24 +12,25 @@
           <div class="col-md-5 margin-bottom-15">
             <label for="firstName" class="control-label">Tên SPA <span style="color: red;">(*)</span></label>
             <input type="text" class="form-control" id="txtSpaName" value="<?php echo $spa_info->spaName; ?>" />    
-            <span style="color: red; display: none;" id="notifyspaname">Không được rỗng</span>              
+            <span class="notify_error" style="display: none;" id="notifyspaname"><span class="caret_muiten"></span>Vui lòng nhập Tên SPA</span>              
           </div>
           <div class="col-md-7 margin-bottom-15">
             <label for="lastName" class="control-label">Địa chỉ</label>
-            <input type="text" class="form-control" id="txtSpaAdd" value="<?php echo $spa_info->Address; ?>" />                 
+            <input type="text" class="form-control" id="txtSpaAdd" value="<?php echo $spa_info->Address; ?>" />
+            <span class="notify_error" style="display: none;" id="notifyspaadd"><span class="caret_muiten"></span>Vui lòng nhập Địa chỉ</span>                
           </div>
         </div>
         <div class="row">
           <div class="col-md-5 margin-bottom-15">
             <label>Mã spa</label>
-            <p class="form-control-static" id="txtSpaID"><?php echo $spa_info->spaID; ?></p>
+            <p class="form-control-static" id="txtSpaID"><?php echo $spa_info->spaID; ?></p><br/>
             <label>Ngày tạo</label>
             <?php 
                 $hour_create        =   substr($spa_info->CreatedDate,-8);
                 $createdate         =   substr($spa_info->CreatedDate,0,10);  //yyyy-mm-dd
                 $createdate         =   substr($createdate,-2)."-".substr($createdate,5,2)."-".substr($createdate,0,4);
             ?>
-            <p class="form-control-static" id="txtCreatedDate"><?php echo $hour_create." ".$createdate; ?></p>
+            <p class="form-control-static" id="txtCreatedDate"><?php echo $hour_create." ".$createdate; ?></p><br/>
             <label>Ngày cập nhật</label>
             <?php 
                 if($spa_info->ModifiedDate      !=  "")
@@ -41,23 +42,26 @@
                 else
                     $modifieddate       =   "";
             ?>
-            <p class="form-control-static" id="txtModifiedDate"><?php echo $hour_modified." ".$modifieddate; ?></a></p>    
+            <p class="form-control-static" id="txtModifiedDate"><?php echo $hour_modified." ".$modifieddate; ?></a></p><br/>  
             <label>Người cập nhật</label>
             <p class="form-control-static" id="txtModifiedBy"><?php echo $spa_info->ModifiedBy; ?></p>                     
           </div>
           <div class="col-md-7 margin-bottom-15">
             <label>Số ĐT quảng cáo</label>
             <input type="text" class="form-control" maxlength="15" id="txtTel1" value="<?php echo $spa_info->Tel1; ?>" />
+            <span class="notify_error" style="display: none;" id="notifyspatel1"><span class="caret_muiten"></span>Vui lòng nhập Số ĐT quảng cáo</span><br />
+
             <label>Số ĐT nhận thông báo</label>
             <input type="text" class="form-control" maxlength="15" id="txtTel" value="<?php echo $spa_info->Tel; ?>" />
-              <br />
+            <span class="notify_error" style="display: none;" id="notifyspatel"><span class="caret_muiten"></span>Vui lòng nhập Số ĐT nhận thông báo</span><br />
+            
             <label>Email quảng cáo</label>
             <input type="text" class="form-control" id="txtEmail1" value="<?php echo $spa_info->Email1; ?>" /> 
-            <span style="color: red; display: none;" id="notifyemail1">Email không đúng</span>      
+            <span class="notify_error" style="display: none;" id="notifyspaemail1"><span class="caret_muiten"></span>Email không hợp lệ</span><br />   
                                 
             <label>Email nhận thông báo</label>
             <input type="text" class="form-control" id="txtEmail" value="<?php echo $spa_info->Email; ?>" />   
-            <span style="color: red; display: none;" id="notifyemail">Email không đúng</span>                 
+            <span class="notify_error" style="display: none;" id="notifyspaemail"><span class="caret_muiten"></span>Email không hợp lệ</span><br />                   
           </div>
         </div>
         <div class="row">
@@ -73,11 +77,12 @@
                     }
                 ?>
                 <input type="text" class="form-control" id="txtLoctionGPS" value="<?php echo $arr_location[0]; ?>" /> 
-                <span style="color: red; display: none;" id="notifylocation">Location không đúng</span>    
+                <span class="notify_error" style="display: none;" id="notifyspalocationGPS"><span class="caret_muiten"></span>Location GPS không hợp lệ</span>    
               </div>
               <div class="col-md-7 margin-bottom-15">
                   <label for="txtLoctionName">Location Name</label>
-                <input type="text" class="form-control" id="txtLoctionName" value="<?php echo $arr_location[1]; ?>">
+                  <input type="text" class="form-control" id="txtLoctionName" value="<?php echo $arr_location[1]; ?>">
+                  <span class="notify_error" style="display: none;" id="notifyspalocationName"><span class="caret_muiten"></span>Vui lòng nhập Location Name</span>
               </div>
           </div>
           <div class="row">
@@ -114,7 +119,7 @@
           <div class="col-md-7 margin-bottom-15">
               <label for="txtWebsite">Website</label>
             <input type="text" class="form-control" id="txtWebsite" value="<?php echo $spa_info->Website; ?>" />
-            <span style="color: red; display: none;" id="notifywebsite">Website không chính xác</span>
+            <span class="notify_error" style="display: none;" id="notifyspawebsite"><span class="caret_muiten"></span>Vui lòng nhập địa chỉ website</span>
           </div>
         </div>
         
@@ -126,7 +131,7 @@
           </textarea>
         </div>
       </div>
-     <!--  <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12 margin-bottom-15">
           <label for="txtNote">Thông tin thêm</label>
           <textarea class="form-control ckeditor" name="txtMoreInfo" rows="3" id="txtMoreInfo">

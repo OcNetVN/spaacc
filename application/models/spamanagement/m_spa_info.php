@@ -56,7 +56,7 @@
             $sedistrict             =   $_POST["sedistrict"];
             $txtWebsite             =   $_POST["txtWebsite"];
             $txtIntro               =   $_POST["txtSpaName"];
-            $txtMoreInfo            =   $_POST["txtMoreInfo"];
+            // $txtMoreInfo            =   $_POST["txtMoreInfo"];
             $txtNote                =   $_POST["txtNote"];
             
             $location               =   $txtLoctionGPS."|".$txtLoctionName;
@@ -70,7 +70,7 @@
                                                 `ModifiedBy`        = 'Spa', 
                                                 `ModifiedDate`      = NOW(), 
                                                 `Intro`             = '$txtIntro', 
-                                                `MoreInfo`          = '$txtMoreInfo', 
+                                                -- `MoreInfo`          = '$txtMoreInfo', 
                                                 `Location`          = '$location', 
                                                 `Website`           = '$txtWebsite', 
                                                 `Tel`               = '$txtTel', 
@@ -90,6 +90,33 @@
             $arr                    =   array("stt"     =>  $stt);
             return      $arr;
         }
+
+        /*
+        |----------------------------------------------------------------
+        |function save edit spa policy
+        |----------------------------------------------------------------
+        */
+        public function btnsave_spa_policy()
+        {
+            $spaid                  =   $_SESSION["AccSpa"]["spaid"];
+
+            $txtMoreInfo            =   $_POST["txtMoreInfo"];
+            
+            $sql                    =   "UPDATE `spa` 
+                                         SET `MoreInfo`          = '$txtMoreInfo'
+                                         WHERE `spaID` = '$spaid'";
+            $query                  =   $this->db->query($sql);
+            
+            if($query)
+                $stt                =   1;
+            else
+                $stt                =   0;
+                
+            //return
+            $arr                    =   array("stt"     =>  $stt);
+            return      $arr;
+        }
+
         /**
         |----------------------------------------------------------------
         * @table  insert table link

@@ -26,7 +26,7 @@
         }
         public function get_spa_policy_by_spaid($spaid)
         {
-            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $sql    =   "SELECT MoreInfo FROM `spa` WHERE `spaID` = '$spaid'";
             $query  =   $this->db->query($sql)->row();
             return $query;
         }

@@ -1,35 +1,36 @@
 ﻿<ol class="breadcrumb">
     <li><a href="#">FCSE Spa</a></li>
-    <li><a href="index.html">Management Spa</a></li>
-    <li class="active">Information details SPA</li>            
+    <li><a href="<?php echo base_url();?>">Quản lý Spa</a></li>
+    <li class="active">Information detail SPA</li>            
   </ol>
-  <h1>Information details SPA</h1>
+  <h1>Information detail SPA</h1>
  
   <div class="row">
     <div class="col-md-12">
       <form role="form" id="templatemo-preferences-form" method="POST" action="">
         <div class="row">
           <div class="col-md-5 margin-bottom-15">
-            <label for="firstName" class="control-label">Name SPA <span style="color: red;">(*)</span></label>
+            <label for="firstName" class="control-label">SPA Name<span style="color: red;">(*)</span></label>
             <input type="text" class="form-control" id="txtSpaName" value="<?php echo $spa_info->spaName; ?>" />    
-            <span style="color: red; display: none;" id="notifyspaname">Không được rỗng</span>              
+            <span class="notify_error" style="display: none;" id="notifyspaname"><span class="caret_muiten"></span>This is field required</span>              
           </div>
           <div class="col-md-7 margin-bottom-15">
             <label for="lastName" class="control-label">Address</label>
-            <input type="text" class="form-control" id="txtSpaAdd" value="<?php echo $spa_info->Address; ?>" />                 
+            <input type="text" class="form-control" id="txtSpaAdd" value="<?php echo $spa_info->Address; ?>" />
+            <span class="notify_error" style="display: none;" id="notifyspaadd"><span class="caret_muiten"></span>This is field required</span>                
           </div>
         </div>
         <div class="row">
           <div class="col-md-5 margin-bottom-15">
-            <label>Code spa</label>
-            <p class="form-control-static" id="txtSpaID"><?php echo $spa_info->spaID; ?></p>
-            <label>Create Date</label>
+            <label>Spa code</label>
+            <p class="form-control-static" id="txtSpaID"><?php echo $spa_info->spaID; ?></p><br/>
+            <label>Created Date</label>
             <?php 
                 $hour_create        =   substr($spa_info->CreatedDate,-8);
                 $createdate         =   substr($spa_info->CreatedDate,0,10);  //yyyy-mm-dd
                 $createdate         =   substr($createdate,-2)."-".substr($createdate,5,2)."-".substr($createdate,0,4);
             ?>
-            <p class="form-control-static" id="txtCreatedDate"><?php echo $hour_create." ".$createdate; ?></p>
+            <p class="form-control-static" id="txtCreatedDate"><?php echo $hour_create." ".$createdate; ?></p><br/>
             <label>Modified Date</label>
             <?php 
                 if($spa_info->ModifiedDate      !=  "")
@@ -41,23 +42,26 @@
                 else
                     $modifieddate       =   "";
             ?>
-            <p class="form-control-static" id="txtModifiedDate"><?php echo $hour_modified." ".$modifieddate; ?></a></p>    
+            <p class="form-control-static" id="txtModifiedDate"><?php echo $hour_modified." ".$modifieddate; ?></a></p><br/>  
             <label>Modified By</label>
             <p class="form-control-static" id="txtModifiedBy"><?php echo $spa_info->ModifiedBy; ?></p>                     
           </div>
           <div class="col-md-7 margin-bottom-15">
-            <label>Phone number advertisement</label>
+            <label>Phone Number Advertisement</label>
             <input type="text" class="form-control" maxlength="15" id="txtTel1" value="<?php echo $spa_info->Tel1; ?>" />
-            <label>Phone number notify</label>
+            <span class="notify_error" style="display: none;" id="notifyspatel1"><span class="caret_muiten"></span>This is field required</span><br />
+
+            <label>Phone Number Notify</label>
             <input type="text" class="form-control" maxlength="15" id="txtTel" value="<?php echo $spa_info->Tel; ?>" />
-              <br />
-            <label>Email to advertisement</label>
+            <span class="notify_error" style="display: none;" id="notifyspatel"><span class="caret_muiten"></span>This is field required</span><br />
+            
+            <label>Email Advertisement</label>
             <input type="text" class="form-control" id="txtEmail1" value="<?php echo $spa_info->Email1; ?>" /> 
-            <span style="color: red; display: none;" id="notifyemail1">Email incorrect</span>      
+            <span class="notify_error" style="display: none;" id="notifyspaemail1"><span class="caret_muiten"></span>Email in correct</span><br />   
                                 
-            <label>Email to notify</label>
+            <label>Email Notify</label>
             <input type="text" class="form-control" id="txtEmail" value="<?php echo $spa_info->Email; ?>" />   
-            <span style="color: red; display: none;" id="notifyemail">Email incorrect</span>                 
+            <span class="notify_error" style="display: none;" id="notifyspaemail"><span class="caret_muiten"></span>Email in correct</span><br />                   
           </div>
         </div>
         <div class="row">
@@ -73,11 +77,12 @@
                     }
                 ?>
                 <input type="text" class="form-control" id="txtLoctionGPS" value="<?php echo $arr_location[0]; ?>" /> 
-                <span style="color: red; display: none;" id="notifylocation">Location incorrect</span>    
+                <span class="notify_error" style="display: none;" id="notifyspalocationGPS"><span class="caret_muiten"></span>Location GPS in correct</span>    
               </div>
               <div class="col-md-7 margin-bottom-15">
                   <label for="txtLoctionName">Location Name</label>
-                <input type="text" class="form-control" id="txtLoctionName" value="<?php echo $arr_location[1]; ?>">
+                  <input type="text" class="form-control" id="txtLoctionName" value="<?php echo $arr_location[1]; ?>">
+                  <span class="notify_error" style="display: none;" id="notifyspalocationName"><span class="caret_muiten"></span>This is field required</span>
               </div>
           </div>
           <div class="row">
@@ -96,7 +101,8 @@
                     <option value="0" <?php if($spa_info->Status    ==  0) echo "selected=\"selected\""; ?>>Lock </option>
                     <option value="1" <?php if($spa_info->Status    ==  1) echo "selected=\"selected\""; ?>>Active </option>
                 </select>
-                <label for="secity">Province, City</label>
+
+                <label for="secity">Province, city</label>
                 <select class="form-control" id="secity">
                     <!--load data-->
                 </select>
@@ -113,7 +119,7 @@
           <div class="col-md-7 margin-bottom-15">
               <label for="txtWebsite">Website</label>
             <input type="text" class="form-control" id="txtWebsite" value="<?php echo $spa_info->Website; ?>" />
-            <span style="color: red; display: none;" id="notifywebsite">Website incorrect</span>
+            <span class="notify_error" style="display: none;" id="notifyspawebsite"><span class="caret_muiten"></span>This is field required</span>
           </div>
         </div>
         
@@ -125,17 +131,17 @@
           </textarea>
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-12 margin-bottom-15">
-          <label for="txtNote">Information More</label>
+          <label for="txtNote">Thông tin thêm</label>
           <textarea class="form-control ckeditor" name="txtMoreInfo" rows="3" id="txtMoreInfo">
             <?php echo $spa_info->MoreInfo; ?>
           </textarea>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-md-12 margin-bottom-15">
-          <label for="txtNote">Notes</label>
+          <label for="txtNote">Note</label>
           <textarea class="form-control ckeditor" name="txtNote" rows="3" id="txtNote">
             <?php echo $spa_info->Note; ?>
           </textarea>
@@ -149,7 +155,7 @@
                         <form role="form" action="#" method="post" enctype="multipart/form-data" >
                         <div class="form-group">
                             <input class="btn btn-success" type="file" name="myfile" id="myfile" multiple />
-                            <input type="button" style="margin-top: 5px;" class="btn btn-info" value="Upload images" onclick="return doUpload1('<?php echo base_url('spaman/home_controller/uploadimage_spainfo/')  ?>');" />
+                            <input type="button" style="margin-top: 5px;" class="btn btn-info" value="Upload" onclick="return doUpload1('<?php echo base_url('spaman/home_controller/uploadimage_spainfo/')  ?>');" />
                             <input type="button" style="margin-top: 5px;" class="btn btn-warning" value="Cancel" onclick="cancleUpload();"/>
                         </div> 
                         </form>
@@ -167,18 +173,19 @@
                       <div class="clear"></div>
                       <input type="hidden" id="didUrlImage"/>
                         <p>
-                          <input  id ="" class="btn btn-default" name="btnthem" onclick="previewimage_spainfo();" type="button" data-toggle="modal" data-target="#modalviewimage" value="View images" />
+                          <input  id ="" class="btn btn-default" name="btnthem" onclick="previewimage_spainfo();" type="button" data-toggle="modal" data-target="#modalviewimage" value="Review pic" />
                     </div> 
                </div> 
             </div>
-        </div>  
+        </div>
+
         <div class="row">
           <div class="col-md-12">
                 <div class="alert alert-danger"style="color: red; display: none;" id="notifyerr">
-                  <span >Update Failed</span>
+                  <span >Update failed</span>
                 </div>
                 <div class="alert alert-success"style="color: blue; display: none;" id="notifysuccess">
-                  <span >Update Success</span>
+                  <span >Update success</span>
                 </div>
           </div>
         </div>
@@ -189,16 +196,18 @@
         </div>
       </div>
     </form>
+
+    
     <!-- Modal view image -->
         <div class="modal fade" id="modalviewimage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">View images</h4>
+                <h4 class="modal-title" id="myModalLabel">Review pic</h4>
               </div>
               <div class="modal-body">
-                    <p style="color: red; display: none;" id="notifylistimage">not found</p>
+                    <p style="color: red; display: none;" id="notifylistimage">Not found</p>
                     <div class="row" id="divlistimage">
                         <!--load data-->
                     </div>
@@ -208,7 +217,7 @@
                     </div>
               </div>
               <div class="modal-footer">
-                <button id="btncloseadd" type="button" class="btn btn-default" data-dismiss="modal">Losed</button>
+                <button id="btncloseadd" type="button" class="btn btn-default" data-dismiss="modal">Closed</button>
               </div>
             </div>
           </div>

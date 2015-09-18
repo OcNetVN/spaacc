@@ -61,7 +61,35 @@ min-width: 76px!important;
 }
 .margin-bottom-15 { margin-bottom: 15px; }
 .margin-bottom-30 { margin-bottom: 30px; }
+.col-md-7 label{
+    width: 100%;
+}
+.notify_error{
+    color: red;
+    font-size: 11px;
+    font-weight: bold;
+    /*background: url('../../images/icon-hand.png') no-repeat;*/
+    float: left;
+    margin-top: 4px;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
 
+}
+.caret_muiten{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-bottom: 4px solid red;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid transparent;
+    top: -19px;
+    position: relative;
+}
 /* 3. Sidebar
 ------------------------------------------------------*/
 #templatemo_search_box {

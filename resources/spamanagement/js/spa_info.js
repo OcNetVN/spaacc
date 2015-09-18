@@ -36,39 +36,79 @@ function btnsave_spainfo()
 {
     $( "[id*=notify]" ).hide();
     var txtSpaName          =   $( "#txtSpaName" ).val();
+    var txtSpaAdd           =   $( "#txtSpaAdd" ).val();
+    var txtTel1             =   $( "#txtTel1" ).val();
+    var txtTel              =   $( "#txtTel" ).val();
+
     var txtEmail1           =   $( "#txtEmail1" ).val();
     var txtEmail            =   $( "#txtEmail" ).val();
-    var txtWebsite          =   $("#txtWebsite").val();
     var txtLoctionGPS       =   $("#txtLoctionGPS").val();
+    var findchar            =   txtLoctionGPS.indexOf(",");
+
+
+
+    var txtLoctionName      =   $("#txtLoctionName").val();
     
-    if(txtSpaName   == "")
+    var txtWebsite          =   $("#txtWebsite").val();
+
+    var flag = 0;
+
+    if(txtSpaName   == ""){
         $( "#notifyspaname" ).show();
-    else
-    {
-        //call funciton checkemail from common_function.js
-        if(checkemail(txtEmail1))    //true
-        {
-            //call funciton checkemail from common_function.js
-            if(checkemail(txtEmail))    //true
-            {
-                if(txtLoctionGPS    !=  "")
-                {
-                    var findchar    = txtLoctionGPS.indexOf(","); 
-                    // console.log(findchar);
-                    // return;
-                    if(findchar     === false)
-                        $("#notifylocation").show();
-                    else
-                        btnsave_spainfo_step2();
-                }
-                
-            }
-            else    //false
-                $("#notifyemail").show();
-        }
-        else    //false
-            $("#notifyemail1").show();
+        $( "#txtSpaName" ).focus();
+        flag = 1;
+        
     }
+    if(txtSpaAdd   == ""){
+        $( "#notifyspaadd" ).show();
+        $( "#txtSpaAdd" ).focus();
+        flag = 1;
+    }
+    if(txtTel1   == ""){
+        $( "#notifyspatel1" ).show();
+        $( "#txtTel1" ).focus();
+        flag = 1;
+    }
+    if(txtTel   == ""){
+        $( "#notifyspatel" ).show();
+        $( "#txtTel" ).focus();
+        flag = 1;
+    }
+    if(txtEmail1   == "" || !checkemail(txtEmail1)){
+        $( "#notifyspaemail1" ).show();
+        $( "#txtEmail1" ).focus();
+        flag = 1;
+    }
+    if(txtEmail   == "" || !checkemail(txtEmail)){
+        $( "#notifyspaemail" ).show();
+        $( "#txtEmail" ).focus();
+        flag = 1;
+    }
+
+    if(txtLoctionGPS   == "" || findchar == -1){
+        $( "#notifyspalocationGPS" ).show();
+        $( "#txtLoctionGPS" ).focus();
+        flag = 1;
+    }    
+    if(txtLoctionName   == ""){
+        $( "#notifyspalocationName" ).show();
+        $( "#txtLoctionName" ).focus();
+        flag = 1;
+    }
+    if(txtWebsite   == ""){
+        $( "#notifyspawebsite" ).show();
+        $( "#txtWebsite" ).focus();
+        flag = 1;
+    }
+
+
+
+    if(flag == 1)
+    {
+         $("#notifyerr").show();
+         return;
+    }
+        btnsave_spainfo_step2();        
 }
 function btnsave_spainfo_step2()
 {
@@ -83,7 +123,7 @@ function btnsave_spainfo_step2()
     var sedistrict          =   $( "#sedistrict" ).val();
     var txtWebsite          =   $("#txtWebsite").val();
     var txtIntro            =   CKEDITOR.instances['txtIntro'].getData();
-    var txtMoreInfo         =   CKEDITOR.instances['txtMoreInfo'].getData();
+    // var txtMoreInfo         =   CKEDITOR.instances['txtMoreInfo'].getData();
     var txtNote             =   CKEDITOR.instances['txtNote'].getData();
 
     $.ajax({
@@ -102,14 +142,13 @@ function btnsave_spainfo_step2()
             sedistrict          :   sedistrict,
             txtWebsite          :   txtWebsite,
             txtIntro            :   txtIntro,
-            txtMoreInfo         :   txtMoreInfo,
+            // txtMoreInfo         :   txtMoreInfo,
             txtNote             :   txtNote,
             },
         cache:false,
         success:function (data) {
             btnsave_spainfo_Complete(data);
-        },
-        error: function () { alert("Error!"); }
+        }
     });
 }
 function btnsave_spainfo_Complete(data)
@@ -124,9 +163,7 @@ function btnsave_spainfo_Complete(data)
             var url      =  window.location.href;
 
             window.location.replace(url);
-            console.log(url);
-            return;
-        }, 3000);
+        }, 2000);
 
     }
     else
@@ -163,8 +200,7 @@ function getlocation_by_spa()
         cache:false,
         success:function (data) {
             getlocation_by_spa_Complete(data);
-        },
-        error: function () { alert("Error!");}
+        }
     });
 }
 function getlocation_by_spa_Complete(data)
@@ -187,8 +223,7 @@ function load_location_child_by_location_parent(locationparentid,LocationID)
         cache:false,
         success:function (data) {
             loadlocationchild_Complete(data,LocationID);
-        },
-        error: function () { alert("Error!"); }
+        }
     });
 }
 function loadlocationchild_Complete(data,LocationID)
@@ -243,8 +278,7 @@ function previewimage_spainfo() {
         cache:false,
         success:function (data) {
             previewimage_spainfo_Complete(data);
-        },
-        error: function () { alert("Error!");}
+        }
     });
 }
 function previewimage_spainfo_Complete(data)
@@ -283,8 +317,7 @@ function deleteimage(objectidd,type)
             cache:false,
             success:function (data) {
                 deleteimage_Complete(data);
-            },
-            error: function () { alert("Error!");}
+            }
         });
     }
 }

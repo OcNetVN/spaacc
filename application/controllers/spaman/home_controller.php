@@ -160,9 +160,9 @@ class Home_controller extends CI_Controller {
         // return;
         
         $spa_policy               =   $this->m_common->get_spa_policy_by_spaid($spaid);
+        // print_r($spa_policy);
         
-        $arr_spapolicy            =   array(  "spa_policy"          =>  $spa_policy,
-                                            );
+        $data["spa_policy"] =  $spa_policy;
         
         /*
         |----------------------------------------------------------------
@@ -177,7 +177,7 @@ class Home_controller extends CI_Controller {
         $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
         $this->load->view($lang."/spamanagement/common/header_view");
         $this->load->view($lang."/spamanagement/common/left_view");
-        $this->load->view($lang."/spamanagement/spa_policy_view",$arr_spapolicy);
+        $this->load->view($lang."/spamanagement/spa_policy_view",$data);
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
@@ -580,6 +580,17 @@ class Home_controller extends CI_Controller {
     public function btnsave_spainfo()
     {
         $req = $this->m_spa_info->btnsave_spainfo();
+        echo json_encode($req);
+    }
+
+    /*
+    |----------------------------------------------------------------
+    |function save edit policy
+    |----------------------------------------------------------------
+    */
+    public function btnsave_spa_policy()
+    {
+        $req = $this->m_spa_info->btnsave_spa_policy();
         echo json_encode($req);
     }
     /*
