@@ -36,6 +36,12 @@
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
+        public function get_spa_product_edit_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
         public function get_spa_km_by_spaid($spaid)
         {
             $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
