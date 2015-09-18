@@ -259,9 +259,9 @@ class Home_controller extends CI_Controller {
 
         //Danh sách productype parent
         $list_child_of_parent_producttype       =   $this->m_common->get_child_of_parent_list_producttype('01');
-        echo '<pre>';
-        print_r($list_child_of_parent_producttype);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($list_child_of_parent_producttype);
+        // echo '</pre>';
 
 
         $spa_producttype        =   $this->m_common->get_producttype_by_spaid($spaid);
