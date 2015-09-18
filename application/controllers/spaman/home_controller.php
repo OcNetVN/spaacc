@@ -109,6 +109,7 @@ class Home_controller extends CI_Controller {
         if(!isset($_SESSION["AccSpa"])){
             redirect('spaman/login');
         }
+        // print_r($_SESSION['AccSpa']);
 
         $p_arr 	    =	array(
 						'title'		=>	'Giờ hoạt động spa',
@@ -120,6 +121,9 @@ class Home_controller extends CI_Controller {
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         $spa_hour               =   $this->m_common->get_spa_hour_by_spaid($spaid);
         
+        // echo '<pre>';
+        // print_r($spa_hour);
+        // echo '</pre>';
         $arr_spahour            =   array(  "spa_hour"          =>  $spa_hour,
                                             );
 		/*
@@ -150,6 +154,9 @@ class Home_controller extends CI_Controller {
     {   
         
         $lang = change_language();
+        if(!isset($_SESSION["AccSpa"]) || !isset($_SESSION["AccSpa"]["spaid"])){
+            redirect('spaman/login');
+        }
         $p_arr      =   array(
                         'title'     =>  'Chính sách spa ',
                         //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),

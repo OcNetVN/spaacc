@@ -1,6 +1,6 @@
 ﻿<ol class="breadcrumb">
     <li><a href="#">FCSE Spa</a></li>
-    <li><a href="<?php echo base_url();?>">Quản lý Spa</a></li>
+    <li><a href="<?php echo base_url();?>">Manager Spa</a></li>
     <li class="active">Information detail SPA</li>            
   </ol>
   <h1>Information detail SPA</h1>

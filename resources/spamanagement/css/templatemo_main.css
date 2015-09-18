@@ -36,6 +36,10 @@ h1 { font-size: 24px;    margin-bottom: 30px;}
     font-size: 24px;
     margin: 10px 15px;
 }
+ul.week{list-style: none;padding-left: 0px;}
+ul.week li{padding:10px;display: block;}
+
+
 .dropdown-menu {
 min-width: 76px!important;
 }
@@ -77,6 +81,19 @@ min-width: 76px!important;
     margin-bottom: 10px;
 
 }
+.notify_guide{
+    color: red;
+    font-size: 11px;
+    font-weight: bold;
+    /*background: url('../../images/icon-hand.png') no-repeat;*/
+    float: left;
+    margin-top: 4px;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+
+}
 .caret_muiten{
     display: inline-block;
     width: 0;
@@ -88,6 +105,20 @@ min-width: 76px!important;
     border-right: 4px solid transparent;
     border-top: 4px solid transparent;
     top: -19px;
+    position: relative;
+}
+.caret_guide{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid red;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    top: 16px;
+    left: 4px;
     position: relative;
 }
 /* 3. Sidebar

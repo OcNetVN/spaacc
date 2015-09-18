@@ -4,8 +4,11 @@
     <li class="active" style="min-width: 50px;">Giờ mở cửa</li>            
   </ol>
   <h1>OPENING HOURS</h1>
-  <p class="margin-bottom-15">Giờ làm việc.</p>
-    <ul class="week">
+  <!-- <div class="col-sm-12">
+  <span class="notify_guide" style="display: block;"><span class="caret_guide"></span>Lưu ý : chọn ngày giờ mở cửa và tick vào ô kế bên</span>
+      
+  </div> -->
+    <ul class="col-sm-12 week">
         <?php
             $arr_dayofweek          =   array(
                                         2   =>  "Monday",
@@ -36,11 +39,13 @@
                     else
                         $hour_to    =   $row_hour->AvailableHourTo;
                 
-                    $str_res        .=  '<li class="on">
-                                            <div>
-                                	            <input type="checkbox" name="cbdayofweek" value="'.$row_hour->DayOfWeek.'" '.$str_check.'>
-                                	            <label for="'.$arr_dayofweek[$row_hour->DayOfWeek].'">'.$arr_dayofweek[$row_hour->DayOfWeek].'</label>
-                                	            <select id="time_from_'.$row_hour->DayOfWeek.'">';
+                    $str_res        .=  '<li class="on col-sm-7">
+                                                <div class="col-sm-3">
+                                    	            <input type="checkbox" name="cbdayofweek" value="'.$row_hour->DayOfWeek.'" '.$str_check.'>
+                                    	            <label for="'.$arr_dayofweek[$row_hour->DayOfWeek].'">'.$arr_dayofweek[$row_hour->DayOfWeek].'</label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                <select id="time_from_'.$row_hour->DayOfWeek.'">';
                                                 
                                                     for($i = 0; $i < 25; $i ++)
                                                     {
@@ -54,9 +59,9 @@
                                                         else
                                                             $str_res            .=  '<option value="'.$str_hour_from.':00">'.$str_hour_from.':00</option>';
                                                     }
-                                                $str_res        .=  '</select>-';
-                           	                    
-                           	                    $str_res        .=  ' <select id="time_to_'.$row_hour->DayOfWeek.'">';
+                                                $str_res        .=  '</select> -';
+                                                
+                                                $str_res        .=  ' <select id="time_to_'.$row_hour->DayOfWeek.'">';
                                                     for($i = 0; $i < 25; $i ++)
                                                     {
                                                         if(strlen($i) == 1)
@@ -70,7 +75,7 @@
                                                             $str_res            .=  '<option value="'.$str_hour_to.':00">'.$str_hour_to.':00</option>';
                                                     }
                                                 $str_res        .=  '</select>
-                                             </div>
+                                                </div>
                                         </li>';    
                 }
             }
@@ -79,9 +84,15 @@
     </ul>
 
     <div class="row templatemo-form-buttons">
-        <div class="col-md-8 col-md-offset-2">
-            <span style="color: red; display: none;" id="notifyerr">Sửa không thành công</span>
-            <span style="color: blue; display: none;" id="notifysuccess">Sửa thành công</span>
+        <div class="row">
+          <div class="col-md-12">
+                <div class="alert alert-danger"style="color: red; display: none;" id="notifyerr">
+                  <span >Cập nhật thất bại</span>
+                </div>
+                <div class="alert alert-success"style="color: blue; display: none;" id="notifysuccess">
+                  <span >Cập nhật thành công</span>
+                </div>
+          </div>
         </div>
         <div class="col-md-12">
           <button type="button" id="btnsave" class="btn btn-primary">Cập nhật</button>

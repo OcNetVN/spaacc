@@ -20,7 +20,7 @@ function btnsave_spa_hour()
 {
     var arrcbdayofweek = [];
     var i= 0;
-    $('input:checkbox[name=cbdayofweek]:checked').each(function(){
+    $('input:checkbox[name= ]:checked').each(function(){
         arrcbdayofweek[i++] = $(this).val();
     });
      
