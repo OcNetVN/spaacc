@@ -100,18 +100,7 @@
             $query  =   $this->db->query($sql)->result();
             return $query;
         }
-        public function get_product_price_today($ProductID)
-        {
-            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=1 ORDER by `CreatedDate` DESC limit 0,1";
-            $query  =   $this->db->query($sql)->row();
-            return $query;
-        }
-        public function get_product_price_edit($ProductID)
-        {
-            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=0 ORDER by `CreatedDate` DESC limit 0,1";
-            $query  =   $this->db->query($sql)->row();
-            return $query;
-        }
+        
         public function get_spa_report_by_spaid($spaid)
         {
             $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";

@@ -7,16 +7,26 @@
 */
 $(document).ready(function() { 
     $("#phuongthucdanhsach").click(function () {
-
-        $("#divTBKQTim").show(500);
-        $("#panelDataPRO").show(300);
-        $("#keyword").val();
+        $("#keyword").val('');
         $("#spaid").val();
         searchProducts(1);
     });
     // $( "#btnsave" ).bind("click",function(){
     //     btnsave_spa_price();
     // });
+    $("#cboPageNoPRO").change(function () {
+        var trang = $("#cboPageNoPRO").val();
+        searchProducts(trang);
+    });
+    $("#phuongthuctimkiem").click(function () {
+        $("#keyword").val();
+        $("#spaid").val();
+        if($("#keyword").val()== ''){
+            alert('Vui lòng nhập từ khóa ');
+            return;
+        }
+        searchProducts(1);
+    });
 });
 /*
 |----------------------------------------------------------------
@@ -59,25 +69,37 @@ function searchProducts_Complete(data) {
     if (sRes != null) {
         if(sRes.TotalRecord !=0)
         {
+            $("#divTBKQTim").show(500);
+            var node = document.getElementById("notifysuccess");
+            $('#notifysuccess').children().remove();           
+            $("#notifysuccess").append("<span class='success_bg'>Tìm được "+sRes.TotalRecord+" mẫu tin!</span>");
+
+
+
+            $("#panelDataPRO").show(500);
+
+
             // $("#panelDataPRO1").hide(200);
             // $("#cboPageNoPRO1").hide(200);
             // $("#divTBKQTim").hide(200);
             // $("#khongtimthaygia").hide(200);
             // $("#khungthemgia").hide(200);
             
-            $("#khongtimthay").hide(200);
-             $("#cboPageNoPRO").show(300);
+            // $("#khongtimthay").hide(200);
+             // $("#cboPageNoPRO").show(300);
+             // 
+             
             $("#panelDataPRO tbody tr").remove();
             $("#ListFoundPRO").tmpl(sRes.lst).appendTo("#panelDataPRO tbody");
-            $("#panelDataPRO").show(500);
+            // $("#panelDataPRO").show(500);
                    
             //phÃ¢n trang
             var totalPage = parseInt(sRes.TotalPage);
             var Curpage = parseInt(sRes.CurPage);
-            $("#divTBKQTim div").text("Tìm được " + sRes.TotalRecord + " mẫu tin!!!");
-            $("#divTBKQTim").show(500);
-            TrangHienTai = Curpage;
-            TongTrang = totalPage;
+            // $("#divTBKQTim div").text("Tìm được " + sRes.TotalRecord + " mẫu tin!!!");
+            // $("#divTBKQTim").show(500);
+            var TrangHienTai = Curpage;
+            var TongTrang = totalPage;
             $("#cboPageNoPRO option").remove();
             for (var i = 1; i <= totalPage; i++) {
                 var sStr = "";
@@ -92,16 +114,25 @@ function searchProducts_Complete(data) {
         }
         else
         {
-            $("#khongtimthay").show(500);
-            $("#panelDataPRO").hide(200);
-            $("#cboPageNoPRO").hide(200);
-            $("#divTBKQTim").hide(200);
+            $("#panelDataPRO tbody tr").remove();
+            $("#panelDataPRO").hide(500);
+
+            $("#divTBKQTim").show(500);
+            var node = document.getElementById("notifysuccess");
+            $('#notifysuccess').children().remove();           
+            $("#notifysuccess").append("<span class='error_bg'>Không tìm thấy mẫu tin!</span>");
+
+
+            // $("#khongtimthay").show(500);
+            // $("#panelDataPRO").hide(200);
+            // $("#cboPageNoPRO").hide(200);
+            // $("#divTBKQTim").hide(200);
             
-            //an list gia
-            $("#panelDataPRO1").hide(200);
-            $("#cboPageNoPRO1").hide(200);
-            $("#divTBKQTim1").hide(200);
-            $("#khongtimthaygia").hide(200);
+            // //an list gia
+            // $("#panelDataPRO1").hide(200);
+            // $("#cboPageNoPRO1").hide(200);
+            // $("#divTBKQTim1").hide(200);
+            // $("#khongtimthaygia").hide(200);
             
         }
     }

@@ -17,11 +17,9 @@
             $keyword    = $_POST['keyword'];
             $page       = $_POST["Page"];
           
-            $sql= "SELECT '1' AS STT,p.`ProductID`,p.`Name`,p.`Status`,p.`ProductType`,p.`Duration`,p.`CurrentVouchers`,p.`MaxProductatOnce`,p.`ValidTimeFrom`,p.`ValidTimeTo`,p.`CreatedBy`,p.`CreatedDate`,c.`StrValue2`";
-            $sql.=" FROM products p , price pr , commoncode c";
-            $sql.=" WHERE p.`ProductID` = pr.`ProductID`AND c.`CommonId` = p.`ProductType`AND p.`SpaID` = '$spaid'";
-
-
+            $sql= "SELECT '1' AS STT, '2' AS Giahientai, '3' AS GiaEdit, '4' AS Loai, p.*";
+            $sql.=" FROM products p";
+            $sql.=" WHERE p.`SpaID` = '$spaid'";
   
             $sql1 ="SELECT count(*) as Total  FROM products p";
             $sql1.=" WHERE p.`SpaID` = '$spaid'";
@@ -34,6 +32,8 @@
                 $sql = $sql." and `name` like '%".$keyword ."%'";
                 $sql1 = $sql1." and `name` like '%".$keyword ."%'";
             }
+
+            $sql = $sql." order by Status DESC, name ASC";
             
             $StartPos =1;
             $StartPos = ($page - 1)*10;
@@ -42,9 +42,20 @@
             if($page != '' ){
                 $sql = $sql." LIMIT " . $StartPos . "," . $EndPos ;
             }
+            // return $sql;
 
-            
-            $_arrSpa = $this->AddSTT($this->db->query($sql)->result(),$page); 
+            $_arrSpa = $this->db->query($sql)->result();
+
+            $this->AddSTT($_arrSpa,$page); 
+
+            $this->AddGiahientai($_arrSpa); 
+
+            $this->AddGiaEdit($_arrSpa); 
+
+            $this->AddLoai($_arrSpa); 
+
+
+
             //$_arrSpa = $this->db->query($sql)->result(); 
             /// duyet cho stt zo
                    
@@ -72,6 +83,51 @@
                 $arr1[$i]->STT = (($page-1)*10+($i+1));
             }
             return $arr1;
+        }
+        public function AddGiahientai($arr)
+        {
+            $arr1 = (array) $arr;
+            for($i=0;$i<count($arr1);$i++)
+            {
+                $arr1[$i]->Giahientai = $this->get_product_price_today($arr1[$i]->ProductID)->Price;
+            }
+            return $arr1;
+        }
+        public function AddGiaEdit($arr)
+        {
+            $arr1 = (array) $arr;
+            for($i=0;$i<count($arr1);$i++)
+            {
+                $arr1[$i]->GiaEdit = $this->get_product_price_edit($arr1[$i]->ProductID)->Price;
+            }
+            return $arr1;
+        }
+        public function AddLoai($arr)
+        {
+            $arr1 = (array) $arr;
+            for($i=0;$i<count($arr1);$i++)
+            {
+                $arr1[$i]->Loai = $this->get_Loai($arr1[$i]->ProductType)->StrValue2;
+            }
+            return $arr1;
+        }
+         public function get_Loai($ProductType)
+        {
+            $sql    =   "SELECT * FROM `commoncode` WHERE `CommonId` = $ProductType ";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        public function get_product_price_today($ProductID)
+        {
+            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=1 AND `ApprovedBy`!='' AND `ApprovedDate`!='' ORDER by `CreatedDate` DESC limit 0,1";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        public function get_product_price_edit($ProductID)
+        {
+            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=0 AND `ApprovedBy`!='' AND `ApprovedDate`!='' ORDER by `CreatedDate` DESC limit 0,1";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
         }
 
         /*
