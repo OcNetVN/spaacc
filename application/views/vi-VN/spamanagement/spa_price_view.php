@@ -8,7 +8,7 @@
 <div class="col-sm-12">
     <input type="button" class="button col-sm-2 text-left" id="phuongthucdanhsach" value="Danh sách"/>
     <input type="hidden" id="spaid" value="<?php echo $_SESSION["AccSpa"]["spaid"]?>"/>
-    <div id="searching" class="col-sm-10 text-right">
+    <div id="searching" class="col-sm-10 text-right" style="display: none;">
         <input type="text" class="button" id="keyword"  placeholder="Từ khóa"/>
         <input type="button" class="button" id="phuongthuctimkiem" value="Tìm kiếm"/>
     </div>
@@ -51,8 +51,7 @@
   </table>
 </div>
 
- <script id="ListFoundPRO" type="text/x-jquery-tmpl" > 
-
+ <script id="ListFoundPRO" type="text/x-jquery-tmpl" >
     <tr>
         <td>${STT}</td>
         <td style='width: 100px;'><span class="name">${Name}</span><br /><br />
@@ -75,18 +74,85 @@
         <td>
             ${GiaEdit}   VND
         </td>
-        <td>
+        <td style='width: 150px;'>
             Người tạo: ${CreatedBy} <br /><br />
             Ngày tạo : ${CreatedDate}
         </td>
         <td>                                        
-             <a href="javascript:void(0);" onclick="themgia('${ProductID}','${Name}');" style='padding: 10px 5px;float: left;' title="Thêm giá"><img src="http://localhost:899/Spa/resources/images/icons/pencil.png" alt="Thêm giá" /></a>
-             <a href="javascript:void(0);" onclick="ViewGia('${ProductID}','${Name}',1);" style='padding: 10px 5px;float: left;'  title="Danh sách giá"><img src="http://localhost:899/Spa/resources/images/icons/show.png" alt="Danh sách giá" />
+             <a href="javascript:void(0);" onclick="themgia_Product('${ProductID}','${Name}');" style='padding: 10px ;float: left;' title="Thêm giá"><img src="http://localhost:899/Spa/resources/images/icons/pencil.png" alt="Thêm giá" /></a>
+             <a href="javascript:void(0);" onclick="XemGia_Product('${ProductID}','${Name}',1);" style='padding: 10px ;float: left;'  title="Danh sách giá"><img src="http://localhost:899/Spa/resources/images/icons/show.png" alt="Danh sách giá" />
         </td>
     </tr>
-
-
-
-
-
 </script> 
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="divTBKQTim1" style="margin: 15px 0px; display: none;" class="col-sm-12 notification success png_bg">
+    <div class="alert alert-success"style="color: #23527c;font-weight: bold;font-size: 12px;" id="notifysuccess1">
+
+    </div>
+</div>
+<div class="col-sm-12">
+  <table id="panelDataPRO1" class="table table-striped content_table"  style="display: none;">
+          <thead>
+              <tr>
+                  <th>STT</th>
+                  <th>Tên Dịch Vụ</th>
+                  <th>Giá</th>
+                  <th>Create By</th>
+                  <th>CreatedDate</th>
+                  <th>Thao tác</th>
+              </tr>
+          </thead>
+          <tbody>
+         
+          </tbody>
+          <tfoot>
+              <tr>
+                  <td colspan="6">
+                      <div>
+                          Trang số: 
+                          <select id="cboPageNoPRO1">
+                          </select>
+                      </div>
+                  </td>
+              </tr>
+          </tfoot>
+
+          
+  </table>
+</div>
+ <!-- Giá sản phẩm-->                   
+<script id="ListFoundPRO1" type="text/x-jquery-tmpl" > 
+    <tr>
+        <td>${STT}</td>
+        <td>
+            ${Name} <br />
+        </td>
+        <td>
+            ${Price}
+        </td>
+        <td>
+            ${CreatedBy}
+        </td>
+        <td>
+            ${CreatedDate}
+        </td>
+        <td>
+            <input type="hidden" id="id_xemgia" value="${ProductID}"/>
+            <input type="hidden" id="name_xemgia" value="${Name}"/>
+            <a href="javascript:void(0);" onclick="xoagia('${Id}','${Name}','${ProductID}');"  title="Xóa"><img src="<?php echo base_url('resources/images/icons/cross.png'); ?>" alt="Xóa" /></a> 
+        </td>
+    </tr>
+</script> 
+    <!-- end Giá sản phẩm-->
+

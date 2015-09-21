@@ -12,7 +12,7 @@
         |----------------------------------------------------------------
         */
 
-         public function search_products(){
+        public function search_products(){
             $spaid    = $_POST['spaid'];
             $keyword    = $_POST['keyword'];
             $page       = $_POST["Page"];
@@ -128,6 +128,49 @@
             $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=0 AND `ApprovedBy`!='' AND `ApprovedDate`!='' ORDER by `CreatedDate` DESC limit 0,1";
             $query  =   $this->db->query($sql)->row();
             return $query;
+        }
+
+
+        /*
+        |----------------------------------------------------------------
+        |function XemGia_Product
+        |----------------------------------------------------------------
+        */
+
+        public function XemGia_Product(){            
+            $id = $_POST['id'];   
+            $page  = $_POST["Page"];
+            $NAME = $_POST['NAME'];
+
+            $sql = "SELECT '1' AS STT, b.*, a.`Name`,a.`SpaID` FROM `products` a INNER JOIN `price` b ON a.`ProductID`=b.`ProductID` WHERE a.`ProductID`='$id' AND b.`Status`=0 ORDER BY CreatedDate DESC";  //lay ten nen phai ket voi bang products     
+            $sql1 = "SELECT count(*) as Total FROM price where `ProductID` = '".$id."' AND `Status`=0";
+            
+            $StartPos =1;
+            $StartPos = ($page - 1)*10;
+            $EndPos =  10;
+            
+            if($page != '' ){
+                $sql = $sql." LIMIT " . $StartPos . "," . $EndPos ;
+            }
+            
+            $_arrSpa = $this->AddSTT($this->db->query($sql)->result(),$page); 
+            //$_arrSpa = $this->db->query($sql)->result(); 
+            /// duyet cho stt zo
+            $ResTotalPage = $this->db->query($sql1)->result();
+            $TotalRecord = ( $ResTotalPage[0]->Total);
+            //$TotalRecord = 0;
+            $TotalPage = 1;
+            if($TotalRecord % 10 !=0)
+            {
+                $TotalPage = floor($TotalRecord /10) + 1;
+            }
+            else
+            {
+                $TotalPage = floor($TotalRecord /10) ;
+            }
+                
+            $res = array("TotalRecord"=>$TotalRecord,"TotalPage"=>$TotalPage,"CurPage"=>$page,"lst"=>$_arrSpa,"Toto"=>$ResTotalPage,"tensp"=>$NAME);
+            return $res;
         }
 
         /*

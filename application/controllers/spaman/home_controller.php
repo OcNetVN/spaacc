@@ -847,6 +847,22 @@ class Home_controller extends CI_Controller {
         // }
         echo json_encode($req);
     }
+    /*
+    |----------------------------------------------------------------
+    |function xem giá
+    |----------------------------------------------------------------
+    */
+
+    public function XemGia_Product()
+    {
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_price->XemGia_Product();
+        // }
+        echo json_encode($req);
+    }
 
 
     /*

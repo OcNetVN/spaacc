@@ -6,6 +6,7 @@
 |----------------------------------------------------------------
 */
 $(document).ready(function() { 
+    $("#searching").show(500);
     $("#phuongthucdanhsach").click(function () {
         $("#keyword").val('');
         $("#spaid").val();
@@ -27,6 +28,12 @@ $(document).ready(function() {
         }
         searchProducts(1);
     });
+    $("#cboPageNoPRO1").change(function () {
+        var id = $("#id_xemgia").val();
+        var name = $("#name_xemgia").val();
+        var trang = $("#cboPageNoPRO1").val();
+        XemGia_Product(id,name,trang);
+    });
 });
 /*
 |----------------------------------------------------------------
@@ -34,6 +41,19 @@ $(document).ready(function() {
 |----------------------------------------------------------------
 */
 function searchProducts(page) {    
+
+    $("#divTBKQTim1").hide(500);
+    $("#panelDataPRO1").hide(500);
+    $("#cboPageNoPRO1").hide(500);
+
+
+    $("#divTBKQTim").show(500);
+    $("#panelDataPRO").show(500);
+    $("#cboPageNoPRO").show(500);
+    $("#searching").show(500);
+
+
+
     var keyword = $("#keyword").val();
     var spaid = $("#spaid").val();
     curPage = page;   
@@ -79,13 +99,13 @@ function searchProducts_Complete(data) {
             $("#panelDataPRO").show(500);
 
 
-            // $("#panelDataPRO1").hide(200);
-            // $("#cboPageNoPRO1").hide(200);
-            // $("#divTBKQTim").hide(200);
-            // $("#khongtimthaygia").hide(200);
-            // $("#khungthemgia").hide(200);
+            // $("#panelDataPRO1").hide(500);
+            // $("#cboPageNoPRO1").hide(500);
+            // $("#divTBKQTim").hide(500);
+            // $("#khongtimthaygia").hide(500);
+            // $("#khungthemgia").hide(500);
             
-            // $("#khongtimthay").hide(200);
+            // $("#khongtimthay").hide(500);
              // $("#cboPageNoPRO").show(300);
              // 
              
@@ -122,21 +142,116 @@ function searchProducts_Complete(data) {
             $('#notifysuccess').children().remove();           
             $("#notifysuccess").append("<span class='error_bg'>Không tìm thấy mẫu tin!</span>");
 
-
-            // $("#khongtimthay").show(500);
-            // $("#panelDataPRO").hide(200);
-            // $("#cboPageNoPRO").hide(200);
-            // $("#divTBKQTim").hide(200);
-            
-            // //an list gia
-            // $("#panelDataPRO1").hide(200);
-            // $("#cboPageNoPRO1").hide(200);
-            // $("#divTBKQTim1").hide(200);
-            // $("#khongtimthaygia").hide(200);
-            
+           
         }
     }
 }
+
+
+//Xem Giá của sản phẩm
+function XemGia_Product(id,name,page) {    
+    $.ajax({
+        type:"POST",
+        url:"home_controller/XemGia_Product",
+        dataType:"text",
+        data: {
+            id: id,
+            NAME:name,
+            Page:page
+        },
+        cache:false,
+        success:function (data) {
+            // if( data== "-1" || data==="-1" || data==-1 )
+            // {
+            //     alert("Bạn không có quyền trên chức năng này ở trang này !!! ");                    
+            // }
+            // else
+            // {
+                // console.log(data);
+                // return;
+                XemGia_Product_Complete(data);
+            // }
+          //alert(data);
+        }
+    });
+}
+function XemGia_Product_Complete(data) {
+    var sRes = JSON.parse(data);
+    if (sRes != null) {
+        if(sRes.TotalRecord>0)
+        {
+            $("#panelDataPRO").hide(500);
+            $("#cboPageNoPRO").hide(500);
+            $("#divTBKQTim").hide(500);
+            $("#searching").hide(500);
+
+
+
+            $("#divTBKQTim1").show(500);
+            $("#panelDataPRO1").show(500);
+            $("#cboPageNoPRO1").show(500);
+
+
+
+            $("#panelDataPRO1 tbody tr").remove();
+            $("#ListFoundPRO1").tmpl(sRes.lst).appendTo("#panelDataPRO1 tbody");
+            // $("#panelDataPRO1").show(500);
+                   
+            //phân trang
+            var totalPage = parseInt(sRes.TotalPage);
+            var Curpage = parseInt(sRes.CurPage);
+
+            var node = document.getElementById("notifysuccess1");
+            $('#notifysuccess1').children().remove();           
+            $("#notifysuccess1").append("<span class='success_bg'>Tìm được "+sRes.TotalRecord+" mẫu tin của loại \""+ sRes.lst[0].Name +"\"</span>");
+
+
+
+            TrangHienTai = Curpage;
+            TongTrang = totalPage;
+            $("#cboPageNoPRO1 option").remove();
+            for (var i = 1; i <= totalPage; i++) {
+                var sStr = "";
+                if (i == TrangHienTai) {
+                    sStr = "<option value=\"" + i + "\" selected=\"selected\">" + i + "</option>";
+                }
+                else {
+                    sStr = "<option value=\"" + i + "\" >" + i + "</option>";
+                }
+                $("#cboPageNoPRO1").append(sStr);
+            }
+        }
+        else
+        {
+            // alert('OK');
+            $("#panelDataPRO1 tbody tr").remove();
+            $("#panelDataPRO1").hide(500);
+
+            $("#divTBKQTim1").show(500);
+            var node = document.getElementById("notifysuccess1");
+            console.log(node);
+            $('#notifysuccess1').children().remove();           
+            $("#notifysuccess1").append("<span class='error_bg'>Không tìm thấy mẫu tin </span>");
+
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
