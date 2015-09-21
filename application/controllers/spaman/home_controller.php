@@ -27,9 +27,9 @@ class Home_controller extends CI_Controller {
         $this->load->helper('language_helper');
 
 
-        //  echo '<pre>';
-        // print_r($_SESSION["AccSpa"]);
-        // echo '</pre>';
+        echo '<pre>';
+        print_r($_SESSION["AccSpa"]);
+        echo '</pre>';
 
         if(!isset($_SESSION["AccSpa"])){
             redirect('spaman/login');
@@ -271,6 +271,7 @@ class Home_controller extends CI_Controller {
         // echo '</pre>';
         
 
+        $list_producttype      = $this->m_common->get_list_producttype();
         //Danh sách productype parent
         $list_parent_producttype       =   $this->m_common->get_parent_list_producttype();
         // echo '<pre>';
@@ -455,10 +456,29 @@ class Home_controller extends CI_Controller {
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         //return;
         
-        $spa_price               =   $this->m_common->get_spa_price_by_spaid($spaid);
-        
+        $spa_products               =   $this->m_common->get_spa_products_by_spaid($spaid);
 
-        $arr_spaprice            =   array(  "spa_price"          =>  $spa_price,
+
+        // for ($i=0; $i < count($spa_products) ; $i++) { 
+        //     $product_id = $spa_products[$i]->ProductID;
+        //     $product_price_today              =   $this->m_common->get_product_price_today($product_id);
+
+        //     // echo $product_price_today->Price;
+        //     $arr = array('Price' => $product_price_today->Price );
+        //     array_push($spa_products[0],$arr);
+
+        //     echo '<br/>';
+        //     $arr = array('Price' => '2' );
+        //     print_r($arr);
+        //     array_push($spa_products[$i],$arr);
+        //     $spa_products[$i]->Price =>'100000000';
+        // }
+        // echo '<pre>';
+        // print_r($spa_products);
+        // echo '</pre>';
+        // echo count($spa_products);
+
+        $arr_spa_products            =   array(  "spa_products"          =>  $spa_products,
                                             );
         /*
         |----------------------------------------------------------------
@@ -473,7 +493,7 @@ class Home_controller extends CI_Controller {
         $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
         $this->load->view($lang."/spamanagement/common/header_view");
         $this->load->view($lang."/spamanagement/common/left_view");
-        $this->load->view($lang."/spamanagement/spa_price_view",$arr_spaprice);
+        $this->load->view($lang."/spamanagement/spa_price_view",$arr_spa_products);
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
