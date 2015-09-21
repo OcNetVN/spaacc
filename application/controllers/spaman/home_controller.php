@@ -23,13 +23,14 @@ class Home_controller extends CI_Controller {
         $this->load->model('spamanagement/m_spa_info'); 
         $this->load->model('spamanagement/m_spa_hour'); 
         $this->load->model('spamanagement/m_spa_util'); 
+        $this->load->model('spamanagement/m_spa_price'); 
         $this->load->model('spamanagement/m_spa_user'); 
         $this->load->helper('language_helper');
 
 
-        echo '<pre>';
-        print_r($_SESSION["AccSpa"]);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($_SESSION["AccSpa"]);
+        // echo '</pre>';
 
         if(!isset($_SESSION["AccSpa"])){
             redirect('spaman/login');
@@ -459,20 +460,7 @@ class Home_controller extends CI_Controller {
         $spa_products               =   $this->m_common->get_spa_products_by_spaid($spaid);
 
 
-        // for ($i=0; $i < count($spa_products) ; $i++) { 
-        //     $product_id = $spa_products[$i]->ProductID;
-        //     $product_price_today              =   $this->m_common->get_product_price_today($product_id);
-
-        //     // echo $product_price_today->Price;
-        //     $arr = array('Price' => $product_price_today->Price );
-        //     array_push($spa_products[0],$arr);
-
-        //     echo '<br/>';
-        //     $arr = array('Price' => '2' );
-        //     print_r($arr);
-        //     array_push($spa_products[$i],$arr);
-        //     $spa_products[$i]->Price =>'100000000';
-        // }
+       
         // echo '<pre>';
         // print_r($spa_products);
         // echo '</pre>';
@@ -844,7 +832,21 @@ class Home_controller extends CI_Controller {
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
-
+    /*
+    |----------------------------------------------------------------
+    |function search products
+    |----------------------------------------------------------------
+    */
+    public function search_products()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_price->search_products();
+        // }
+        echo json_encode($req);
+    }
 
 
     /*
