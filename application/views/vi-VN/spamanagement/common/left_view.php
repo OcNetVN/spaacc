@@ -68,7 +68,7 @@
               <h4 class="modal-title" id="myModalLabel">Bạn có muốn thoát ?</h4>
             </div>
             <div class="modal-footer">
-              <a href="spa_login.html" class="btn btn-primary">Đồng ý</a>
+              <a href="spaman/thoat_info" class="btn btn-primary">Đồng ý</a>
               <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
             </div>
           </div>

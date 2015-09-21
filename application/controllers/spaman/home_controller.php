@@ -62,7 +62,7 @@ class Home_controller extends CI_Controller {
     public function thoat_info()
     {
         unset($_SESSION["AccSpa"]);
-        redirect('spaman/login');
+        redirect('login');
     }
     public function Change_Language()
     {
