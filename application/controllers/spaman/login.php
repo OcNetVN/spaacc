@@ -10,7 +10,7 @@ class Login extends CI_Controller
             $this->load->model('spamanagement/m_mail');
             $this->load->model('spamanagement/m_spa');
             $this->load->helper('language_helper');
-        }
+        } 
         
        function GetMenuCap1($roleID,$moduleID) 
           {
