@@ -88,12 +88,39 @@
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
-        public function get_spa_price_by_spaid($spaid)
+        
+        public function get_spa_calendar_by_spaid($spaid)
         {
             $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
+        
+        public function get_spa_booking_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        public function get_spa_notify_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        public function get_spa_products_by_spaid($spaid)
+        {
+            $sql    =   "SELECT p.`ProductID`,p.`Name`,p.`Status`,p.`ProductType`,p.`Duration`,p.`CurrentVouchers`,p.`MaxProductatOnce`,p.`ValidTimeFrom`,p.`ValidTimeTo`,p.`CreatedBy`,p.`CreatedDate`,
+                         c.`StrValue2`
+                         FROM products p , price pr , commoncode c
+                         WHERE p.`ProductID` = pr.`ProductID`
+                         AND c.`CommonId` = p.`ProductType`
+                         AND p.`SpaID` = '$spaid'";
+                         // 0120141126000001
+            $query  =   $this->db->query($sql)->result();
+            return $query;
+        }
+        
         public function get_spa_report_by_spaid($spaid)
         {
             $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
