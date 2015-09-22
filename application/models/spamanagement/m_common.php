@@ -116,7 +116,7 @@
                          // 0120141126000001
             $query  =   $this->db->query($sql)->result();
             return $query;
-        }
+        }   
         
         public function get_spa_report_by_spaid($spaid)
         {
