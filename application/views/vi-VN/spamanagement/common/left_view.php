@@ -14,6 +14,7 @@
                   <div class="pull-right"><span class="caret"></span></div>
               </a>
               <ul class="templatemo-submenu">
+                  <li><a href="<?php echo base_url("spaman/spa_statistics"); ?>">Thống kê</a></li>
                   <li><a href="<?php echo base_url("spaman/spa_info"); ?>">Thông tin chi tiết</a></li>
                   <li><a href="<?php echo base_url("spaman/spa_hour"); ?>">Giờ mở cửa</a></li>
                   <li><a href="<?php echo base_url("spaman/spa_policy"); ?>">Chính sách</a></li>  
@@ -59,5 +60,7 @@
         </ul>
     </div><!--end left menu-->
     
-    <div class="template-page-wrapper">
+
+</div>  
+<div class="template-page-wrapper">
         <div class="templatemo-content">

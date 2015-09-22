@@ -1,10 +1,14 @@
 ﻿
+<head>
+  <meta charset="utf-8">
+
   <ol class="breadcrumb">
     <li><a href="#">FCSE Spa</a></li>
     <li><span>Quản lý thành viên của SPa</span></li>                       
   </ol>
   <h1>Quản lý thành viên của SPa</h1>
   <p>Cập nhật & chỉnh sửa thông tin thành viên quản trị của SPA</p>
+</head>
 
   <div class="row margin-bottom-30">
     <div class="col-md-8">
@@ -24,25 +28,167 @@
   <div class="row">
     <div class="col-md-12">
       <div class="table-responsive">
-        <h4 class="margin-bottom-15">Danh sách thành viên Spa</h4>
-        <span id="notifyres"></span>
-        <table class="table table-striped table-hover table-bordered" id="tbllistuser">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Thông tin cá nhân</th>
-              <th>TTin Đăng nhập</th>                      
-              <th>Trạng thái</th>
-              <th>Action</th>
-              <th>Xóa</th>
-              <th>Ghi chú</th>
-            </tr>
-          </thead>
-          <tbody id="tbodylistuser">
-                <!--load data-->             
-          </tbody>
-        </table>
-      </div>
+                <h4 class="margin-bottom-15">Danh sách thành viên Spa</h4>
+                <table class="table table-striped table-hover table-bordered">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Thông tin cá nhân</th>
+                      <th>TTin Đăng nhập</th>                      
+                      <th>Trạng thái</th>
+                      <th>Sửa</th>
+                      <th>Action</th>
+                      <th>Xóa</th>
+                      <th>Ghi chú</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>Họ tên: Trần Kiều<br />
+                          Email: kieutran@yahoo.com<br />
+                          ...
+                      </td>
+                      <td>Tên Đăng nhập: kieutran@yahoo.com<br />
+                          Lần cuối đăng nhập: 2015-01-22 13:45:00<br />
+                          ...
+                      </td>
+                      <td>Đang hoạt động</td>
+                      <td><a href="#" class="btn btn-default">Sửa</a></td>                    
+                      <td>
+                              <!-- Split button -->
+                                                            
+                            <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Admin</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hỗ trợ</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nhân viên</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Khác</a></li>
+                              </ul>
+                            </div>
+                        
+
+                      </td>
+                      <td><a href="#" class="btn btn-link">Xóa</a></td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Họ tên: Trần Kiều<br />
+                          Email: kieutran@yahoo.com<br />
+                          ...
+                      </td>
+                      <td>Tên Đăng nhập: kieutran@yahoo.com<br />
+                          Lần cuối đăng nhập: 2015-01-22 13:45:00<br />
+                          ...
+                      </td>
+                      <td>Đang hoạt động</td>
+                      <td><a href="#" class="btn btn-default">Sửa</a></td>                    
+                      <td>
+                        <!-- Split button -->
+                        <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Admin</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hỗ trợ</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nhân viên</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Khác</a></li>
+                              </ul>
+                            </div>
+                      </td>
+                      <td><a href="#" class="btn btn-link">Xóa</a></td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Họ tên: Trần Kiều<br />
+                          Email: kieutran@yahoo.com<br />
+                          ...
+                      </td>
+                      <td>Tên Đăng nhập: kieutran@yahoo.com<br />
+                          Lần cuối đăng nhập: 2015-01-22 13:45:00<br />
+                          ...
+                      </td>
+                      <td>Đang hoạt động</td>
+                      <td><a href="#" class="btn btn-default">Sửa</a></td>                    
+                      <td>
+                        <!-- Split button -->
+                        <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Admin</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hỗ trợ</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nhân viên</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Khác</a></li>
+                              </ul>
+                            </div>
+                      </td>
+                      <td><a href="#" class="btn btn-link">Xóa</a></td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td>Họ tên: Trần Kiều<br />
+                          Email: kieutran@yahoo.com<br />
+                          ...
+                      </td>
+                      <td>Tên Đăng nhập: kieutran@yahoo.com<br />
+                          Lần cuối đăng nhập: 2015-01-22 13:45:00<br />
+                          ...
+                      </td>
+                      <td>Đang hoạt động</td>
+                      <td><a href="#" class="btn btn-default">Sửa</a></td>                    
+                      <td>
+                        <!-- Split button -->
+                        <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Admin</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hỗ trợ</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nhân viên</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Khác</a></li>
+                              </ul>
+                            </div>
+                      </td>
+                      <td><a href="#" class="btn btn-link">Xóa</a></td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>Họ tên: Trần Kiều<br />
+                          Email: kieutran@yahoo.com<br />
+                          ...
+                      </td>
+                      <td>Tên Đăng nhập: kieutran@yahoo.com<br />
+                          Lần cuối đăng nhập: 2015-01-22 13:45:00<br />
+                          ...
+                      </td>
+                      <td>Đang hoạt động</td>
+                      <td><a href="#" class="btn btn-default">Sửa</a></td>                    
+                      <td>
+                        <!-- Split button -->
+                        <div class="dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Tutorials
+                              <span class="caret"></span></button>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Admin</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hỗ trợ</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Nhân viên</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Khác</a></li>
+                              </ul>
+                            </div>
+                      </td>
+                      <td><a href="#" class="btn btn-link">Xóa</a></td>
+                    </tr>                 
+                  </tbody>
+                </table>
+              </div>
       <ul class="pagination pull-right" id="divpagination">
             <!--show pagination-->
       </ul>  
@@ -121,3 +267,11 @@
       </div>
     </div>
     <!-- end modal add thanh vien spa-->
+
+    <script src="resources/spamanagement/js/jquery.min.js"></script>
+    <script src="resources/spamanagement/js/bootstrap.min.js"></script>
+    <script src="resources/spamanagement/js/Chart.min.js"></script>
+
+
+
+    
