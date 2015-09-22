@@ -13,6 +13,14 @@
         <input type="button" class="button" id="phuongthuctimkiem" value="Tìm kiếm"/>
     </div>
 </div>
+
+
+
+<!--
+//
+BEGIN THÔNG TIN GIÁ DỊCH VỤ
+//
+-->
 <div id="divTBKQTim" style="margin: 15px 0px; display: none;" class="col-sm-12 notification success png_bg">
     <div class="alert alert-success"style="color: #23527c;font-weight: bold;font-size: 12px;" id="notifysuccess">
 
@@ -26,8 +34,8 @@
                   <th>Tên dịch vụ</th>
                   <th>Thông tin dịch vụ</th>
                   <th>Thông tin số chỗ</th>
-                  <th>Giá hiện tại</th>
-                  <th>Giá trước đó</th>
+                  <th>Giá hiện tại (VND)</th>
+                  <th>Giá trước đó (VND)</th>
                   <th>Thông Tin khởi tạo</th>
                   <th>Thao tác</th>
               </tr>
@@ -50,7 +58,6 @@
           
   </table>
 </div>
-
  <script id="ListFoundPRO" type="text/x-jquery-tmpl" >
     <tr>
         <td>${STT}</td>
@@ -69,10 +76,10 @@
             Giá trị đến ngày: ${ValidTimeTo} <br />
         </td>
         <td>
-            <span class="name">${Giahientai} VND</span>     
+            <span class="name">${Giahientai}</span>     
         </td>
         <td>
-            ${GiaEdit}   VND
+            ${GiaEdit}
         </td>
         <td style='width: 150px;'>
             Người tạo: ${CreatedBy} <br /><br />
@@ -84,6 +91,11 @@
         </td>
     </tr>
 </script> 
+<!--
+//
+END THÔNG TIN GIÁ DỊCH VỤ
+//
+-->
 
 
 
@@ -95,6 +107,11 @@
 
 
 
+<!--
+//
+BEGIN DANH SÁCH GIÁ TRƯỚC ĐÓ
+//
+-->
 
 <div id="divTBKQTim1" style="margin: 15px 0px; display: none;" class="col-sm-12 notification success png_bg">
     <div class="alert alert-success"style="color: #23527c;font-weight: bold;font-size: 12px;" id="notifysuccess1">
@@ -107,10 +124,9 @@
               <tr>
                   <th>STT</th>
                   <th>Tên Dịch Vụ</th>
-                  <th>Giá</th>
+                  <th>Giá (VND)</th>
                   <th>Create By</th>
                   <th>CreatedDate</th>
-                  <th>Thao tác</th>
               </tr>
           </thead>
           <tbody>
@@ -130,8 +146,7 @@
 
           
   </table>
-</div>
- <!-- Giá sản phẩm-->                   
+</div>                
 <script id="ListFoundPRO1" type="text/x-jquery-tmpl" > 
     <tr>
         <td>${STT}</td>
@@ -139,20 +154,26 @@
             ${Name} <br />
         </td>
         <td>
-            ${Price}
+            <span class="name">${Price}</span>
         </td>
         <td>
             ${CreatedBy}
         </td>
         <td>
             ${CreatedDate}
-        </td>
-        <td>
             <input type="hidden" id="id_xemgia" value="${ProductID}"/>
             <input type="hidden" id="name_xemgia" value="${Name}"/>
-            <a href="javascript:void(0);" onclick="xoagia('${Id}','${Name}','${ProductID}');"  title="Xóa"><img src="<?php echo base_url('resources/images/icons/cross.png'); ?>" alt="Xóa" /></a> 
         </td>
     </tr>
 </script> 
-    <!-- end Giá sản phẩm-->
+<!--
+//
+END DANH SÁCH GIÁ TRƯỚC ĐÓ
+//
+-->
+
+
+
+
+
 

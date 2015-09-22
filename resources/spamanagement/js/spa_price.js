@@ -6,7 +6,7 @@
 |----------------------------------------------------------------
 */
 $(document).ready(function() { 
-    $("#searching").show(500);
+    // $("#searching").show(500);
     $("#phuongthucdanhsach").click(function () {
         $("#keyword").val('');
         $("#spaid").val();
@@ -183,7 +183,7 @@ function XemGia_Product_Complete(data) {
             $("#panelDataPRO").hide(500);
             $("#cboPageNoPRO").hide(500);
             $("#divTBKQTim").hide(500);
-            $("#searching").hide(500);
+            // $("#searching").hide(500);
 
 
 
