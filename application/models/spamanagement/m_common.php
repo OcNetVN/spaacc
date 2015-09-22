@@ -18,6 +18,13 @@
         /*
         | function get spa hour by spaid
         */
+        
+        public function get_spa_statistics_by_spaid($spaid)
+        {
+            $sql    =   "SELECT MoreInfo FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
         public function get_spa_hour_by_spaid($spaid)
         {
             $sql    =   "SELECT * FROM `spatime` WHERE `spaID` = '$spaid' ORDER BY `DayOfWeek`";
@@ -42,7 +49,34 @@
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
+        
+        public function get_spa_statistics_dashboard_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
         public function get_spa_km_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        public function get_spa_revenue_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        
+        public function get_spa_calendar_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        
+        public function get_spa_booking_by_spaid($spaid)
         {
             $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
             $query  =   $this->db->query($sql)->row();
