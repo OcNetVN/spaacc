@@ -39,6 +39,11 @@ h1 { font-size: 24px;    margin-bottom: 30px;}
 ul.week{list-style: none;padding-left: 0px;}
 ul.week li{padding:10px;display: block;}
 
+.content_table th, td{font-size: 13px}
+.content_table span.name{font-weight: bold;color: #337ab7;}
+span.success_bg{background: url('../../images/active_1.png')no-repeat 0px 0px;padding-left: 25px;}
+span.error_bg{background: url('../../images/active_0.png')no-repeat 0px 0px;padding-left: 25px;color: red;}
+
 
 .dropdown-menu {
 min-width: 76px!important;

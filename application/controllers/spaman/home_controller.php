@@ -23,11 +23,12 @@ class Home_controller extends CI_Controller {
         $this->load->model('spamanagement/m_spa_info'); 
         $this->load->model('spamanagement/m_spa_hour'); 
         $this->load->model('spamanagement/m_spa_util'); 
+        $this->load->model('spamanagement/m_spa_price'); 
         $this->load->model('spamanagement/m_spa_user'); 
         $this->load->helper('language_helper');
 
 
-        //  echo '<pre>';
+        // echo '<pre>';
         // print_r($_SESSION["AccSpa"]);
         // echo '</pre>';
 
@@ -61,7 +62,7 @@ class Home_controller extends CI_Controller {
     public function thoat_info()
     {
         unset($_SESSION["AccSpa"]);
-        redirect('spaman/login');
+        redirect('login');
     }
     public function Change_Language()
     {
@@ -271,6 +272,7 @@ class Home_controller extends CI_Controller {
         // echo '</pre>';
         
 
+        $list_producttype      = $this->m_common->get_list_producttype();
         //Danh sách productype parent
         $list_parent_producttype       =   $this->m_common->get_parent_list_producttype();
         // echo '<pre>';
@@ -455,10 +457,16 @@ class Home_controller extends CI_Controller {
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         //return;
         
-        $spa_price               =   $this->m_common->get_spa_price_by_spaid($spaid);
-        
+        $spa_products               =   $this->m_common->get_spa_products_by_spaid($spaid);
 
-        $arr_spaprice            =   array(  "spa_price"          =>  $spa_price,
+
+       
+        // echo '<pre>';
+        // print_r($spa_products);
+        // echo '</pre>';
+        // echo count($spa_products);
+
+        $arr_spa_products            =   array(  "spa_products"          =>  $spa_products,
                                             );
         /*
         |----------------------------------------------------------------
@@ -473,7 +481,7 @@ class Home_controller extends CI_Controller {
         $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
         $this->load->view($lang."/spamanagement/common/header_view");
         $this->load->view($lang."/spamanagement/common/left_view");
-        $this->load->view($lang."/spamanagement/spa_price_view",$arr_spaprice);
+        $this->load->view($lang."/spamanagement/spa_price_view",$arr_spa_products);
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
@@ -595,9 +603,15 @@ class Home_controller extends CI_Controller {
         //print_r($_SESSION);
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         // return;
+<<<<<<< HEAD
         
         $spa_calendar               =   $this->m_common->get_spa_calendar_by_spaid($spaid);
         
+=======
+        
+        $spa_calendar               =   $this->m_common->get_spa_calendar_by_spaid($spaid);
+        
+>>>>>>> origin/master
         $arr_spacalendar            =   array(  "spa_calendar"          =>  $spa_calendar,
                                             );
         /*
@@ -824,7 +838,37 @@ class Home_controller extends CI_Controller {
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
+    /*
+    |----------------------------------------------------------------
+    |function search products
+    |----------------------------------------------------------------
+    */
+    public function search_products()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_price->search_products();
+        // }
+        echo json_encode($req);
+    }
+    /*
+    |----------------------------------------------------------------
+    |function xem giá
+    |----------------------------------------------------------------
+    */
 
+    public function XemGia_Product()
+    {
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_price->XemGia_Product();
+        // }
+        echo json_encode($req);
+    }
 
 
     /*
