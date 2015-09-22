@@ -53,27 +53,13 @@
               </a>
           </li> -->
           <li>             
-              <a href="javascript:;" data-toggle="modal" data-target="#confirmModal">
+              <a href="<?php echo base_url("spaman/thoat_info")?>" >
                   <i class="fa fa-sign-out"></i>Thoát
               </a>
           </li>
         </ul>
     </div><!--end left menu-->
-    <!-- Modal -->
-      <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Đóng</span></button>
-              <h4 class="modal-title" id="myModalLabel">Bạn có muốn thoát ?</h4>
-            </div>
-            <div class="modal-footer">
-              <a href="spaman/thoat_info" class="btn btn-primary">Đồng ý</a>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
-            </div>
-          </div>
-        </div>
-      </div>
+    
 
     
 
