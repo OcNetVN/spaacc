@@ -28,9 +28,9 @@ class Home_controller extends CI_Controller {
         $this->load->helper('language_helper');
 
 
-        // echo '<pre>';
-        // print_r($_SESSION["AccSpa"]);
-        // echo '</pre>';
+        echo '<pre>';
+        print_r($_SESSION["AccSpa"]);
+        echo '</pre>';
 
         if(!isset($_SESSION["AccSpa"])){
             redirect('spaman/login');
@@ -62,7 +62,8 @@ class Home_controller extends CI_Controller {
     public function thoat_info()
     {
         unset($_SESSION["AccSpa"]);
-        redirect('login');
+
+        redirect('spaman/login');
     }
     public function Change_Language()
     {
@@ -603,15 +604,9 @@ class Home_controller extends CI_Controller {
         //print_r($_SESSION);
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         // return;
-<<<<<<< HEAD
         
         $spa_calendar               =   $this->m_common->get_spa_calendar_by_spaid($spaid);
         
-=======
-        
-        $spa_calendar               =   $this->m_common->get_spa_calendar_by_spaid($spaid);
-        
->>>>>>> origin/master
         $arr_spacalendar            =   array(  "spa_calendar"          =>  $spa_calendar,
                                             );
         /*

@@ -95,7 +95,6 @@ class Login extends CI_Controller
                         }
                         else
                         {
-
                             // 1 - load user
                             $arr_user = $this->m_user->lay_User_theo_id1($username);
 
@@ -123,7 +122,7 @@ class Login extends CI_Controller
                             
 
 
-                            //  // lấy các module có quyèn
+                            //  // láº¥y cÃ¡c module cÃ³ quyÃ¨n
                             //   $module = $this->m_index->GetModuleOfRole($arr_user[0]->RoleId);
                             // // $id_spa = $arr_user[0]->UserId;
                             $arr_session = array("spaid"=>$arr_Spa[0]->spaID,

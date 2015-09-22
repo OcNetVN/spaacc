@@ -1,6 +1,6 @@
 <?php
     class M_common extends CI_Model{
-        public $errorStr; 
+        // public $errorStr; 
         public function __construct()
         {
             parent::__construct();
@@ -15,6 +15,17 @@
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
+
+        /*
+        | function get spa location by spaid
+        */
+        public function get_spalocation_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spalocation` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+
         /*
         | function get spa hour by spaid
         */
@@ -25,12 +36,16 @@
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
+
+
         public function get_spa_hour_by_spaid($spaid)
         {
             $sql    =   "SELECT * FROM `spatime` WHERE `spaID` = '$spaid' ORDER BY `DayOfWeek`";
             $query  =   $this->db->query($sql)->result();
             return $query;
         }
+
+
         public function get_spa_policy_by_spaid($spaid)
         {
             $sql    =   "SELECT MoreInfo FROM `spa` WHERE `spaID` = '$spaid'";
@@ -48,8 +63,7 @@
             $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
             $query  =   $this->db->query($sql)->row();
             return $query;
-        }
-        
+        }        
         public function get_spa_statistics_dashboard_by_spaid($spaid)
         {
             $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
@@ -63,29 +77,6 @@
             return $query;
         }
         public function get_spa_revenue_by_spaid($spaid)
-<<<<<<< HEAD
-        {
-            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
-            $query  =   $this->db->query($sql)->row();
-            return $query;
-        }
-        
-        public function get_spa_calendar_by_spaid($spaid)
-        {
-            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
-            $query  =   $this->db->query($sql)->row();
-            return $query;
-        }
-        
-        public function get_spa_booking_by_spaid($spaid)
-        {
-            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
-            $query  =   $this->db->query($sql)->row();
-            return $query;
-        }
-        public function get_spa_notify_by_spaid($spaid)
-=======
->>>>>>> origin/master
         {
             $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
             $query  =   $this->db->query($sql)->row();
@@ -111,6 +102,9 @@
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
+       
+      
+       
         public function get_spa_products_by_spaid($spaid)
         {
             $sql    =   "SELECT p.`ProductID`,p.`Name`,p.`Status`,p.`ProductType`,p.`Duration`,p.`CurrentVouchers`,p.`MaxProductatOnce`,p.`ValidTimeFrom`,p.`ValidTimeTo`,p.`CreatedBy`,p.`CreatedDate`,
@@ -221,15 +215,7 @@
             $arr        =   array_unique($arr);
             return $arr;
         }
-        /*
-        | function get spa location by spaid
-        */
-        public function get_spalocation_by_spaid($spaid)
-        {
-            $sql    =   "SELECT * FROM `spalocation` WHERE `spaID` = '$spaid'";
-            $query  =   $this->db->query($sql)->row();
-            return $query;
-        }
+        
         /*
         |----------------------------------------------------------------
         |function get value from table commoncode of database 2
@@ -269,15 +255,9 @@
                 return $res;
             }
         }
-        /**
-        |----------------------------------------------------------------
-        * @table get table link
-        |----------------------------------------------------------------
-        **/
         public function get_tbl_links($ObjectIDD,$Type,$Status)
         {
-            $sql = "SELECT * FROM `links` 
-                WHERE `ObjectIDD` = '$ObjectIDD' AND `Type` = '$Type' AND `Status` = $Status ORDER BY `UploadedDate` DESC";
+            $sql = "SELECT * FROM `links` WHERE `ObjectIDD` = '$ObjectIDD' AND `Type` = '$Type' AND `Status` = $Status ORDER BY `UploadedDate` DESC";
             $query = $this->db->query($sql)->result();
             return $query;
         }
@@ -343,5 +323,18 @@
             }
             return $value;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
     }  
 ?>
