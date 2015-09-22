@@ -76,5 +76,13 @@
       </div>
 
     
+
+    
+<<<<<<< HEAD
     <div class="template-page-wrapper">
+=======
+
+</div>  
+<div class="template-page-wrapper">
+>>>>>>> origin/master
         <div class="templatemo-content">
