@@ -14,6 +14,7 @@
                   <div class="pull-right"><span class="caret"></span></div>
               </a>
               <ul class="templatemo-submenu">
+                  <li><a href="<?php echo base_url("spaman/spa_statistics"); ?>">Thống kê</a></li>
                   <li><a href="<?php echo base_url("spaman/spa_info"); ?>">Thông tin chi tiết</a></li>
                   <li><a href="<?php echo base_url("spaman/spa_hour"); ?>">Giờ mở cửa</a></li>
                   <li><a href="<?php echo base_url("spaman/spa_policy"); ?>">Chính sách</a></li>  
@@ -52,12 +53,28 @@
               </a>
           </li> -->
           <li>             
-              <a href="<?php echo base_url("spaman/thoat_info")?>" >
+              <a href="javascript:;" data-toggle="modal" data-target="#confirmModal">
                   <i class="fa fa-sign-out"></i>Thoát
               </a>
           </li>
         </ul>
     </div><!--end left menu-->
+    <!-- Modal -->
+      <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Đóng</span></button>
+              <h4 class="modal-title" id="myModalLabel">Bạn có muốn thoát ?</h4>
+            </div>
+            <div class="modal-footer">
+              <a href="spa_login.html" class="btn btn-primary">Đồng ý</a>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     
     <div class="template-page-wrapper">
         <div class="templatemo-content">

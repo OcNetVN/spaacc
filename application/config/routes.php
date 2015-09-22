@@ -38,13 +38,14 @@
 |
 */
 
-$route['default_controller'] = "spaman/home_controller/spa_info";
+$route['default_controller'] = "spaman/home_controller/spa_statistics";
 //$route['home_controller'] = "spaman/home_controller/";
 $route['404_override'] = '';
 
 /* 
 | custom url for spa management
 */
+$route['spaman/spa_statistics']				=		"spaman/home_controller/spa_statistics";
 $route['spaman/spa_info']					=		"spaman/home_controller/spa_info";
 $route['spaman/spa_hour']					=		"spaman/home_controller/spa_hour";
 $route['spaman/spa_policy']					=		"spaman/home_controller/spa_policy";
@@ -61,6 +62,7 @@ $route['spaman/spa_report']					=		"spaman/home_controller/spa_report";
 $route['spaman/thoat_info']					=		"spaman/home_controller/thoat_info";
 
 $route['thao-tac/sua-dich-vu-spa'] 			= 		"spaman/home_controller/spa_product_edit";
+$route['thong-ke/dash-board'] 				= 		"spaman/home_controller/spa_statistics_dashboard";
 
 $route['spaman/spa_user']					=		"spaman/home_controller/spa_user";
 $route['home_controller/getlocation_by_spa']=       "spaman/home_controller/getlocation_by_spa";
