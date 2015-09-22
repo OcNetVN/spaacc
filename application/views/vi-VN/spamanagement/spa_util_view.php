@@ -4,7 +4,7 @@
     <li><a href="index.html">Quản lý Spa</a></li>
     <li class="active">Tiện ích của SPA</li>            
   </ol>
-  <h1>Tiện ích của SPaaaaaaaaaaaa</h1>
+  <h1>Tiện ích của SPaaaaaaaaaaaa 01</h1>
  
   <div class="row">
       <div class="col-md-12 col-sm-6">
