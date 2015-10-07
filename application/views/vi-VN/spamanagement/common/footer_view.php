@@ -6,6 +6,7 @@
             </div>
         </footer>
     </div>
+    
     <script src="<?php echo base_url("resources/spamanagement/js/common/jquery.min.js"); ?>"></script>
     <script src="<?php echo base_url("resources/spamanagement/js/common/bootstrap.min.js"); ?>"></script>
     <script src="<?php echo base_url("resources/spamanagement/js/common/Chart.min.js"); ?>"></script>

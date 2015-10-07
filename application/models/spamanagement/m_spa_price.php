@@ -17,7 +17,7 @@
             $keyword    = $_POST['keyword'];
             $page       = $_POST["Page"];
           
-            $sql= "SELECT '1' AS STT, '2' AS Giahientai, '3' AS GiaEdit, '4' AS Loai, p.*";
+            $sql= "SELECT '1' AS STT, '2' AS Giahientai, '3' AS GiaEdit, '0' AS GiaXetDuyet, '4' AS Loai, p.*";
             $sql.=" FROM products p";
             $sql.=" WHERE p.`SpaID` = '$spaid'";
   
@@ -50,9 +50,13 @@
 
             $this->AddGiahientai($_arrSpa); 
 
-            $this->AddGiaEdit($_arrSpa); 
+            $this->AddGiaEdit($_arrSpa);
+
+            $this->AddGiaXetDuyet($_arrSpa); 
 
             $this->AddLoai($_arrSpa); 
+
+            // return $_arrSpa;
 
 
 
@@ -102,6 +106,15 @@
             }
             return $arr1;
         }
+         public function AddGiaXetDuyet($arr)
+        {
+            $arr1 = (array) $arr;
+            for($i=0;$i<count($arr1);$i++)
+            {
+                $arr1[$i]->GiaXetDuyet = $this->get_product_price_xetduyet($arr1[$i]->ProductID)->Price;
+            }
+            return $arr1;
+        }
         public function AddLoai($arr)
         {
             $arr1 = (array) $arr;
@@ -119,13 +132,19 @@
         }
         public function get_product_price_today($ProductID)
         {
-            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=1 AND `ApprovedBy`!='' AND `ApprovedDate`!='' ORDER by `CreatedDate` DESC limit 0,1";
+            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=1 AND `ApprovedBy`!='' ORDER by `CreatedDate` DESC limit 0,1";
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
         public function get_product_price_edit($ProductID)
         {
-            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=0 AND `ApprovedBy`!='' AND `ApprovedDate`!='' ORDER by `CreatedDate` DESC limit 0,1";
+            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=0 AND `ApprovedBy`!='' ORDER by `CreatedDate` DESC limit 0,1";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        public function get_product_price_xetduyet($ProductID)
+        {
+            $sql    =   "SELECT * FROM `price` WHERE `ProductID`=$ProductID AND `Status`=1 AND `ApprovedBy`='' ORDER by `CreatedDate` DESC limit 0,1";
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
@@ -172,6 +191,27 @@
             $res = array("TotalRecord"=>$TotalRecord,"TotalPage"=>$TotalPage,"CurPage"=>$page,"lst"=>$_arrSpa,"Toto"=>$ResTotalPage,"tensp"=>$NAME);
             return $res;
         }
+
+        /*
+        |----------------------------------------------------------------
+        |function ThemGia_Product
+        |----------------------------------------------------------------
+        */
+
+        public function ThemGia_Product(){            
+            $id  = $_POST["id"];
+            // $tensp  = $_POST["tensp"];
+            $Giathem  = $_POST["Giathem"];
+            $nguoitao=$_SESSION['AccSpa']['User']->UserId;
+
+            $sql="INSERT INTO `price` (`ProductID`, `Price`, `CreatedBy`, `CreatedDate`,`Status`) VALUES ('$id', '$Giathem', '$nguoitao',NOW(),'1')";
+            
+            $results=$this->db->query($sql);
+            // $res = array("lst"=>$results,"masp"=>$id,"tensp"=>$tensp);
+            return $results;
+        }
+
+
 
         /*
         |----------------------------------------------------------------

@@ -6,7 +6,9 @@
 |----------------------------------------------------------------
 */
 $(document).ready(function() { 
-    // $("#searching").show(500);
+    // $("#searching").show(500);  
+    $("#Gia_Them").number(true, 0);
+    $("#Gia_hientai").number(true, 0);
     $("#phuongthucdanhsach").click(function () {
         $("#keyword").val('');
         $("#spaid").val();
@@ -26,6 +28,10 @@ $(document).ready(function() {
             alert('Vui lòng nhập từ khóa ');
             return;
         }
+        if($("#spaid").val()== ''){
+            alert('Không thể tìm kiếm');
+            return;
+        }
         searchProducts(1);
     });
     $("#cboPageNoPRO1").change(function () {
@@ -34,6 +40,7 @@ $(document).ready(function() {
         var trang = $("#cboPageNoPRO1").val();
         XemGia_Product(id,name,trang);
     });
+
 });
 /*
 |----------------------------------------------------------------
@@ -45,6 +52,8 @@ function searchProducts(page) {
     $("#divTBKQTim1").hide(500);
     $("#panelDataPRO1").hide(500);
     $("#cboPageNoPRO1").hide(500);
+    $("#panelDataPRO2").hide(500);
+    $("#divTBKQTim2").hide(500);
 
 
     $("#divTBKQTim").show(500);
@@ -237,6 +246,79 @@ function XemGia_Product_Complete(data) {
         }
     }
 }
+
+function themgia_Product(id,ten,giahientai)
+{
+    $("#Name_Gia").val(ten);
+    $("#Gia_hientai").val(giahientai);
+    $("#Ma_Product").val(id);
+
+
+
+    $("#panelDataPRO").hide(500);
+    $("#cboPageNoPRO").hide(500);
+    $("#divTBKQTim").hide(500);
+
+    $("#panelDataPRO2").show(500);
+}
+
+
+
+function submitthemgia()
+{
+    var masanphamgia = $("#Ma_Product").val();
+    // var tensanphamthem = $("#tensanphamthem").val();
+    var giathem = $("#Gia_Them").val();
+
+    // console.log(giathem);
+    // console.log(masanphamgia);
+    // return;
+    if(giathem == "" || isNaN(giathem)){
+        alert("Giá không hợp lệ !");
+        return;
+    }
+    
+    $.ajax({
+        type:"POST",
+        url:"home_controller/Submit_Themgia",
+        dataType:"text",
+        data: {
+            id: masanphamgia,
+            Giathem: giathem},
+        cache:false,
+        success:function (data) {
+            // if( data== "-1" || data==="-1" || data==-1 )
+            // {
+            //     alert("Bạn không có quyền trên chức năng này ở trang này !!! ");                    
+            // }
+            // else
+            // {
+                // alert('Thêm thành công');
+                // console.log(data);
+                // return;
+                submitthemgia_Complete(data);
+            // }
+          //alert(data);
+        },
+        
+    });
+}
+function submitthemgia_Complete(data)
+{
+    var sRes = JSON.parse(data);
+    if(sRes==true || sRes=="true"){
+        $("#divTBKQTim1").hide(500);
+        $("#divTBKQTim2").show(500);
+        // $("#btngiathem").hide(500);
+        $("#Gia_Them").val("");
+
+        var node = document.getElementById("notifysuccess2");
+        $('#notifysuccess2').children().remove();           
+        $("#notifysuccess2").append("<span class='success_bg'>Cập nhật giá thành công ! Vui lòng chờ xét duyệt .</span>");
+    }
+}
+
+
 
 
 

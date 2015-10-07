@@ -1,145 +1,134 @@
-<!DOCTYPE html>
-<head>
-	<meta charset="utf-8">
-  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
-  <title>FCSE Spa - Quản lý dành cho Spa </title>
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width">        
- 
-    <!-- daypilot libraries -->
-    <script src="resources/spamanagement/js/daypilot-all.min.js?v=1514" type="text/javascript"></script>
-</head>
+<script src="<?php echo base_url('resources/spamanagement/js/daypilot-all.min.js?v=1514'); ?>"></script>
 
-      
-          <ol class="breadcrumb">
-            <li><a href="#">FCSE Spa</a></li>
-            <li><a href="#">Tài chính</a></li>
-            <li class="active">Calendar</li>            
-          </ol>
-          <h1>Thời gian biểu</h1>
-          
-           <div class="note"><b>Ghi chú:</b> Bạn có thể cập & xem lịch booking <a href="http://javascript.daypilot.org/calendar/"></a>.</div>
+<ol class="breadcrumb">
+    <li><a href="#">FCSE Spa</a></li>
+    <li><a href="#">Tài chính</a></li>
+    <li class="active">Calendar</li>            
+</ol>
+<h1>Thời gian biểu</h1>
 
-            <div id="dp"></div>
+<div class="col-sm-12 note" style="padding:0px"><b>Ghi chú:</b> Bạn có thể cập & xem lịch booking <a href="http://javascript.daypilot.org/calendar/"></a>.</div>
 
-            <script type="text/javascript">
+<div class="col-sm-12" style="padding:15px 0px 15px;">
+  <div class="col-sm-6" style="padding:0px">
+      <label>Hiển thị</label>
+      <select id="hienthi_xem"  onchange="change_hienthi(this.value)">
+        <option value="Moth" selected="selected">Tháng</option>
+        <option value="Week">Tuần</option>
+        <option value="Day">Ngày</option>
+      </select>
 
-                var dp = new DayPilot.Calendar("dp");
+      <label style="margin-left:10px">Ngày</label>
+      <input type="hidden" id="spaid" value="<?php echo $_SESSION["AccSpa"]["spaid"]?>" />
+      <input name="ngay_xem" id="ngay_xem"type="text" value="" onchange="change_time(this.value)" />
+  </div>
+  <div class="col-sm-6" style="padding:0px">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_Add_Booking_Calendar" style="float:right">
+        Tạo Booking Offline
+      </button>
 
-                //dp.cellDuration = 120;
-                //dp.timeHeaderCellDuration = 120;
-                //dp.cellHeight = 60;
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal_Closed_Time_Booking" style="float:right;margin-right: 15px;">
+        Đóng Khung Giờ
+      </button>
+    
+  </div>
+</div>
+<div class="col-sm-12" style="padding:0px;font-size: 11px;color: #337AB7;" id="Count_booking"></div>
 
-                // view
-                dp.startDate = "2013-03-25";  // or just dp.startDate = "2013-03-25";
-                dp.viewType = "Week";
-                dp.allDayEventHeight = 25;
-                dp.initScrollPos = 9 * 40;
 
-                dp.eventDeleteHandling = "Update";
-                dp.onEventDelete = function (args) {
-                    alert("Xóa: " + args.e.text());
-                };
-                
-                // bubble, with async loading
-                dp.bubble = new DayPilot.Bubble({
-                    onLoad: function (args) {
-                        var ev = args.source;
-                        //alert("event: " + ev);
-                        args.async = true;  // notify manually using .loaded()
+<div id="divLoad" class="col-sm-12" style="padding:0px;margin-bottom:20px;">
+    <div id="calendar_booking"></div>       
+</div>
 
-                        // simulating slow server-side load
-                        setTimeout(function () {
-                            args.html = "testing bubble for: <br>" + ev.text();
-                            args.loaded();
-                        }, 500);
-                    }
-                });
-
-                dp.contextMenu = new DayPilot.Menu({
-                    items: [
-                    { text: "Show event ID", onclick: function () { alert("Event value: " + this.source.value()); } },
-                    { text: "Show event text", onclick: function () { alert("Event text: " + this.source.text()); } },
-                    { text: "Show event start", onclick: function () { alert("Event start: " + this.source.start().toStringSortable()); } },
-                    { text: "Delete", onclick: function () { dp.events.remove(this.source); } }
-                    ]
-                });
-
-                // event moving
-                dp.onEventMoved = function (args) {
-                    dp.message("Moved: " + args.e.text());
-                };
-
-                // event resizing
-                dp.onEventResized = function (args) {
-                    dp.message("Resized: " + args.e.text());
-                };
-
-                // event creating
-                dp.onTimeRangeSelected = function (args) {
-                    var name = prompt("New event name:", "Event");
-                    if (!name) return;
-                    var e = new DayPilot.Event({
-                        start: args.start,
-                        end: args.end,
-                        id: DayPilot.guid(),
-                        resource: args.resource,
-                        text: "Event"
-                    });
-                    dp.events.add(e);
-                    dp.clearSelection();
-                    dp.message("Created");
-                };
-
-                dp.onTimeRangeDoubleClicked = function (args) {
-                    alert("DoubleClick: start: " + args.start + " end: " + args.end + " resource: " + args.resource);
-                };
-
-                dp.onEventClick = function (args) {
-                    alert("clicked: " + args.e.id());
-                };
-
-                dp.showEventStartEnd = true;
-                dp.scrollLabelsVisible = true;
-
-                var e = new DayPilot.Event({
-                    start: new DayPilot.Date("2013-03-25T12:00:00"),
-                    end: new DayPilot.Date("2013-03-25T12:00:00").addHours(3),
-                    id: DayPilot.guid(),
-                    text: "Khách đặt"
-                });
-                dp.events.add(e);
-
-                dp.columns = [
-                    { name: "One" },
-                    { name: "Two" },
-                ];
-
-                dp.init();
-            </script>
-             
-<!-- Modal -->
-      <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Đóng</span></button>
-              <h4 class="modal-title" id="myModalLabel">Bạn có muốn thoát ?</h4>
-            </div>
-            <div class="modal-footer">
-              <a href="spa_login.html" class="btn btn-primary">Đồng ý</a>
-              <button type="button" class="btn btn-default" data-dismiss="modal">Hủy bỏ</button>
-            </div>
-          </div>
-        </div>
+<!-- myModal_View_Booking_Calendar -->
+<div class="modal fade" id="myModal_View_Booking_Calendar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Booking Detail</h4>
       </div>
-    <script src="resources/spamanagement/js/jquery.min.js"></script>
-    <script src="resources/spamanagement/js/bootstrap.min.js"></script>
-    <script src="resources/spamanagement/js/Chart.min.js"></script>
-    <script src="resources/spamanagement/js/templatemo_script.js"></script>
+      <div class="modal-body">
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>        
 
- </div>
-     
 
-     </html>
+
+
+
+<!-- myModal_Edit_Booking_Calendar -->
+<div class="modal fade" id="myModal_Edit_Booking_Calendar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Cập nhật Booking Detail</h4>
+      </div>
+      <div class="modal-body">
+            <div class="row" id="View_detail">
+                <div class="col-md-3">Tên Khách Hàng</div><div class="col-md-9"><span class="pull-left" id="Edit_FullName"></span></div>
+                <div class="col-md-3">Dịch vụ</div><div class="col-md-9"><span class="pull-left" id="Edit_TenDV"></span></div>
+                <div class="col-md-3">Thời lượng</div><div class="col-md-9"><span class="pull-left" id="Edit_Duration"></span></div>
+                <div class="col-md-3">Thời gian bắt đầu</div><div class="col-md-9"><span class="pull-left"><input type="text" class="form-control" id="Edit_FromTime" name="Edit_FromTime" ></span></div>
+                <div class="col-md-3">Thời gian kết thúc</div><div class="col-md-9"><span class="pull-left"><input type="text" class="form-control" id="Edit_ToTime" name="Edit_ToTime" ></span></div>
+                <div class="col-md-3">Thanh Toán</div><div class="col-md-9"><span class="pull-left" id="Edit_Thanhtoan"></span></div>
+                <div class="col-md-3">Tình trạng</div><div class="col-md-9"><span class="pull-left" id="Edit_Status"></span></div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="Edit_Booking_Detail">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- myModal_Add_Booking_Calendar -->
+<div class="modal fade" id="myModal_Add_Booking_Calendar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Add
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- myModal_Add_Booking_Calendar -->
+<div class="modal fade" id="myModal_Closed_Time_Booking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Closed
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

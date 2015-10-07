@@ -23,14 +23,20 @@ class Home_controller extends CI_Controller {
         $this->load->model('spamanagement/m_spa_info'); 
         $this->load->model('spamanagement/m_spa_hour'); 
         $this->load->model('spamanagement/m_spa_util'); 
-        $this->load->model('spamanagement/m_spa_price'); 
+        $this->load->model('spamanagement/m_spa_price');
+        $this->load->model('spamanagement/m_spa_product'); 
+        $this->load->model('spamanagement/m_spa_promotion'); 
         $this->load->model('spamanagement/m_spa_user'); 
+        $this->load->model('spamanagement/m_spa_calendar'); 
+        
         $this->load->helper('language_helper');
 
 
-        echo '<pre>';
-        print_r($_SESSION["AccSpa"]);
-        echo '</pre>';
+        // echo '<pre>';
+        // print_r($_SESSION["AccSpa"]);
+        // echo '</pre>';
+        // echo $nguoitao=$_SESSION['AccSpa']['User']->UserId;
+
 
         if(!isset($_SESSION["AccSpa"])){
             redirect('spaman/login');
@@ -59,12 +65,7 @@ class Home_controller extends CI_Controller {
     * @param 
     * @return Show spa Page
     */
-    public function thoat_info()
-    {
-        unset($_SESSION["AccSpa"]);
-
-        redirect('spaman/login');
-    }
+    
     public function Change_Language()
     {
          echo $lang = change_language();
@@ -274,6 +275,7 @@ class Home_controller extends CI_Controller {
         
 
         $list_producttype      = $this->m_common->get_list_producttype();
+
         //Danh sách productype parent
         $list_parent_producttype       =   $this->m_common->get_parent_list_producttype();
         // echo '<pre>';
@@ -291,6 +293,9 @@ class Home_controller extends CI_Controller {
 
 
         $spa_producttype        =   $this->m_common->get_producttype_by_spaid($spaid);
+        // echo '<pre>';
+        // print_r($spa_producttype);
+        // echo '</pre>';
 
 
 
@@ -340,7 +345,7 @@ class Home_controller extends CI_Controller {
       $lang = change_language();
 
         $p_arr      =   array(
-                        'title'     =>  'Sản phẩm & dịch vụ spa ',
+                        'title'     =>  'Sản Phẩm & Dịch Vụ',
                         //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
                         'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_product_view', '', TRUE)
                     );
@@ -349,10 +354,10 @@ class Home_controller extends CI_Controller {
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
         // return;
         
-        $spa_product               =   $this->m_common->get_spa_product_by_spaid($spaid);
+        // $spa_product               =   $this->m_common->get_spa_product_by_spaid($spaid);
       
-        $arr_spaproduct            =   array(  "spa_product"          =>  $spa_product,
-                                            );
+        // $arr_spaproduct            =   array(  "spa_product"          =>  $spa_product,
+        //                                     );
 
         /*
         |----------------------------------------------------------------
@@ -367,47 +372,11 @@ class Home_controller extends CI_Controller {
         $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
         $this->load->view($lang."/spamanagement/common/header_view");
         $this->load->view($lang."/spamanagement/common/left_view");
-        $this->load->view($lang."/spamanagement/spa_product_view",$arr_spaproduct);
+        // $this->load->view($lang."/spamanagement/spa_product_view",$arr_spaproduct);
+        $this->load->view($lang."/spamanagement/spa_product_view");
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
-
-
-
-
-    /**
-    * Function view spa user page
-    * Date: 14/04/2015
-    * URL Page: spaman/spa_user
-    * Rewrite routing: file config/routes.php
-    * @param 
-    * @return Show spa Page
-    */
-    public function spa_product_edit()
-    {
-        $lang = change_language();
-
-        $p_arr      =   array(
-                        'title'     =>  'Sửa sản phẩm & dịch vụ spa ',
-                        //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
-                        'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_product_edit_view', '', TRUE)
-                    );
-        
-        //print_r($_SESSION);
-        $spaid                  =   $_SESSION["AccSpa"]["spaid"];
-        // return;
-        
-        $spa_productedit               =   $this->m_common->get_spa_product_edit_by_spaid($spaid);
-      
-        $arr_spaproductedit            =   array(  "spa_product_edit"          =>  $spa_product_edit,
-                                            );
-
-        $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
-        $this->load->view($lang."/spamanagement/common/header_view");
-        $this->load->view($lang."/spamanagement/common/left_view");
-        $this->load->view($lang."/spamanagement/spa_product_view_edit",$arr_spaproductedit);
-        $this->load->view($lang."/spamanagement/common/footer_view");
-    }
 
     public function  spa_statistics_dashboard()
         {
@@ -504,34 +473,18 @@ class Home_controller extends CI_Controller {
         $lang = change_language();
 
         $p_arr      =   array(
-                        'title'     =>  'Quản lý giá ',
+                        'title'     =>  'Quản lý khuyến mãi ',
                         //'p_custom_css'        =>  $this->load->view('spamanagement/css/css_index_view', '', TRUE),
                         'p_custom_js'       =>  $this->load->view($lang.'/spamanagement/js/js_spa_km_view', '', TRUE)
                     );
         
         //print_r($_SESSION);
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
-        //return;
-        
-        $spa_km               =   $this->m_common->get_spa_km_by_spaid($spaid);
-        
-
-        $arr_spakm            =   array(  "spa_km"          =>  $spa_km,
-                                            );
-        /*
-        |----------------------------------------------------------------
-        | Load Head View
-        | Load Header View
-        | Load Left View
-        | Load spa hour View
-        | Load Footer View
-        |----------------------------------------------------------------
-        */
         
         $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
         $this->load->view($lang."/spamanagement/common/header_view");
         $this->load->view($lang."/spamanagement/common/left_view");
-        $this->load->view($lang."/spamanagement/spa_km_view",$arr_spaprice);
+        $this->load->view($lang."/spamanagement/spa_km_view");
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
@@ -603,26 +556,11 @@ class Home_controller extends CI_Controller {
                     );
         //print_r($_SESSION);
         $spaid                  =   $_SESSION["AccSpa"]["spaid"];
-        // return;
-        
-        $spa_calendar               =   $this->m_common->get_spa_calendar_by_spaid($spaid);
-        
-        $arr_spacalendar            =   array(  "spa_calendar"          =>  $spa_calendar,
-                                            );
-        /*
-        |----------------------------------------------------------------
-        | Load Head View
-        | Load Header View
-        | Load Left View
-        | Load spa hour View
-        | Load Footer View
-        |----------------------------------------------------------------
-        */
-        
+
         $this->load->view($lang."/spamanagement/common/head_view", $p_arr);
         $this->load->view($lang."/spamanagement/common/header_view");
         $this->load->view($lang."/spamanagement/common/left_view");
-        $this->load->view($lang."/spamanagement/spa_calendar_view",$arr_spacalendar);
+        $this->load->view($lang."/spamanagement/spa_calendar_view");
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
 
@@ -832,6 +770,40 @@ class Home_controller extends CI_Controller {
         $this->load->view($lang."/spamanagement/spa_report_view",$arr_spareport);
         $this->load->view($lang."/spamanagement/common/footer_view");
     }
+     /*
+    |----------------------------------------------------------------
+    |function search_nangcao_Products
+    |----------------------------------------------------------------
+    */
+    public function search_nangcao_Products()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_product->search_nangcao_Products();
+        // }
+        echo json_encode($req);
+    }
+
+
+    /*
+    |----------------------------------------------------------------
+    |function search products
+    |----------------------------------------------------------------
+    */
+    public function list_products()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_product->list_products();
+        // }
+        echo json_encode($req);
+    }
+
+    
 
     /*
     |----------------------------------------------------------------
@@ -848,6 +820,114 @@ class Home_controller extends CI_Controller {
         // }
         echo json_encode($req);
     }
+
+    /*
+    |----------------------------------------------------------------
+    |function Update_MaxProductatOnce
+    |----------------------------------------------------------------
+    */
+    public function Update_MaxProductatOnce()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_product->Update_MaxProductatOnce();
+        // }
+        echo json_encode($req);
+    }
+
+     /*
+    |----------------------------------------------------------------
+    |function Update_Trangthai
+    |----------------------------------------------------------------
+    */
+    public function Update_Trangthai()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_product->Update_Trangthai();
+        // }
+        echo json_encode($req);
+    }
+
+     /*
+    |----------------------------------------------------------------
+    |function submit_update_thongtin_product
+    |----------------------------------------------------------------
+    */
+    public function submit_update_thongtin_product()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+        // echo "aaaaaaaa";
+        // return;
+            $req = $this->m_spa_product->update_thongtin_product();
+        // }
+        echo json_encode($req);
+    }
+
+     /*
+    |----------------------------------------------------------------
+    |function submit_update_time_product
+    |----------------------------------------------------------------
+    */
+    public function submit_update_time_product()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+        // echo "aaaaaaaa";
+        // return;
+            $req = $this->m_spa_product->update_time_product();
+        // }
+        echo json_encode($req);
+    }
+
+     /*
+    |----------------------------------------------------------------
+    |function submit_add_time_product
+    |----------------------------------------------------------------
+    */
+    public function submit_add_time_product()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+        // echo "aaaaaaaa";
+        // return;
+            $req = $this->m_spa_product->add_time_product();
+        // }
+        echo json_encode($req);
+    }
+
+
+
+
+    /*
+    |----------------------------------------------------------------
+    |function submit_add_thongtin_product
+    |----------------------------------------------------------------
+    */
+    public function submit_add_thongtin_product()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+        // echo "aaaaaaaa";
+        // return;
+            $req = $this->m_spa_product->add_thongtin_product();
+        // }
+        echo json_encode($req);
+    }
+    
     /*
     |----------------------------------------------------------------
     |function xem giá
@@ -864,6 +944,153 @@ class Home_controller extends CI_Controller {
         // }
         echo json_encode($req);
     }
+    /*
+    |----------------------------------------------------------------
+    |function thêm giá
+    |----------------------------------------------------------------
+    */
+    public function Submit_Themgia()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_price->ThemGia_Product();
+        // }
+        echo json_encode($req);
+    }
+
+     /*
+    |----------------------------------------------------------------
+    |function Edit_Product
+    |----------------------------------------------------------------
+    */
+    public function Edit_Product()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $arr_products = $this->m_spa_product->Edit_Product();
+            $arr_images = $this->m_spa_product->Edit_Images_Product();
+            $arr_time = $this->m_spa_product->Edit_Time_Product();
+
+            $req = array("arr_products"=>$arr_products,"arr_images"=>$arr_images,"arr_time"=>$arr_time);
+            // return $res;
+        // }
+        echo json_encode($req);
+    }
+
+
+
+    /*
+    |----------------------------------------------------------------
+    |function get loai spa
+    |----------------------------------------------------------------
+    */
+    public function GetProductType_Spa()
+    {
+        $req = $this->m_spa_product->get_product_types_spa();
+        echo json_encode($req);
+    }
+
+    public function GetProductType()
+    {
+        $req = $this->m_spa_product->get_product_types();
+        echo json_encode($req);
+    }
+
+    
+
+    /*
+    |----------------------------------------------------------------
+    |function list_promotions
+    |----------------------------------------------------------------
+    */
+    public function list_promotions()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_promotion->list_promotions();
+        // }
+        echo json_encode($req);
+    }
+    /*
+    |----------------------------------------------------------------
+    |function submit_add_promotion
+    |----------------------------------------------------------------
+    */
+    public function submit_add_promotion()
+    {
+        // $ckq = $this->CheckQuyen(1);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+        // echo "aaaaaaaa";
+        // return;
+            $req = $this->m_spa_promotion->add_thongtin_promotion();
+        // }
+        echo json_encode($req);
+    }
+    /*
+    |----------------------------------------------------------------
+    |function search_nangcao_Products
+    |----------------------------------------------------------------
+    */
+    public function search_nangcao_Promotions()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_promotion->search_nangcao_Promotions();
+        // }
+        echo json_encode($req);
+    }
+
+
+
+
+
+    /*
+    |----------------------------------------------------------------
+    |function Load_Calendar
+    |----------------------------------------------------------------
+    */
+    public function Load_Calendar()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            // $req= "true";
+            $req = $this->m_spa_calendar->Load_Calendar();
+        // }
+        echo json_encode($req);
+    }
+/*
+    |----------------------------------------------------------------
+    |function get_products_by_spa
+    |----------------------------------------------------------------
+    */
+    public function get_products_by_spa()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_product->get_products_by_spa();
+        // }
+        echo json_encode($req);
+    }
+  
+
+
+
+
+
 
 
     /*
@@ -1119,4 +1346,12 @@ class Home_controller extends CI_Controller {
         $this->input->set_cookie('lang', $lang, $cookie_time); 
         redirect($_SERVER['HTTP_REFERER']); 
     }
+
+
+
+
+
+
+
+
 }

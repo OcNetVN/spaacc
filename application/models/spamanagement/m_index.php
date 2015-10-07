@@ -5,8 +5,8 @@ class M_index extends CI_Model{
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('m_mail');
-        $this->load->model('m_register');
+        $this->load->model('spamanagement/m_mail');
+        $this->load->model('spamanagement/m_register');
         $this->db2 = $this->load->database('thebooking', TRUE); 
     }
     

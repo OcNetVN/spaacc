@@ -18,6 +18,8 @@ $(document).ready(function() {
 
 function btnsave_spa_hour()
 {
+    // alert('OK');
+    // return;
     var arrcbdayofweek = [];
     var i= 0;
     $('input:checkbox[name= ]:checked').each(function(){
@@ -50,6 +52,7 @@ function btnsave_spa_hour()
 }
 function btnsave_spa_hour_Complete(data)
 {
+    // return;
     var sRes = JSON.parse(data);
     if(sRes.stt ==1)
     {

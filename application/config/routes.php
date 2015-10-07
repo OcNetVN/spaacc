@@ -45,12 +45,19 @@ $route['404_override'] = '';
 /* 
 | custom url for spa management
 */
+$route['spaman/logout']					    =		"spaman/login/logout";
 $route['spaman/spa_statistics']				=		"spaman/home_controller/spa_statistics";
 $route['spaman/spa_info']					=		"spaman/home_controller/spa_info";
-$route['spaman/spa_hour']					=		"spaman/home_controller/spa_hour";
 $route['spaman/spa_policy']					=		"spaman/home_controller/spa_policy";
+$route['spaman/spa_hour']					=		"spaman/home_controller/spa_hour";
 $route['spaman/spa_util']					=		"spaman/home_controller/spa_util";
 $route['spaman/spa_product']				=		"spaman/home_controller/spa_product";
+
+
+
+
+
+
 $route['spaman/spa_price']					=		"spaman/home_controller/spa_price";
 $route['spaman/spa_km']						=		"spaman/home_controller/spa_km";
 $route['spaman/spa_dt']						=		"spaman/home_controller/spa_dt";
@@ -59,9 +66,7 @@ $route['spaman/spa_booking']				=		"spaman/home_controller/spa_booking";
 $route['spaman/spa_notify']					=		"spaman/home_controller/spa_notify";
 $route['spaman/spa_report']					=		"spaman/home_controller/spa_report";
 
-$route['spaman/thoat_info']					=		"spaman/home_controller/thoat_info";
 
-$route['thao-tac/sua-dich-vu-spa'] 			= 		"spaman/home_controller/spa_product_edit";
 $route['thong-ke/dash-board'] 				= 		"spaman/home_controller/spa_statistics_dashboard";
 
 $route['spaman/spa_user']					=		"spaman/home_controller/spa_user";

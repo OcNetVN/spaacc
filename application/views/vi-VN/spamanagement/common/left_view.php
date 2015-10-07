@@ -53,16 +53,14 @@
               </a>
           </li> -->
           <li>             
-              <a href="<?php echo base_url("spaman/thoat_info"); ?>">
+              <a href="<?php echo base_url("spaman/logout"); ?>">
                   <i class="fa fa-sign-out"></i>Thoát
               </a>
           </li>
         </ul>
     </div><!--end left menu-->
-    
+
 
     
-
-</div>  
-<div class="template-page-wrapper">
+    <div class="template-page-wrapper">
         <div class="templatemo-content">

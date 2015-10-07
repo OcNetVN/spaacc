@@ -10,7 +10,7 @@ class Login extends CI_Controller
             $this->load->model('spamanagement/m_mail');
             $this->load->model('spamanagement/m_spa');
             $this->load->helper('language_helper');
-        }
+        } 
         
        function GetMenuCap1($roleID,$moduleID) 
           {
@@ -147,11 +147,17 @@ class Login extends CI_Controller
                             $this->m_user->update_lastlogin_user($user->UserId,$LastLogin);
 
                             //$this->session->set_userdata($arr_session);
-                            redirect('spaman/spa_info');
+                            redirect('spaman/spa_statistics');
                         }
                     //}
                 }
                 $this->load->view($lang.'/spamanagement/login');
+        }
+        public function logout()
+        {
+            unset($_SESSION["AccSpa"]);
+
+            redirect('spaman/login');
         }
 }
   

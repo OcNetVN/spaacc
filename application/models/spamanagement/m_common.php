@@ -83,12 +83,7 @@
             return $query;
         }
         
-        public function get_spa_calendar_by_spaid($spaid)
-        {
-            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
-            $query  =   $this->db->query($sql)->row();
-            return $query;
-        }
+        
         
         public function get_spa_booking_by_spaid($spaid)
         {
@@ -102,8 +97,15 @@
             $query  =   $this->db->query($sql)->row();
             return $query;
         }
+        
+        public function get_spa_calendar_by_spaid($spaid)
+        {
+            $sql    =   "SELECT * FROM `spa` WHERE `spaID` = '$spaid'";
+            $query  =   $this->db->query($sql)->row();
+            return $query;
+        }
+        
        
-      
        
         public function get_spa_products_by_spaid($spaid)
         {
@@ -203,7 +205,7 @@
 
         public function get_producttype_by_spaid($spaid)
         {
-            $sql        =   "SELECT `ProductType` FROM `spaproductype` WHERE `spaID` = '$spaid' ORDER BY `ProductType`";
+            $sql        =   "SELECT * FROM `spaproductype` WHERE `spaID` = '$spaid' ORDER BY `ProductType`";
             //echo $sql;die;
             $query      =   $this->db->query($sql)->result();
             if(count($query) > 0)
