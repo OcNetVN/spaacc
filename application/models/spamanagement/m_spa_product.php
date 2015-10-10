@@ -166,13 +166,40 @@
             return $res;
         }
 
-         public function get_products_by_spa(){
-            $spaid    = $_POST['spaid'];
+        public function get_products_by_spa(){
+            // $spaid    = $_POST['spaid'];
+            $spaid = $_SESSION["AccSpa"]["spaid"];
           
             // $sql= "SELECT '1' AS STT, '2' AS Giahientai,'4' AS Loai, p.*";
             $sql= "SELECT '0' AS Giahientai, p.`ProductID`,p.`Name`";
             $sql.=" FROM products p";
             $sql.=" WHERE p.`SpaID` = '$spaid' AND p.`Status`=1 ";
+            $sql = $sql." order by p.`ProductType`";
+            
+            
+            // return $sql;
+
+            $_arrSpa = $this->db->query($sql)->result();
+
+            // $this->AddSTT_product($_arrSpa,1); 
+
+            // return $_arrSpa;
+            $this->AddGiahientai_product($_arrSpa); 
+
+            // $this->AddLoai_product($_arrSpa); 
+
+            $res = array("lst"=>$_arrSpa);
+            return $res;
+        }
+
+        public function get_products_by_spa_ProductType(){
+            $ProductType    = $_POST['ProductType'];
+            $spaid = $_SESSION["AccSpa"]["spaid"];
+          
+            // $sql= "SELECT '1' AS STT, '2' AS Giahientai,'4' AS Loai, p.*";
+            $sql= "SELECT '0' AS Giahientai, p.`ProductID`,p.`Name`";
+            $sql.=" FROM products p";
+            $sql.=" WHERE p.`SpaID` = '$spaid' AND p.`Status`=1 AND p.`ProductType`='$ProductType' ";
             $sql = $sql." order by p.`ProductType`";
             
             

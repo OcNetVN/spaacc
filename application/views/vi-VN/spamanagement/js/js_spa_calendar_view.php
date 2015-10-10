@@ -23,10 +23,10 @@
   <script type="text/javascript">
     $(function(){
       $('*[name=Edit_FromTime]').appendDtpicker();
-      $('*[name=Edit_ToTime]').appendDtpicker();
+      // $('*[name=Edit_ToTime]').appendDtpicker();
       
       $('*[name=Add_FromTime]').appendDtpicker();
-      $('*[name=Add_ToTime]').appendDtpicker();
+      // $('*[name=Add_ToTime]').appendDtpicker();
 
 
  	  $('*[name=ngay_xem]').appendDtpicker();

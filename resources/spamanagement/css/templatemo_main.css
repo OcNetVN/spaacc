@@ -69,11 +69,22 @@ div#timkiemnangcao{margin: 15px 0px; padding: 15px 15px; background: #F9F9F9;bor
 div#timkiemnangcao table td label{    margin-right: 10px;}
 div#timkiemnangcao table td input{    margin-right: 20px;}
 input#submit_timkiemnangcao{margin: 10px 0px}
+.soluong_thoigian{padding-left: 0px!important}
 #View_detail div{
-    padding-bottom: 15px;
+       padding: 10px 10px 0px;
 }
 #View_detail span.pull-left{
    font-weight: bold;
+}
+.Giahientai{
+    font-weight: bold;
+    color: blue;
+    font-size: 11px;
+    margin-top: 10px;
+}
+.list-group-item label{
+    margin-right: 10px;
+    font-size: 12px;
 }
 b.hoatdong{    
     background: #338ECF;

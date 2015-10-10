@@ -1070,7 +1070,7 @@ class Home_controller extends CI_Controller {
         // }
         echo json_encode($req);
     }
-/*
+    /*
     |----------------------------------------------------------------
     |function get_products_by_spa
     |----------------------------------------------------------------
@@ -1085,7 +1085,71 @@ class Home_controller extends CI_Controller {
         // }
         echo json_encode($req);
     }
+
+
+    /*
+    |----------------------------------------------------------------
+    |function get_products_by_spa_ProductType
+    |----------------------------------------------------------------
+    */
+    public function get_products_by_spa_ProductType()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_product->get_products_by_spa_ProductType();
+        // }
+        echo json_encode($req);
+    }
+    /*
+    |----------------------------------------------------------------
+    |function Submit_Booking_Detail
+    |----------------------------------------------------------------
+    */
+    public function Submit_Booking_Detail()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_calendar->Submit_Booking_Detail();
+        // }
+        echo json_encode($req);
+    }
   
+
+    /*
+    |----------------------------------------------------------------
+    |function Submit_Add_Booking_Offline
+    |----------------------------------------------------------------
+    */
+    public function Submit_Add_Booking_Offline()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_calendar->Submit_Add_Booking_Offline();
+        // }
+        echo json_encode($req);
+    }
+
+    /*
+    |----------------------------------------------------------------
+    |function Submit_Delete_Booking_Offline
+    |----------------------------------------------------------------
+    */
+    public function Submit_Delete_Booking_Offline()
+    {       
+        // $ckq = $this->CheckQuyen(4);
+        // $req = -1;
+        // if($ckq == true)
+        // {
+            $req = $this->m_spa_calendar->Submit_Delete_Booking_Offline();
+        // }
+        echo json_encode($req);
+    }
 
 
 

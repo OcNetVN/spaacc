@@ -353,7 +353,6 @@ function get_products_by_spa(){
         url: "home_controller/get_products_by_spa",
         dataType:"text",
         data: {
-            spaid: spaid
         },
         cache:false,
         success:function (data) {
