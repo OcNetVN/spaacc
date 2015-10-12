@@ -6,15 +6,9 @@
 |----------------------------------------------------------------
 */
 $(document).ready(function() {
-    // Load_Calendar('Moth',$("#ngay_xem").val());
-    //  $("#Edit_FromTime").click(function () {
-        
-    //     document.getElementById("Edit_FromTime").setAttribute("onchange", "Check_Thoigianbatdau();");
-    // });
-    // 
-    
-
-
+    var hienthi = $('#hienthi_xem').val();
+    var value = $('#ngay_xem').val();    
+    Load_Calendar(hienthi,value);
   
 });
 function change_time(value){
@@ -38,6 +32,16 @@ function change_hienthi(hienthi){
 /////////////////////////////////////////////////////////////////////////////////////
 
 function Load_Calendar(hienthi,ngay){
+
+    if(ngay=="")
+    {
+        var currentDate = new Date();
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1;
+        var year = currentDate.getFullYear();
+        ngay = year +"-"+month+"-"+day;
+    }
+
     $('#divLoad').children().remove();
     $("#divLoad").append("<div id='calendar_booking'></div>");
     // BEGIN Khởi tạo Calendar
@@ -84,19 +88,6 @@ function Load_Calendar(hienthi,ngay){
     // dp.timeHeaderCellDuration = 30;
     // dp.selectedColor ="#FF6600";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     // //sau khi render
     // dp.onAfterRender = function (args) {
     //     alert("Rendering finished.");
@@ -108,12 +99,6 @@ function Load_Calendar(hienthi,ngay){
     // // console.log(args.e);
     //     args.e.html = args.e.text + ":";
     // };
-
-
-
-
-
-
 
     // tooltip cho booking
     dp.bubble = new DayPilot.Bubble({
@@ -172,17 +157,29 @@ function Load_Calendar(hienthi,ngay){
     });
 
     // event moving
-    // dp.onEventMoved = function (args) {
-    //     dp.message("Moved: " + args.e.text());
-    // };
+    dp.onEventMoved = function (args) {
+        dp.message("Không thể di chuyển các booking");
+        setTimeout(function(){
+            $('#myModal_Error').modal('hide');
+            var hienthi = $('#hienthi_xem').val();
+            var value = $('#ngay_xem').val();
+            Load_Calendar(hienthi,value);
+        }, 1500);
+    };
     // event moving
 
 
     // event resizing
     // Resize booking offline
-    // dp.onEventResized = function (args) {
-    //     dp.message("Resized: " + args.e.text());
-    // };
+    dp.onEventResized = function (args) {
+        dp.message("Không thể thay đổi kích thước các booking");
+        setTimeout(function(){
+            $('#myModal_Error').modal('hide');
+            var hienthi = $('#hienthi_xem').val();
+            var value = $('#ngay_xem').val();
+            Load_Calendar(hienthi,value);
+        }, 1500);
+    };
     // // event resizing
     // Resize booking offline
    
@@ -376,8 +373,11 @@ function Modal_View_Booking_Calendar(args){
 
 
 function Modal_Edit_Booking_Calendar(args){ 
+
     if(args.data.bookingpayment.PayMethod=="11")//booking ofline
     {
+        $("#tb_Edit_FromTime").hide(500);
+
         $('#Edit_BookingID').val(''); 
         $('#Edit_ProductID').val('');
         $('#Edit_FullName').html('');
@@ -387,6 +387,7 @@ function Modal_Edit_Booking_Calendar(args){
         $('#Edit_TenDV').html('');   
         $('#Edit_Duration').html(''); 
         $('#Edit_FromTime').val('');
+        $('#Edit_gio').html('');
         $('#Edit_ToTime').html('');
         
         $('#Edit_Quantity').html('');
@@ -395,6 +396,39 @@ function Modal_Edit_Booking_Calendar(args){
 
         // document.getElementById("Edit_FromTime").onclick=null; 
         document.getElementById("Submit_Booking_Detail").onclick=null; 
+
+        var FT = args.data.FromTime;
+        var arr_FT = FT.split(" ");
+
+        var get_gio = arr_FT[1].slice(0,5)
+        // console.log(get_gio);
+
+
+        var gio = "<select id='gio_Edit_time' class='form-control'>";              
+        for(var k = 0; k < 24; k ++)
+        {
+            var str_hour_from = 0;
+            str_hour_from      =   k;
+
+
+            var chek = "";
+            if(get_gio == str_hour_from+':00'){
+                chek = " selected='selected'"
+            }
+            var chek_30 = "";
+            if(get_gio == str_hour_from+':30'){
+                chek_30 = " selected='selected'"
+            }
+        
+        
+            gio            +=  '<option value="'+str_hour_from+':00" '+chek+'>'+str_hour_from+':00</option>';
+            gio            +=  '<option value="'+str_hour_from+':30" '+chek_30+'>'+str_hour_from+':30</option>';
+        }
+        gio +=  '</select>';
+
+
+
+
 
         // console.log(args);
         var st = "";
@@ -414,7 +448,8 @@ function Modal_Edit_Booking_Calendar(args){
         $('#Edit_Email').append(args.data.booking_object.Email); 
         $('#Edit_TenDV').append(args.data.Name);    
         $('#Edit_Duration').append(args.data.Duration); 
-        $('#Edit_FromTime').val(args.data.FromTime);
+        $('#Edit_FromTime').val(arr_FT[0]);
+        $('#Edit_gio').append(gio);
         $('#Edit_ToTime').append(args.data.ToTime);
         $('#Edit_Thanhtoan').append(args.data.bookingpayment.StrValue1);
         $('#Edit_Quantity').append(args.data.Qty);
@@ -441,7 +476,12 @@ function Modal_Edit_Booking_Calendar(args){
 function Submit_Booking_Detail(){
     var bookingID =  $('#Edit_BookingID').val();
     var pro = $('#Edit_ProductID').val();
-    var time =  $('#Edit_FromTime').val();
+    var gio =  $('#gio_Edit_time').val();
+    var time =  $('#Edit_FromTime').val()+" "+gio;
+
+
+    // console.log(time);
+    // return;
     $.ajax({
         type: "POST",
         url:"home_controller/Submit_Booking_Detail",
@@ -464,28 +504,30 @@ function Submit_Booking_Detail_complete(data)
 {
     var sRes = JSON.parse(data);
     if(sRes==0 || sRes=="0"){
-        alert('Thời gian bắt đầu không hợp lệ');
+        // alert('Thời gian bắt đầu không hợp lệ');
+        $("#tb_Edit_FromTime").show(500);
         return ;
     }
     if(sRes==false || sRes=="false"){
         alert('Cập nhật không thành công');
         return ;
     }
-        $('#myModal_Edit_Booking_Calendar').modal('hide') ;
+    $('#myModal_Edit_Booking_Calendar').modal('hide') ;
+    $("#tb_Edit_FromTime").hide(500);
 
-        var thongbao= "Cập nhật thành công";
-        $('#myModal_Error div.modal-body').html('');           
-        $("#myModal_Error div.modal-body").append(thongbao);
+    var thongbao= "Cập nhật thành công";
+    $('#myModal_Error div.modal-body').html('');           
+    $("#myModal_Error div.modal-body").append(thongbao);
 
-        $('#myModal_Error').modal();                      // initialized with defaults
-        $('#myModal_Error').modal({ keyboard: false });   // initialized with no keyboard
-        $('#myModal_Error').modal('show');
-        setTimeout(function(){
-            $('#myModal_Error').modal('hide');
-            var hienthi = $('#hienthi_xem').val();
-            var value = $('#ngay_xem').val();
-            Load_Calendar(hienthi,value);
-        }, 1000);
+    $('#myModal_Error').modal();                      // initialized with defaults
+    $('#myModal_Error').modal({ keyboard: false });   // initialized with no keyboard
+    $('#myModal_Error').modal('show');
+    setTimeout(function(){
+        $('#myModal_Error').modal('hide');
+        var hienthi = $('#hienthi_xem').val();
+        var value = $('#ngay_xem').val();
+        Load_Calendar(hienthi,value);
+    }, 1000);
 }
 
 function Call_myModal_Add_Booking_Calendar()
@@ -589,17 +631,37 @@ function Load_DV(value)
             var sRes = JSON.parse(data);
             var demo=$('ul').hasClass('loai_'+value);
             if(sRes.lst.length!=0 && demo ==false){
+
+
+
+
                 $("#show_tb").hide(100);
                 var str_dv="<ul class='loai_"+value+" col-sm-12' style='padding:0px;'>";
                 for (var i = 0; i <sRes.lst.length; i++) {
                     if(sRes.lst[i].Giahientai!=null){
+
+
+                        var gio = "<select id='gio_"+sRes.lst[i].ProductID+"'>";              
+                        for(var k = 0; k < 24; k ++)
+                        {
+                            var str_hour_from = 0;
+                            str_hour_from      =   k;
+                        
+                        
+                            gio            +=  '<option value="'+str_hour_from+':00">'+str_hour_from+':00</option>';
+                            gio            +=  '<option value="'+str_hour_from+':30">'+str_hour_from+':30</option>';
+                        }
+                        gio +=  '</select>';
+
+
+
                         str_dv+="<li class='col-sm-12 list-group-item' style='background: #F0F7ED;'>";
                         str_dv+="<input type='checkbox' id='check_product_"+sRes.lst[i].ProductID+"' name='check_product' value="+sRes.lst[i].ProductID+" onchange='Check_Product(this.value);'> ";
                         str_dv+="<b style='font-size: 12px;'>"+sRes.lst[i].Name+"</b>";
                         str_dv+="<p class='Giahientai'>Giá - "+sRes.lst[i].Giahientai+" VND</p>";
                         str_dv+="<div id='soluong_thoigian_"+sRes.lst[i].ProductID+"' class='soluong_thoigian' style='display:none'>"
                         str_dv+="<p><label>Số lượng </label><input type='text' id='Add_SoLuong_"+sRes.lst[i].ProductID+"' name='Add_SoLuong_"+sRes.lst[i].ProductID+"' value='1'><span class='notify_error_ngang' style='display: none;float: none;' id='ssll_"+sRes.lst[i].ProductID+"'><span class='caret_muiten_ngang'></span>Nhập số lượng</span></p>";
-                        str_dv+="<p><label>Thời gian</label><input type='text' id='Add_FromTime_"+sRes.lst[i].ProductID+"' name='Add_FromTime_"+sRes.lst[i].ProductID+"' ><span class='notify_error_ngang' style='display: none;float: none;' id='thgian_"+sRes.lst[i].ProductID+"'><span class='caret_muiten_ngang'></span>Chọn thời gian khác</span></p>";
+                        str_dv+="<p><label>Thời gian</label><input type='text' id='Add_FromTime_"+sRes.lst[i].ProductID+"' name='Add_FromTime_"+sRes.lst[i].ProductID+"' ><label style='margin: 0px 5px 0px 15px;'>Giờ</label> "+gio+"<span class='notify_error_ngang' style='display: none;float: none;' id='thgian_"+sRes.lst[i].ProductID+"'><span class='caret_muiten_ngang'></span>Chọn thời gian khác</span></p>";
                         str_dv+="</div>";
                         str_dv+="</li>"; 
                     }
@@ -617,9 +679,9 @@ function Load_DV(value)
 
 function Check_Product(ProductID)
 {
-    // var d = document.getElementById('check_product_'+ProductID);
-    // var x = $('#check_product_'+ProductID).is(':checked')
-    $('*[name=Add_FromTime_'+ProductID+']').appendDtpicker();
+    // $('*[name=Add_FromTime_'+ProductID+']').appendDtpicker();
+    $( "#Add_FromTime_"+ProductID ).datepicker();
+    $( "#Add_FromTime_"+ProductID ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 
 
     if($('#check_product_'+ProductID).is(':checked')==true)
@@ -664,14 +726,14 @@ function Submit_Add_Booking_Offline()
         var arr                 =   {
                                         ProductID : ProductID,
                                         Qty       : $('#Add_SoLuong_'+ProductID).val(),
-                                        FromTime  : $('#Add_FromTime_'+ProductID).val(),
+                                        FromTime  : $('#Add_FromTime_'+ProductID).val() + " "+$('#gio_'+ProductID).val(),
                                     };
 
         Product_check.push(arr);
         $("#ssll_"+ProductID).hide(10);
         $("#thgian_"+ProductID).hide(10);
     });
-
+    console.log(Product_check);
     var flag = 0;
 
     if(FullName==""){
@@ -754,7 +816,7 @@ function  Submit_Add_Booking_Offline_Complete(data){
             var hienthi = $('#hienthi_xem').val();
             var value = $('#ngay_xem').val();
             Load_Calendar(hienthi,value);
-        }, 5000);
+        }, 2000);
 
     }
     else{
@@ -777,7 +839,7 @@ function  Submit_Add_Booking_Offline_Complete(data){
                 var hienthi = $('#hienthi_xem').val();
                 var value = $('#ngay_xem').val();
                 Load_Calendar(hienthi,value);
-            }, 5000);
+            }, 2000);
 
         }
 
@@ -791,7 +853,7 @@ function Modal_Delete_Booking_Calendar(args)
 {     
     if(args.data.bookingpayment.PayMethod=="11")//booking ofline
     {
-        console.log(args);
+        // console.log(args);
         var bookingID = args.data.bookingID;
         var ProductID = args.data.ProductID;
 
@@ -840,48 +902,32 @@ function  Submit_Delete_Booking_Offline_Complete(data){
     // alert("OK");
     var sRes = JSON.parse(data);
     console.log(sRes);
-    // if(sRes.result==true || sRes.result=="true"){
-    //     $('#myModal_Add_Booking_Calendar').modal('hide') ;
+    if(sRes==1 || sRes=="1"){
+        // $('#myModal_Add_Booking_Calendar').modal('hide') ;
 
-    //     var thongbao= "Tạo booking offline thành công";
-    //     $('#myModal_Error div.modal-body').html('');           
-    //     $("#myModal_Error div.modal-body").append(thongbao);
+        var thongbao= "Xóa booking offline thành công";
+        $('#myModal_Error div.modal-body').html('');           
+        $("#myModal_Error div.modal-body").append(thongbao);
 
-    //     $('#myModal_Error').modal();                      // initialized with defaults
-    //     $('#myModal_Error').modal({ keyboard: false });   // initialized with no keyboard
-    //     $('#myModal_Error').modal('show');
-    //     setTimeout(function(){
-    //         $('#myModal_Error').modal('hide');
-    //         var hienthi = $('#hienthi_xem').val();
-    //         var value = $('#ngay_xem').val();
-    //         Load_Calendar(hienthi,value);
-    //     }, 5000);
+        $('#myModal_Error').modal();                      // initialized with defaults
+        $('#myModal_Error').modal({ keyboard: false });   // initialized with no keyboard
+        $('#myModal_Error').modal('show');
+        setTimeout(function(){
+            $('#myModal_Error').modal('hide');
+            var hienthi = $('#hienthi_xem').val();
+            var value = $('#ngay_xem').val();
+            Load_Calendar(hienthi,value);
+        }, 2000);
 
-    // }
-    // else{
-    //     if(sRes.action=="FromTime"){
-    //         $("#thgian_"+sRes.fix.ProductID).show(500);
-    //         return;
-    //     }
-    //     else{
-    //         $('#myModal_Add_Booking_Calendar').modal('hide') ;
+    }
+    else{
+        var thongbao= "Xảy ra lỗi trong quá trình xử lý";
+        $('#myModal_Error div.modal-body').html('');           
+        $("#myModal_Error div.modal-body").append(thongbao);
 
-    //         var thongbao= "Xảy ra lỗi trong quá trình xử lý";
-    //         $('#myModal_Error div.modal-body').html('');           
-    //         $("#myModal_Error div.modal-body").append(thongbao);
+        $('#myModal_Error').modal();                      // initialized with defaults
+        $('#myModal_Error').modal({ keyboard: false });   // initialized with no keyboard
+        $('#myModal_Error').modal('show');
 
-    //         $('#myModal_Error').modal();                      // initialized with defaults
-    //         $('#myModal_Error').modal({ keyboard: false });   // initialized with no keyboard
-    //         $('#myModal_Error').modal('show');
-    //         setTimeout(function(){
-    //             $('#myModal_Error').modal('hide');
-    //             var hienthi = $('#hienthi_xem').val();
-    //             var value = $('#ngay_xem').val();
-    //             Load_Calendar(hienthi,value);
-    //         }, 5000);
-
-    //     }
-
-
-    // }
+    }
 }

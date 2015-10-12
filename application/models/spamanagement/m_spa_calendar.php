@@ -519,36 +519,55 @@
 
         public function Submit_Delete_Booking_Offline()
         {
-            // $bookingID    = $_POST['bookingID'];
-            // $ProductID    = $_POST['ProductID'];
-
-            // //kiemtra ton tai booking và product
-            // $sql = "SELECT * FROM `bookingdetails` WHERE `bookingID` = '$bookingID' AND `ProductID` = '$ProductID'";
-
-            // $bookingdetails= (array) $this->db->query($sql)->row();
-            // if(count($bookingdetails)==0){
-            //     return 0;
-            // }
-            // // return $bookingdetails['AmtBT'];
 
 
-            // $sql_update= "UPDATE `booking` SET `TotalAmtBT` = `TotalAmtBT`- ".$bookingdetails['AmtBT'].", `TotalAmtAT` = `TotalAmtAT` - ".$bookingdetails['AmtBT'].", `TotalAmt` = `TotalAmt`- ".$bookingdetails['AmtBT']." WHERE `bookingID` = '$bookingID'";
-            // $query_update = $this->db->query($sql_update);
-            // if(!$query_update){                
-            //     return 0;
-            // }
-            // $sql_detele = "DELETE FROM `bookingdetails` WHERE `bookingID` = '$bookingID' AND `ProductID` = '$ProductID' ";
-            // $query = $this->db->query($sql_detele);
-            // if(!$query){
-            //     $sql_update= "UPDATE `booking` SET `TotalAmtBT` = `TotalAmtBT`+ ".$bookingdetails['AmtBT'].", `TotalAmtAT` = `TotalAmtAT` + ".$bookingdetails['AmtBT'].", `TotalAmt` = `TotalAmt`+ ".$bookingdetails['AmtBT']." WHERE `bookingID` = '$bookingID'";
-            //     $query_update = $this->db->query($sql_update);
-            //     return 0;
-            // }
+            $bookingID    = $_POST['bookingID'];
+            $ProductID    = $_POST['ProductID'];
+            
+            //kiemtra ton tai booking và product
+            $sql = "SELECT * FROM `bookingdetails` WHERE `bookingID` = '$bookingID' AND `ProductID` = '$ProductID'";
+
+            $bookingdetails= (array) $this->db->query($sql)->row();
+            if(count($bookingdetails)==0){
+                return 0;
+            }
+            // return $bookingdetails['AmtBT'];
 
 
-            // return $sql_update;
+            $this->db->trans_begin();
+
+            $sql_update_booking= "UPDATE `booking` SET `TotalAmtBT` = `TotalAmtBT`- ".$bookingdetails['AmtBT'].", `TotalAmtAT` = `TotalAmtAT` - ".$bookingdetails['AmtBT'].", `TotalAmt` = `TotalAmt`- ".$bookingdetails['AmtBT']." WHERE `bookingID` = '$bookingID'";
+            $query_update_booknig = $this->db->query($sql_update_booking);
+
+            $sql_select_booking = "SELECT * FROM `booking` WHERE `bookingID` = '$bookingID'";
+            $row_booking = (array) $this->db->query($sql_select_booking)->row();
+            if($row_booking['TotalAmt']==0){
+                 $sql_detele_booking = "DELETE FROM `booking` WHERE `bookingID` = '$bookingID'";
+                 $this->db->query($sql_detele_booking);
+            }
+            $sql_detele_bookingdetails = "DELETE FROM `bookingdetails` WHERE `bookingID` = '$bookingID' AND `ProductID` = '$ProductID' ";
+            $this->db->query($sql_detele_bookingdetails);
+
+            $sql_detele_bookingpayment = "DELETE FROM `bookingpayment` WHERE `bookingID` = '$bookingID' AND `ProductID` = '$ProductID' ";
+            $this->db->query($sql_detele_bookingpayment);
+          
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                $this->db->trans_rollback();
+                return 0;
+            }
+            else
+            {
+            $this->db->trans_commit();
+                return 1;
+            }
             
         }
+
+
+
+
 
         
     }

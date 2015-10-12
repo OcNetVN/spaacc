@@ -20,7 +20,7 @@
 
       <label style="margin-left:10px">Ngày</label>
       <input type="hidden" id="spaid" value="<?php echo $_SESSION["AccSpa"]["spaid"]?>" />
-      <input name="ngay_xem" id="ngay_xem"type="text" value="" onchange="change_time(this.value)" />
+      <input name="ngay_xem" id="ngay_xem"type="text" value="<?php echo date("Y-m-d");?>"  onchange="change_time(this.value)" />
   </div>
   <div class="col-sm-6" style="padding:0px">
       <!-- Button trigger modal            data-target="#myModal_Add_Booking_Calendar"   -->
@@ -81,7 +81,7 @@
                 <div class="col-md-12"><div class="col-md-3">Email</div><div class="col-md-9"><span class="pull-left" id="Edit_Email"></span></div></div>
                 <div class="col-md-12"><div class="col-md-3">Dịch vụ</div><div class="col-md-9"><span class="pull-left" id="Edit_TenDV"></span></div></div>
                 <div class="col-md-12"><div class="col-md-3">Thời lượng<sub>( phút )</sub></div><div class="col-md-9"><span class="pull-left" id="Edit_Duration"></span></div></div>
-                <div class="col-md-12"><div class="col-md-3">Thời gian bắt đầu</div><div class="col-md-9"><span class="pull-left"><input type="text" class="form-control" id="Edit_FromTime" name="Edit_FromTime" ></span></div></div>
+                <div class="col-md-12"><div class="col-md-3">Thời gian bắt đầu</div><div class="col-md-9"><span class="pull-left"><input type="text" class="form-control" id="Edit_FromTime" name="Edit_FromTime" style="width: 160px;"></span><span style='margin: 0px 5px 0px 15px;float: left;'>Giờ</span><span id="Edit_gio"  style="float: left;"></span><span class="notify_error_ngang" style="display: none;float: left;" id="tb_Edit_FromTime"><span class="caret_muiten_ngang"></span>Chọn thời gian khác</span></div></div>
                 <div class="col-md-12"><div class="col-md-3">Thời gian kết thúc</div><div class="col-md-9"><span class="pull-left" id="Edit_ToTime"></span></div></div>
                 <div class="col-md-12"><div class="col-md-3">Số lượng</div><div class="col-md-9"><span class="pull-left" id="Edit_Quantity"></span></div></div>
                 <div class="col-md-12"><div class="col-md-3">Thanh Toán</div><div class="col-md-9"><span class="pull-left" id="Edit_Thanhtoan"></span></div></div>
